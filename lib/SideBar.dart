@@ -109,7 +109,7 @@ class SideBar extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Color(0xFFEDF6E5),
+      //backgroundColor: Color(0xFFEDF6E5),
     );
   }
 }
