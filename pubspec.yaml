@@ -26,6 +26,7 @@ dependencies:
   flutter_svg: ^0.19.1
   flutter_bloc: ^7.3.1
   equatable: ^2.0.3
+  cached_network_image: ^3.2.0
 
 dev_dependencies:
   flutter_test:

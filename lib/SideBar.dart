@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
-import 'package:flutter_auth/constants.dart';
 
 class SideBar extends StatelessWidget {
   
@@ -109,7 +108,7 @@ class SideBar extends StatelessWidget {
           ),
         ],
       ),
-      backgroundColor: Color(0xFFEDF6E5),
+      //backgroundColor: Color(0xFFEDF6E5),
     );
   }
 }
