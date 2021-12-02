@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
@@ -21,7 +23,10 @@ class Body extends StatelessWidget {
           children: <Widget>[
             Text(
               "REGISTRO",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.pink[800]),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.pink[800]),
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
@@ -48,7 +53,6 @@ class Body extends StatelessWidget {
             AlreadyHaveAnAccountCheck(
               login: false,
               press: () {
-                
                 Navigator.push(
                   context,
                   MaterialPageRoute(
