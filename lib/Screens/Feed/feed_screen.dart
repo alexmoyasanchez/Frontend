@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Feed/components/body.dart';
 import 'package:flutter_auth/SideBar.dart';
@@ -10,6 +11,22 @@ class FeedScreen extends StatelessWidget {
       drawer: SideBar(),
       appBar: AppBar(
         backgroundColor: PrimaryColor,
+        title: Image.asset(
+          "assets/images/logo_verde.png",
+          width: 55,
+          height: 55,
+          fit: BoxFit.cover,
+        ),
+        /*title: Text(
+          'Barea',
+          style: const TextStyle(
+            color: Color(0xFFC6FF00),
+            fontSize: 28.0, 
+            fontWeight: FontWeight.bold,
+            letterSpacing: -1.2
+          ),
+        ),*/
+        centerTitle: true,
       ),
       body: Body(),
     );
