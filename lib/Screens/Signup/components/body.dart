@@ -14,6 +14,7 @@ import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/models/user_model.dart';
 
 class Body extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -63,7 +64,6 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      print("Text $username");
                       return LoginScreen();
                     },
                   ),

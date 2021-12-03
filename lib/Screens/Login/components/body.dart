@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/components/background.dart';
+import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
@@ -16,6 +17,8 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    String email;
+    String password;
     return Background(
       child: SingleChildScrollView(
         child: Column(
@@ -27,11 +30,15 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
-              hintText: "Correo o Nombre de Usuario",
-              onChanged: (value) {},
+              hintText: "Correo",
+              onChanged: (value) {
+                email = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                password = value;
+              },
             ),
             RoundedButton(
               text: "INICIAR SESIÓN",
@@ -42,6 +49,7 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder:(context){
+                      Login('$email', '$password');
                       return FeedScreen();
                     },
                   ),

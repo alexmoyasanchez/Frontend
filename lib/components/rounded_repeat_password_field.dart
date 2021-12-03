@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/text_field_container.dart';
 
-class RoundedRepeatPasswordField extends StatelessWidget {
+class RoundedRepeatPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
   const RoundedRepeatPasswordField({
     Key key,
@@ -9,11 +9,20 @@ class RoundedRepeatPasswordField extends StatelessWidget {
   }) : super(key: key);
 
   @override
+  State<RoundedRepeatPasswordField> createState() =>
+      _RoundedRepeatPasswordFieldState();
+}
+
+class _RoundedRepeatPasswordFieldState
+    extends State<RoundedRepeatPasswordField> {
+  bool hiddenText = true;
+
+  @override
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
-        obscureText: true,
-        onChanged: onChanged,
+        obscureText: hiddenText,
+        onChanged: widget.onChanged,
         cursorColor: Colors.white,
         decoration: InputDecoration(
           hintText: "Repetir Contraseña",
@@ -23,9 +32,14 @@ class RoundedRepeatPasswordField extends StatelessWidget {
             Icons.lock,
             color: Colors.white,
           ),
-          suffixIcon: Icon(
-            Icons.visibility,
+          suffixIcon: IconButton(
+            icon: Icon(Icons.visibility),
             color: Colors.white,
+            onPressed: () {
+              setState(() {
+                hiddenText = !hiddenText;
+              });
+            }
           ),
         ),
       ),
