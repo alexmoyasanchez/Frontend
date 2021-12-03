@@ -1,19 +1,28 @@
 import 'package:flutter_auth/models/models.dart';
 
 final User currentUser = User(
+  id: null,
   username: 'Alex',
+  password: null,
+  email: null,
   imageUrl: 'https://fotos02.noticiasdenavarra.com/2020/06/08/690x278/gato.jpg',
 );
 
 final List<User> onlineUsers = [
   
   User(
+    id: null,
     username: 'Toni',
+    password: null,
+    email: null,
     imageUrl: 'https://recerca.upc.edu/bampla/en/Personnel/staff_members/Oller-Antoni/2008-01-08.4864239201/@@images/23e43284-a97f-438f-a214-cdf3a87b97b8.jpeg',
   ),
 
   User(
+    id: null,
     username: 'Barea',
+    password: null,
+    email: null,
     imageUrl: '',
   ),
 ];

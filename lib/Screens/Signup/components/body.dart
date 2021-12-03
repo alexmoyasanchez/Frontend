@@ -3,17 +3,22 @@ import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
 import 'package:flutter_auth/Screens/Signup/components/or_divider.dart';
 import 'package:flutter_auth/Screens/Signup/components/social_icon.dart';
+import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/components/rounded_repeat_password_field.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/models/user_model.dart';
 
 class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    String username;
+    String email;
+    String password;
     return Background(
       child: SingleChildScrollView(
         child: Column(
@@ -21,19 +26,28 @@ class Body extends StatelessWidget {
           children: <Widget>[
             Text(
               "REGISTRO",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.pink[800]),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.pink[800]),
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
               hintText: "Correo",
-              onChanged: (value) {},
+              onChanged: (value) {
+                email = value;
+              },
             ),
             RoundedInputField(
               hintText: "Nombre de Usuario",
-              onChanged: (value) {},
+              onChanged: (value) {
+                username = value;
+              },
             ),
             RoundedPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                password = value;
+              },
             ),
             RoundedRepeatPasswordField(
               onChanged: (value) {},
@@ -42,13 +56,23 @@ class Body extends StatelessWidget {
               text: "REGISTRAR",
               color: kPrimaryLightColor,
               textColor: Colors.white,
-              press: () {},
+              press: () {
+                createUser('$username', '$password', '$email');
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      print("Text $username");
+                      return LoginScreen();
+                    },
+                  ),
+                );
+              },
             ),
             SizedBox(height: size.height * 0.03),
             AlreadyHaveAnAccountCheck(
               login: false,
               press: () {
-                
                 Navigator.push(
                   context,
                   MaterialPageRoute(
