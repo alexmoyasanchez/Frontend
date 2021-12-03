@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
+import 'package:flutter_auth/components/profile_avatar.dart';
+import 'package:flutter_auth/data/data.dart';
 
 class SideBar extends StatelessWidget {
   
@@ -12,16 +14,7 @@ class SideBar extends StatelessWidget {
           UserAccountsDrawerHeader(
             accountName: Text('Àlex Moya'), 
             accountEmail: Text('alex.moya.i@estudiantat.upc.edu'),
-            currentAccountPicture: CircleAvatar(
-              child: ClipOval(
-                child: Image.asset(
-                  "assets/images/logo_verde.png",
-                  width: 90,
-                  height: 90,
-                  fit: BoxFit.cover,
-                )
-              )
-            ),
+            currentAccountPicture: ProfileAvatar(imageUrl: currentUser.imageUrl), 
             decoration: BoxDecoration(
               color: Colors.pink[300],
               image: DecorationImage(
