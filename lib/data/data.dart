@@ -1,6 +1,6 @@
 import 'package:flutter_auth/models/models.dart';
 
-final User currentUser = User(
+User currentUser = User(
   id: null,
   username: 'Alex',
   password: null,

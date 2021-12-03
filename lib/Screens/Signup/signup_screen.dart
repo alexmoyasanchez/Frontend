@@ -17,7 +17,7 @@ Future<User> createUser(String username, String password, String email) async {
       'username': username,
       'password' : password,
       'email' : email,
-      'imageUrl': null,
+      'imageUrl': " ",
     }),
   );
 

@@ -21,6 +21,7 @@ class Body extends StatelessWidget {
     String username;
     String email;
     String password;
+    String password2;
     return Background(
       child: SingleChildScrollView(
         child: Column(
@@ -52,22 +53,49 @@ class Body extends StatelessWidget {
               },
             ),
             RoundedRepeatPasswordField(
-              onChanged: (value) {},
+              onChanged: (value) {
+                password2 = value;
+              },
             ),
             RoundedButton(
               text: "REGISTRAR",
               color: kPrimaryLightColor,
               textColor: Colors.white,
               press: () {
-                createUser('$username', '$password', '$email');
-                Navigator.push(
+                if('$password2' == '$password')
+                {
+                  createUser('$username', '$password', '$email');
+                  Navigator.push(
                   context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return LoginScreen();
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return LoginScreen();
+                      },
+                    ),
+                  );
+                }
+                else
+                {
+                  
+                  showDialog(
+                    context: context, 
+                    builder: (BuildContext context){
+                      return AlertDialog(
+                        title: new Text("Error"),
+                        content: new Text("Las contraseñas no coinciden."),
+                        actions: <Widget>[
+                        // usually buttons at the bottom of the dialog
+                          new FlatButton(
+                            child: new Text("Cerrar"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
                     },
-                  ),
-                );
+                  );
+                }
               },
             ),
             SizedBox(height: size.height * 0.03),

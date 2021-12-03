@@ -8,6 +8,7 @@ import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
+import 'package:flutter_auth/data/data.dart';
 
 class Body extends StatelessWidget {
   const Body({
@@ -50,6 +51,7 @@ class Body extends StatelessWidget {
                   MaterialPageRoute(
                     builder:(context){
                       Login('$email', '$password');
+                      GuardarUsuario('$email', '$password');
                       return FeedScreen();
                     },
                   ),
