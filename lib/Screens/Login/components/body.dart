@@ -50,7 +50,7 @@ class Body extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder:(context){
-                      Login('$email', '$password');
+                      //Login('$email', '$password');
                       GuardarUsuario('$email', '$password');
                       return FeedScreen();
                     },

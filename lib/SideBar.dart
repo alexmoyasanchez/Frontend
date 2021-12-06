@@ -1,30 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/components/profile_avatar.dart';
 import 'package:flutter_auth/data/data.dart';
+import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
 
 class SideBar extends StatelessWidget {
-  
   @override
   Widget build(BuildContext context) {
-  return Drawer(
+    return Drawer(
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-            accountName: Text('Àlex Moya'), 
-            accountEmail: Text('alex.moya.i@estudiantat.upc.edu'),
-            currentAccountPicture: ProfileAvatar(imageUrl: currentUser.imageUrl), 
-            decoration: BoxDecoration(
-              color: Colors.pink[300],
-              image: DecorationImage(
-                image: NetworkImage(
-                  'https://png.pngtree.com/background/20210717/original/pngtree-purple-bright-watercolor-background-picture-image_1432727.jpg',
-                ),
-                fit: BoxFit.cover,
-              )
-            )
-          ),
+              accountName: Text(currentUser.username),
+              accountEmail: Text(currentUser.email),
+              currentAccountPicture:
+                  ProfileAvatar(imageUrl: currentUser.imageUrl),
+              decoration: BoxDecoration(
+                  color: Colors.pink[300],
+                  image: DecorationImage(
+                    image: NetworkImage(
+                      'https://png.pngtree.com/background/20210717/original/pngtree-purple-bright-watercolor-background-picture-image_1432727.jpg',
+                    ),
+                    fit: BoxFit.cover,
+                  ))),
           ListTile(
             leading: Icon(Icons.home_filled),
             title: Text('Inicio'),
@@ -38,43 +38,60 @@ class SideBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.local_bar),
             title: Text('Lista de locales'),
-            onTap: () => null,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return ListaBaresScreen();
+              }),
+            ),
           ),
           ListTile(
             leading: Icon(Icons.people_alt),
-            title: Text('Amigos'),
+            title: Text('Comunidades'),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.chat_bubble),
-            title: Text('Chat de grupo'),
-            onTap: () => null,
-            trailing: ClipOval(
-              child: Container(
-              color: Colors.redAccent[700],
-              width: 20,
-              height: 20,
-              child: Center(              
-                child: Text(
-                  '3', 
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 12,
-                  )
+              leading: Icon(Icons.chat_bubble),
+              title: Text('Chats de comunidad'),
+              onTap: () => null,
+              trailing: ClipOval(
+                child: Container(
+                  color: Colors.redAccent[700],
+                  width: 20,
+                  height: 20,
+                  child: Center(
+                    child: Text('3',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        )),
+                  ),
                 ),
-              ),
-            ),
-          )
-          ),
+              )),
           ListTile(
             leading: Icon(Icons.favorite),
             title: Text('Locales favoritos'),
             onTap: () => null,
           ),
           ListTile(
+            leading: Icon(Icons.vpn_key_rounded),
+            title: Text('Mis bares'),
+            onTap: () => null,
+          ),
+          ListTile(
             leading: Icon(Icons.local_attraction_rounded),
             title: Text('Mis cupones'),
             onTap: () => null,
+          ),
+          ListTile(
+            leading: Icon(Icons.emoji_events_rounded),
+            title: Text('Ranking'),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return ListaUsuariosScreen();
+              }),
+            ),
           ),
           Divider(),
           ListTile(
@@ -91,12 +108,10 @@ class SideBar extends StatelessWidget {
             leading: Icon(Icons.exit_to_app),
             title: Text('Cerrar Sesión'),
             onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return WelcomeScreen();
-                    }
-                  ),
+              context,
+              MaterialPageRoute(builder: (context) {
+                return WelcomeScreen();
+              }),
             ),
           ),
         ],
@@ -105,4 +120,3 @@ class SideBar extends StatelessWidget {
     );
   }
 }
-

@@ -47,7 +47,11 @@ void GuardarUsuario(String email, String password){
       username: email,
       password: password,
       email: email,
-      imageUrl: 'https://recerca.upc.edu/bampla/en/Personnel/staff_members/Oller-Antoni/2008-01-08.4864239201/@@images/23e43284-a97f-438f-a214-cdf3a87b97b8.jpeg',
+      name: null,
+      edad: null,
+      descripcion: null,
+      imageUrl: 'https://static.elcomercio.es/www/multimedia/202002/20/media/cortadas/gato-kRID-U100219218863XFC-1248x770@El%20Comercio.jpg',
+      puntuacion: null,
     );
 
     currentUser = usuario;

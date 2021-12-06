@@ -13,11 +13,9 @@ Future<User> createUser(String username, String password, String email) async {
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'id' : null,
       'username': username,
       'password' : password,
       'email' : email,
-      'imageUrl': " ",
     }),
   );
 

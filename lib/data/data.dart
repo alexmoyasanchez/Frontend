@@ -1,29 +1,41 @@
 import 'package:flutter_auth/models/models.dart';
 
 User currentUser = User(
-  id: null,
-  username: 'Alex',
-  password: null,
-  email: null,
-  imageUrl: 'https://fotos02.noticiasdenavarra.com/2020/06/08/690x278/gato.jpg',
+  id: 'null',
+  username: 'null',
+  password: 'null',
+  email: 'null',
+  name: 'null',
+  edad: 'null',
+  descripcion: 'null',
+  imageUrl: 'https://static3.lasprovincias.es/www/multimedia/202010/10/media/cortadas/gato-ksgH-U1204237773070s-1248x770@Las%20Provincias.jpg',
+  puntuacion: 'null',
 );
 
 final List<User> onlineUsers = [
   
   User(
-    id: null,
-    username: 'Toni',
-    password: null,
-    email: null,
-    imageUrl: 'https://recerca.upc.edu/bampla/en/Personnel/staff_members/Oller-Antoni/2008-01-08.4864239201/@@images/23e43284-a97f-438f-a214-cdf3a87b97b8.jpeg',
+   id: 'null',
+  username: 'null',
+  password: 'null',
+  email: 'null',
+  name: 'null',
+  edad: 'null',
+  descripcion: 'null',
+  imageUrl: 'https://static3.lasprovincias.es/www/multimedia/202010/10/media/cortadas/gato-ksgH-U1204237773070s-1248x770@Las%20Provincias.jpg',
+  puntuacion: 'null',
   ),
 
   User(
-    id: null,
-    username: 'Barea',
-    password: null,
-    email: null,
-    imageUrl: '',
+  id: 'null',
+  username: 'null',
+  password: 'null',
+  email: 'null',
+  name: 'null',
+  edad: 'null',
+  descripcion: 'null',
+  imageUrl: 'https://static3.lasprovincias.es/www/multimedia/202010/10/media/cortadas/gato-ksgH-U1204237773070s-1248x770@Las%20Provincias.jpg',
+  puntuacion: 'null',
   ),
 ];
 
@@ -43,7 +55,7 @@ final List<Post> posts = [
     user: onlineUsers[0],
     caption: 'Recordad que la entrega del sprint 1 es el 10/12/2021',
     timeAgo: '1d',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1525253086316-d0c936c814f8',
     likes: 20,
     comments: 10,
     shares: 2,
