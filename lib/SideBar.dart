@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
+import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/components/profile_avatar.dart';
@@ -33,7 +34,12 @@ class SideBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.home_filled),
             title: Text('Inicio'),
-            onTap: () => null,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return FeedScreen();
+              }),
+            ),
           ),
           ListTile(
             leading: Icon(Icons.search),

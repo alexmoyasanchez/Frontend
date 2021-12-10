@@ -7,7 +7,7 @@ class Comunidad{
   final String name;
   final String owner;
   final String idOwner;
-  final List<User> usuarios;
+  final List<dynamic> usuarios;
   final String descripcion;
   final String imageUrl;
 
