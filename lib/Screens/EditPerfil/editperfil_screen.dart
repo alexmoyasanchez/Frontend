@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Signup/components/body.dart';
+import 'package:flutter_auth/Screens/EditPerfil/components/body.dart';
+import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/models.dart';
 import 'package:http/http.dart' as http;
-import 'dart:async';
 import 'dart:convert';
 
-
-Future<User> createUser(String username, String password, String email) async {
-  final response = await http.post(
-    Uri.parse('http://10.0.2.2:3000/usuarios/new'),
+Future<User> editarUser(String username, String password, String email, String nombre, String edad, String descripcion) async {
+  final response = await http.put(
+    Uri.parse('http://10.0.2.2:3000/usuarios/update/' + currentUser.id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -17,13 +16,12 @@ Future<User> createUser(String username, String password, String email) async {
       'username': username,
       'password' : password,
       'email' : email,
-      'nombre': "",
-      'edad': "",
-      'descripcion': "",
+      'nombre': nombre,
+      'edad': edad,
+      'descripcion': descripcion,
       'imageUrl' : "",
-      'puntuacion': '0',
-      
     }),
+    
   );
 
   if (response.statusCode == 201) {
@@ -33,12 +31,11 @@ Future<User> createUser(String username, String password, String email) async {
   } else {
     // If the server did not return a 201 CREATED response,
     // then throw an exception.
-    throw Exception('Error al registrar usuario.');
+    throw Exception('Error al editar usuario.');
   }
 }
 
-
-class SignUpScreen extends StatelessWidget {
+class EditPerfilScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

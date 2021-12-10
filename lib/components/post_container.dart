@@ -65,7 +65,10 @@ class _PostHeader extends StatelessWidget{
   Widget build(BuildContext context){
     return Row(
       children: [
-        ProfileAvatar(imageUrl: post.user.imageUrl),
+        CircleAvatar(
+          radius: 20.0,
+          backgroundImage: NetworkImage(post.user.imageUrl)
+        ),
         const SizedBox(width: 8.0),
         Expanded(
           child: Column(

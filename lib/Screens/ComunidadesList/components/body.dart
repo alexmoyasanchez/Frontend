@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/SideBar.dart';
-import 'package:flutter_auth/models/user_model.dart';
+import 'package:flutter_auth/models/models.dart';
 import 'package:flutter_auth/constants.dart';
 import 'dart:async';
-import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
+import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
 import 'package:flutter_auth/Screens/UserList/components/background.dart';
 
 class Body extends StatelessWidget {
-  final Future<User> user;
+  final Future<Comunidad> comunidad;
 
-  Body({Key key, this.user}) : super(key: key);
+  Body({Key key, this.comunidad}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Background(
       child: Center(
           child: FutureBuilder(
-              future: getUsers(),
+              future: getComunidades(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 print(snapshot.data);
                 if (snapshot.data == null) {
@@ -31,18 +31,12 @@ class Body extends StatelessWidget {
                           backgroundImage:
                               NetworkImage(snapshot.data[index].imageUrl),
                         ),
-                        title: Text(snapshot.data[index].username,
+                        title: Text(snapshot.data[index].name,
                             style: TextStyle(
                                 color: Colors.pink[800],
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
-                        trailing: Text('Puntuacion: ' + snapshot.data[index].puntuacion.toString(),
-                            textAlign: TextAlign.right,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold)),
-                        subtitle: Text(snapshot.data[index].email,
+                        subtitle: Text(snapshot.data[index].owner,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -64,9 +58,9 @@ class Body extends StatelessWidget {
 }
 
 class DetailPage extends StatelessWidget {
-  final User user;
+  final Comunidad comunidad;
 
-  DetailPage(this.user);
+  DetailPage(this.comunidad);
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +70,7 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         title: Text(
-          user.username,
+          comunidad.name,
           style: const TextStyle(
               color: Colors.white,
               fontSize: 28.0,
@@ -91,20 +85,20 @@ class DetailPage extends StatelessWidget {
           children: <Widget>[
             CircleAvatar(
               radius: 100.0,
-              backgroundImage: NetworkImage(user.imageUrl),
+              backgroundImage: NetworkImage(comunidad.imageUrl),
             ),
             Divider(
               color: Colors.purple[200],
             ),
             Text(
-              "Nombre de usuario",
+              "Nombre de la comunidad",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              user.username,
+              comunidad.name,
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 15,
@@ -115,14 +109,14 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Correo electrónico",
+              "Creador",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              user.email,
+              comunidad.owner,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
@@ -131,36 +125,22 @@ class DetailPage extends StatelessWidget {
             Divider(
               color: Colors.purple[200],
             ),
-            Text(
-              "Nombre",
+            /*Text(
+              "Número de usuarios en la comunidad",
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
             Text(
-              user.nombre,
+              comunidad.usuarios.length.toString(),
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
-            ),
+            ),*/
             Divider(
               color: Colors.purple[200],
-            ),
-            Text(
-              "Edad",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
-            Text(
-              user.edad,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),
             ),
             Divider(
               color: Colors.purple[200],
@@ -172,26 +152,9 @@ class DetailPage extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
-            Text(
-              user.descripcion,
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),
-            ),
-            Divider(
-              color: Colors.purple[200],
-            ),
-            Text(
-              "Puntuacion",
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold),
-            ),
             
             Text(
-              user.puntuacion.toString(),
+              comunidad.descripcion,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 15,

@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/components/profile_avatar.dart';
+import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
 import 'package:flutter_auth/data/data.dart';
-import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
+import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
 
 class SideBar extends StatelessWidget {
   @override
@@ -16,7 +18,10 @@ class SideBar extends StatelessWidget {
               accountName: Text(currentUser.username),
               accountEmail: Text(currentUser.email),
               currentAccountPicture:
-                  ProfileAvatar(imageUrl: currentUser.imageUrl),
+                  CircleAvatar(
+                    radius: 20.0,
+                    backgroundImage: NetworkImage (currentUser.imageUrl),
+                  ),
               decoration: BoxDecoration(
                   color: Colors.pink[300],
                   image: DecorationImage(
@@ -48,7 +53,12 @@ class SideBar extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.people_alt),
             title: Text('Comunidades'),
-            onTap: () => null,
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return ListaComunidadesScreen();
+              }),
+            ),
           ),
           ListTile(
               leading: Icon(Icons.chat_bubble),
@@ -90,6 +100,16 @@ class SideBar extends StatelessWidget {
               context,
               MaterialPageRoute(builder: (context) {
                 return ListaUsuariosScreen();
+              }),
+            ),
+          ),
+          ListTile(
+            leading: Icon(Icons.account_circle_rounded),
+            title: Text('Editar Perfil'),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return EditPerfilScreen();
               }),
             ),
           ),

@@ -1,48 +1,48 @@
 import 'package:flutter_auth/models/models.dart';
 
 User currentUser = User(
-  id: 'null',
-  username: 'null',
-  password: 'null',
-  email: 'null',
-  name: 'null',
-  edad: 'null',
-  descripcion: 'null',
-  imageUrl: 'https://static3.lasprovincias.es/www/multimedia/202010/10/media/cortadas/gato-ksgH-U1204237773070s-1248x770@Las%20Provincias.jpg',
-  puntuacion: 'null',
+  id: '',
+  username: '',
+  password: '',
+  email: '',
+  nombre: '',
+  edad: '',
+  descripcion: '',
+  imageUrl: '',
+  puntuacion: 0,
 );
 
 final List<User> onlineUsers = [
   
   User(
    id: 'null',
-  username: 'null',
+  username: 'Raven',
   password: 'null',
   email: 'null',
-  name: 'null',
+  nombre: 'null',
   edad: 'null',
   descripcion: 'null',
   imageUrl: 'https://static3.lasprovincias.es/www/multimedia/202010/10/media/cortadas/gato-ksgH-U1204237773070s-1248x770@Las%20Provincias.jpg',
-  puntuacion: 'null',
+  puntuacion: 0,
   ),
 
   User(
   id: 'null',
-  username: 'null',
+  username: 'Barea',
   password: 'null',
   email: 'null',
-  name: 'null',
+  nombre: 'null',
   edad: 'null',
   descripcion: 'null',
   imageUrl: 'https://static3.lasprovincias.es/www/multimedia/202010/10/media/cortadas/gato-ksgH-U1204237773070s-1248x770@Las%20Provincias.jpg',
-  puntuacion: 'null',
+  puntuacion: 0,
   ),
 ];
 
 final List<Post> posts = [
   
   Post(
-    user: currentUser,
+    user: onlineUsers[1],
     caption: 'Hello world',
     timeAgo: '58m',
     imageUrl: 'https://images.unsplash.com/photo-1525253086316-d0c936c814f8',

@@ -2,38 +2,34 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/UserList/components/body.dart';
+import 'package:flutter_auth/Screens/ComunidadesList/components/body.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:flutter_auth/models/user_model.dart';
+import 'package:flutter_auth/models/models.dart';
 
-Future<List<User>> getUsers() async {
-  List<User> users = [];
-  
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/usuarios/'));
+Future<List<Comunidad>> getComunidades() async {
+  List<Comunidad> comunidades = [];
+  final data = await http.get(Uri.parse('http://10.0.2.2:3000/comunidades/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
-    User user = User(
+    Comunidad comunidad  = Comunidad(
         id: u["id"],
-        username: u["username"],
-        password: u["password"],
-        email: u["email"],
-        nombre: u["nombre"],
-        edad: u["edad"],
-        descripcion: u["descripcion"],
-        imageUrl: "",
-        puntuacion: u["puntuacion"],);
-    users.add(user);
+        name: u["name"],
+        owner: u["owner"],
+        idOwner: u["idOwner"],
+        usuarios: u["usuarios"],
+        descripcion: "",
+        imageUrl: "");
+    comunidades.add(comunidad);
   }
-  print(users.length);
-  users.sort((b,a) => a.puntuacion.compareTo(b.puntuacion));
-  return users;
+  print(comunidades.length);
+  return comunidades;
 }
 
-class ListaUsuariosScreen extends StatelessWidget {
+class ListaComunidadesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,7 +37,7 @@ class ListaUsuariosScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         title: Text(
-          'Ranking',
+          'Lista de Comunidades',
           style: const TextStyle(
               color: Colors.white,
               fontSize: 28.0,

@@ -17,11 +17,12 @@ Future<User> Login(String email, String password) async {
       'password' : password,
       'email' : email,
     }),
+    
   );
 
   
 
-  if (response.statusCode == 201) {
+  if (response.statusCode == 200) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
     return User.fromJson(jsonDecode(response.body));
@@ -43,16 +44,54 @@ class LoginScreen extends StatelessWidget {
 
 void GuardarUsuario(String email, String password){
     final User usuario = User(
-      id: null,
-      username: email,
+      id: currentUser.id,
+      username: currentUser.username,
       password: password,
       email: email,
-      name: null,
-      edad: null,
-      descripcion: null,
-      imageUrl: 'https://static.elcomercio.es/www/multimedia/202002/20/media/cortadas/gato-kRID-U100219218863XFC-1248x770@El%20Comercio.jpg',
-      puntuacion: null,
+      nombre: '',
+      edad: '',
+      descripcion: '',
+      imageUrl: '',
+      puntuacion: currentUser.puntuacion,
     );
 
     currentUser = usuario;
   }
+
+Future<User> getUser() async{
+  User user;
+  final data = await http.get(Uri.parse('http://10.0.2.2:3000/usuarios/getUsuarioByEmail/' + currentUser.email));
+  var jsonData = json.decode(data.body);
+  user = User(
+    id: jsonData["id"],
+    username: jsonData["username"],
+    password: jsonData["password"],
+    email: jsonData["email"],
+    nombre: jsonData["nombre"],
+    edad: jsonData["edad"],
+    descripcion: jsonData["descripcion"],
+    imageUrl: "",
+    puntuacion: jsonData["puntuacion"],
+  );
+  currentUser = user;
+
+}
+
+Future<User> getUserById() async{
+  User user;
+  final data = await http.get(Uri.parse('http://10.0.2.2:3000/usuarios/getUsuario/' + currentUser.id));
+  var jsonData = json.decode(data.body);
+  user = User(
+    id: jsonData["id"],
+    username: jsonData["username"],
+    password: jsonData["password"],
+    email: jsonData["email"],
+    nombre: jsonData["nombre"],
+    edad: jsonData["edad"],
+    descripcion: jsonData["descripcion"],
+    imageUrl: "",
+    puntuacion: jsonData["puntuacion"],
+  );
+  currentUser = user;
+
+}

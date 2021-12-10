@@ -3,7 +3,7 @@ import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/models/bar_model.dart';
 import 'package:flutter_auth/constants.dart';
 import 'dart:async';
-import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
+import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
 import 'package:flutter_auth/Screens/UserList/components/background.dart';
 
 class Body extends StatelessWidget {

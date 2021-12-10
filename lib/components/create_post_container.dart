@@ -2,6 +2,7 @@ export 'circle_button.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/profile_avatar.dart';
+import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/models.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 
@@ -22,7 +23,9 @@ class CreatePostContainer extends StatelessWidget{
         children: [
           Row(
             children: [
-              ProfileAvatar(imageUrl: currentUser.imageUrl),
+              CircleAvatar(
+                radius: 20.0,
+                backgroundImage: NetworkImage(currentUser.imageUrl)),
               const SizedBox(width: 8.0,),
               Expanded(
                 child: TextField(

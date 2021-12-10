@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
 import 'package:flutter_auth/Screens/Login/components/background.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
@@ -10,11 +11,16 @@ import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/data/data.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   const Body({
     Key key,
   }) : super(key: key);
 
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
@@ -27,7 +33,10 @@ class Body extends StatelessWidget {
           children: <Widget>[
             Text(
               "INICIAR SESIÓN",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.pink[800]),
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.pink[800]),
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
@@ -45,16 +54,24 @@ class Body extends StatelessWidget {
               text: "INICIAR SESIÓN",
               color: kPrimaryLightColor,
               textColor: Colors.white,
-              press: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder:(context){
-                      //Login('$email', '$password');
-                      GuardarUsuario('$email', '$password');
-                      return FeedScreen();
-                    },
-                  ),
+              press: () async {
+                GuardarUsuario('$email', '$password');
+                getUser();
+                Login('$email', '$password');
+                return Future.delayed(
+                  const Duration(seconds: 1),
+                  () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        if (currentUser.nombre == null || currentUser.nombre == "") {
+                          return EditPerfilScreen();
+                        } else {
+                          return FeedScreen();
+                        }
+                      },
+                    ),
+                  )
                 );
               },
             ),

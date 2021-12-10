@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
@@ -14,10 +13,10 @@ import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/models/user_model.dart';
 
 class Body extends StatelessWidget {
-
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    bool emailValid = true;
     String username;
     String email;
     String password;
@@ -62,29 +61,48 @@ class Body extends StatelessWidget {
               color: kPrimaryLightColor,
               textColor: Colors.white,
               press: () {
-                if('$password2' == '$password')
-                {
-                  createUser('$username', '$password', '$email');
-                  Navigator.push(
-                  context,
-                    MaterialPageRoute(
-                      builder: (context) {
-                        return LoginScreen();
-                      },
-                    ),
+                if ('$password2' == '$password') {
+                  if (emailValid == RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email))
+                  {
+                    createUser('$username', '$password', '$email');
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return LoginScreen();
+                        },
+                      ),
+                    );
+                  }
+                  else{
+                    showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        title: new Text("Error"),
+                        content: new Text("Formato del correo incorrecto"),
+                        actions: <Widget>[
+                          // usually buttons at the bottom of the dialog
+                          new FlatButton(
+                            child: new Text("Cerrar"),
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                          ),
+                        ],
+                      );
+                    },
                   );
-                }
-                else
-                {
-                  
+                  }
+                } else {
                   showDialog(
-                    context: context, 
-                    builder: (BuildContext context){
+                    context: context,
+                    builder: (BuildContext context) {
                       return AlertDialog(
                         title: new Text("Error"),
                         content: new Text("Las contraseñas no coinciden."),
                         actions: <Widget>[
-                        // usually buttons at the bottom of the dialog
+                          // usually buttons at the bottom of the dialog
                           new FlatButton(
                             child: new Text("Cerrar"),
                             onPressed: () {
