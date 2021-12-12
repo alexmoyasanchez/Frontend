@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
+import 'package:flutter_auth/Screens/Map/ui/pages/home/map_screen.dart';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/components/profile_avatar.dart';
@@ -18,11 +19,10 @@ class SideBar extends StatelessWidget {
           UserAccountsDrawerHeader(
               accountName: Text(currentUser.username),
               accountEmail: Text(currentUser.email),
-              currentAccountPicture:
-                  CircleAvatar(
-                    radius: 20.0,
-                    backgroundImage: NetworkImage (currentUser.imageUrl),
-                  ),
+              currentAccountPicture: CircleAvatar(
+                radius: 20.0,
+                backgroundImage: NetworkImage(currentUser.imageUrl),
+              ),
               decoration: BoxDecoration(
                   color: Colors.pink[300],
                   image: DecorationImage(
@@ -93,6 +93,16 @@ class SideBar extends StatelessWidget {
             leading: Icon(Icons.vpn_key_rounded),
             title: Text('Mis bares'),
             onTap: () => null,
+          ),
+          ListTile(
+            leading: Icon(Icons.room_sharp),
+            title: Text('Mis mapas'),
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) {
+                return const MapScreen();
+              }),
+            ),
           ),
           ListTile(
             leading: Icon(Icons.local_attraction_rounded),
