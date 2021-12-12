@@ -23,7 +23,11 @@ class HomeController extends ChangeNotifier{
   void onMapCreatedyeah(GoogleMapController controller) {
     controller.setMapStyle(mapStyle);
   }
+<<<<<<< HEAD
 
+=======
+ 
+>>>>>>> ff653479084db4ef07b53571cdbea76f9f6149f6
 
 
   void onTap(LatLng position) {
