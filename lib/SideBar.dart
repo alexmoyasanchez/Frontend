@@ -17,7 +17,7 @@ class SideBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
-              accountName: Text(currentUser.name),
+              accountName: Text(currentUser.username),
               accountEmail: Text(currentUser.email),
               currentAccountPicture:
                   ProfileAvatar(imageUrl: currentUser.imageUrl),
