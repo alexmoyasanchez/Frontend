@@ -5,12 +5,11 @@ import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/models/message_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_auth/models/community_model.dart';
-import 'package:flutter_auth/Screens/ChatList/components/body.dart';
+import 'package:flutter_auth/Screens/Chat/components/body.dart';
 
 Future<List<Message>> getMessages() async {
   List<Message> messages = [];
-  final data = await http
-      .get(Uri.parse('http://147.83.7.157:3000/comunidades/mensajes'));
+  final data = await http.get(Uri.parse('http://147.83.7.157:3000/chat'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);

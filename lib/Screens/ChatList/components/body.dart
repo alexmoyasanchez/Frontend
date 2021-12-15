@@ -50,18 +50,7 @@ class Body extends StatelessWidget {
                         onTap: () {
                           Navigator.push(context,
                               MaterialPageRoute(builder: (context) {
-                            return ChatScreen(
-                              user: User(
-                                  id: '1',
-                                  username: "oscar08850",
-                                  password: "45654",
-                                  email: "asdfa@gmail.com",
-                                  name: "oscar",
-                                  edad: "24",
-                                  descripcion: "holahola",
-                                  imageUrl: currentUser.imageUrl,
-                                  puntuacion: "4"),
-                            );
+                            return ChatScreen();
                           }));
                         },
                       );
