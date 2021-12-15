@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Chat/Chat_screen.dart';
+import 'package:flutter_auth/Screens/ChatList/chatList_screen.dart';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/components/profile_avatar.dart';
@@ -55,36 +56,45 @@ class SideBar extends StatelessWidget {
             onTap: () => null,
           ),
           ListTile(
-              leading: Icon(Icons.chat_bubble),
-              title: Text('Chats de comunidad'),
-              onTap: () => Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (_) => ChatScreen(
-                          user: User(
-                              id: '1',
-                              username: "oscar08850",
-                              password: "45654",
-                              email: "asdfa@gmail.com",
-                              name: "oscar",
-                              edad: "24",
-                              descripcion: "holahola",
-                              imageUrl: currentUser.imageUrl,
-                              puntuacion: "4")))),
-              trailing: ClipOval(
-                child: Container(
-                  color: Colors.redAccent[700],
-                  width: 20,
-                  height: 20,
-                  child: Center(
-                    child: Text('3',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                        )),
-                  ),
-                ),
-              )),
+            leading: Icon(Icons.chat_bubble),
+            title: Text('Chats'),
+            onTap: () =>
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return ChatListScreen();
+            })),
+          ),
+          // ListTile(
+          //     leading: Icon(Icons.chat_bubble),
+          //     title: Text('Chats de comunidad'),
+          //     onTap: () => Navigator.push(
+          //         context,
+          //         MaterialPageRoute(
+          //             builder: (_) => ChatScreen(
+          //                 user: User(
+          //                     id: '1',
+          //                     username: "oscar08850",
+          //                     password: "45654",
+          //                     email: "asdfa@gmail.com",
+          //                     name: "oscar",
+          //                     edad: "24",
+          //                     descripcion: "holahola",
+          //                     imageUrl: currentUser.imageUrl,
+          //                     puntuacion: "4"))
+          //                     )),
+          //     trailing: ClipOval(
+          //       child: Container(
+          //         color: Colors.redAccent[700],
+          //         width: 20,
+          //         height: 20,
+          //         child: Center(
+          //           child: Text('3',
+          //               style: TextStyle(
+          //                 color: Colors.white,
+          //                 fontSize: 12,
+          //               )),
+          //         ),
+          //       ),
+          //     )),
           ListTile(
             leading: Icon(Icons.favorite),
             title: Text('Locales favoritos'),

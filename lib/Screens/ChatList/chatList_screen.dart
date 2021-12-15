@@ -1,36 +1,32 @@
-import 'dart:convert';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/UserList/components/body.dart';
+import 'dart:convert';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:http/http.dart' as http;
-import 'dart:async';
-import 'package:flutter_auth/models/user_model.dart';
+import 'package:flutter_auth/models/community_model.dart';
+import 'package:flutter_auth/Screens/ChatList/components/body.dart';
 
-Future<List<User>> getUser() async {
-  List<User> users = [];
-  final data = await http.get(Uri.parse('http://147.83.7.157:3000/usuarios/'));
+Future<List<Community>> getCommunitys() async {
+  List<Community> communitys = [];
+  final data =
+      await http.get(Uri.parse('http://147.83.7.157:3000/comunidades/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
-    User user = User(
+    Community community = Community(
         id: u["id"],
-        username: u["username"],
-        password: u["password"],
-        email: u["email"],
-        name: "",
-        edad: "",
+        name: u["name"],
+        owner: u["owner"],
+        idOwner: u["idOwner"],
         descripcion: "",
-        imageUrl: "",
-        puntuacion: "");
-    users.add(user);
+        imageUrl: "");
+    communitys.add(community);
   }
-  print(users.length);
-  return users;
+  print(communitys.length);
+  return communitys;
 }
 
-class ListaUsuariosScreen extends StatelessWidget {
+class ChatListScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,7 +34,7 @@ class ListaUsuariosScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         title: Text(
-          'Ranking',
+          'Chats',
           style: const TextStyle(
               color: Colors.white,
               fontSize: 28.0,
