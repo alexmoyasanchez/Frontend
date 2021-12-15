@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/SideBar.dart';
+import 'package:flutter_auth/components/rounded_button.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/models.dart';
 import 'package:flutter_auth/constants.dart';
 import 'dart:async';
 import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
-import 'package:flutter_auth/Screens/UserList/components/background.dart';
+import 'package:flutter_auth/Screens/SignUp/components/background.dart';
 
 class Body extends StatelessWidget {
   final Future<Comunidad> comunidad;
@@ -33,10 +35,10 @@ class Body extends StatelessWidget {
                         ),
                         title: Text(snapshot.data[index].name,
                             style: TextStyle(
-                                color: Colors.pink[800],
+                                color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(snapshot.data[index].owner,
+                        subtitle: Text(S.current.ownerc + snapshot.data[index].owner,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -61,11 +63,13 @@ class DetailPage extends StatelessWidget {
   final Comunidad comunidad;
 
   DetailPage(this.comunidad);
+  
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Scaffold(
-      backgroundColor: Colors.purple[200],
+      backgroundColor: Colors.black,
       drawer: SideBar(),
       appBar: AppBar(
         backgroundColor: PrimaryColor,
@@ -91,7 +95,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Nombre de la comunidad",
+              S.current.nombrec,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -109,7 +113,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Creador",
+              S.current.administrador,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -146,7 +150,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Descripcion",
+              S.current.descripcion,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -159,6 +163,25 @@ class DetailPage extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
+            ),
+            Divider(
+              color: Colors.purple[200],
+            ),
+            RoundedButton(
+              text: S.current.unirme,
+              color: Colors.white,
+              textColor: Colors.black,
+              press: () {
+                unirComunidad(comunidad.id);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ListaComunidadesScreen();
+                    },
+                  ),
+                );
+              },
             ),
           ],
         ),

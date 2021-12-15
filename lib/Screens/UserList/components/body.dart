@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/SideBar.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/user_model.dart';
 import 'package:flutter_auth/constants.dart';
 import 'dart:async';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
-import 'package:flutter_auth/Screens/UserList/components/background.dart';
+import 'package:flutter_auth/Screens/SignUp/components/background.dart';
 
 class Body extends StatelessWidget {
   final Future<User> user;
@@ -33,20 +34,18 @@ class Body extends StatelessWidget {
                         ),
                         title: Text(snapshot.data[index].username,
                             style: TextStyle(
-                                color: Colors.pink[800],
+                                color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
-                        trailing: Text('Puntuacion: ' + snapshot.data[index].puntuacion.toString(),
+                        trailing: Text(S.current.puntuacion2 + snapshot.data[index].puntuacion.toString(),
                             textAlign: TextAlign.right,
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold)),
+                                fontSize: 15,)),
                         subtitle: Text(snapshot.data[index].email,
                             style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold)),
+                                fontSize: 15,)),
                         onTap: () {
                           Navigator.push(
                               context,
@@ -71,7 +70,7 @@ class DetailPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.purple[200],
+      backgroundColor: Colors.black,
       drawer: SideBar(),
       appBar: AppBar(
         backgroundColor: PrimaryColor,
@@ -97,7 +96,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Nombre de usuario",
+              S.current.username,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -115,7 +114,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Correo electrónico",
+              S.current.email,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -132,7 +131,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Nombre",
+              S.current.nombre,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -149,7 +148,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Edad",
+              S.current.edad,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -166,7 +165,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Descripcion",
+              S.current.descripcion,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -183,7 +182,7 @@ class DetailPage extends StatelessWidget {
               color: Colors.purple[200],
             ),
             Text(
-              "Puntuacion",
+              S.current.puntuacion,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,

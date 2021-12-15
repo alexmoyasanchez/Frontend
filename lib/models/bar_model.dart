@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'models.dart';
 
 
 class Bar{
@@ -14,6 +13,7 @@ class Bar{
   final String horario;
   final String descripcion;
   final String imageUrl;
+  final String agresion;
 
   const Bar({
     @required this.id,
@@ -26,7 +26,8 @@ class Bar{
     @required this.aforoMax,
     @required this.horario,
     @required this.descripcion,
-    @required this.imageUrl
+    @required this.imageUrl,
+    @required this.agresion
     
   });
 
@@ -43,6 +44,7 @@ class Bar{
       horario: json['horario'],
       descripcion: json['descripcion'],
       imageUrl: json['imageUrl'],
+      agresion: json['agresion']
     );
   }
 }

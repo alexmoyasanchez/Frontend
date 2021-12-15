@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   final bool login;
@@ -15,13 +16,13 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         Text(
-          login ? "Aún no tienes cuenta? " : "Tienes una cuenta? ",
+          login ? S.current.cuenta : S.current.account,
           style: TextStyle(color: Colors.white),
         ),
         GestureDetector(
           onTap: press,
           child: Text(
-            login ? "Registrate" : "Inicia Sesión",
+            login ? S.current.registrate : S.current.inicia,
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.bold,

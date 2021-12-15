@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/text_field_container.dart';
-import 'package:flutter_auth/constants.dart';
 
-class RoundedInputField extends StatefulWidget {
+class RoundedInputFieldLargo extends StatefulWidget {
   final String hintText;
-  final IconData icon;
   final ValueChanged<String> onChanged;
-  const RoundedInputField({
+  const RoundedInputFieldLargo({
     Key key,
     this.hintText,
-    this.icon = Icons.person,
     this.onChanged, TextStyle hintStyle, Color fillColor,
   }) : super(key: key);
 
   @override
-  State<RoundedInputField> createState() => _RoundedInputFieldState();
+  State<RoundedInputFieldLargo> createState() => _RoundedInputFieldState();
 }
 
-class _RoundedInputFieldState extends State<RoundedInputField> {
+class _RoundedInputFieldState extends State<RoundedInputFieldLargo> {
   TextEditingController _controller;
   
   @override
@@ -30,15 +27,12 @@ class _RoundedInputFieldState extends State<RoundedInputField> {
   Widget build(BuildContext context) {
     return TextFieldContainer(
       child: TextField(
+        maxLines: 5,
         controller: _controller,
         onChanged: widget.onChanged,
         cursorColor: Colors.white,
         style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
-          icon: Icon(
-            widget.icon,
-            color: Colors.white,
-          ),
           hintText: widget.hintText,
           hintStyle: TextStyle(fontSize: 16, color: Colors.white),
           border: InputBorder.none,

@@ -1,12 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
+import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
+import 'package:flutter_auth/components/rounded_input_field_2.dart';
+import 'package:flutter_auth/components/rounded_input_field_description.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/components/rounded_repeat_password_field.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/user_model.dart';
 import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
 import 'package:flutter_auth/Screens/EditPerfil/components/background.dart';
@@ -118,49 +122,74 @@ class _BodyState extends State<Body> {
     Size size = MediaQuery.of(context).size;
     bool emailValid = true;
 
-    return Background(
+    return Scaffold(
+      backgroundColor: Colors.black,
+      drawer: SideBar(),
+      appBar: AppBar(
+        backgroundColor: PrimaryColor,
+        title: Text(
+          S.current.perfil,
+          style: const TextStyle(
+              color: Colors.white,
+              fontSize: 28.0,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -1.2),
+        ),
+        centerTitle: true,
+      ),
+    body: Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
       child: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              "EDITAR PERFIL",
-              style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  fontSize: 24,
-                  color: Colors.pink[800]),
-            ),
-            SizedBox(height: size.height * 0.03),
-            RoundedInputField(
-              hintText: "Correo: " + email,
+            RoundedInputField2(
+              hintText: S.current.correo2 + email,
               onChanged: (value) {
                 email = value;
               },
             ),
-            RoundedInputField(
-              hintText: "Nombre de Usuario: " + username,
+            RoundedInputField2(
+              hintText: S.current.username2 + username,
               onChanged: (value) {
                 username = value;
               },
             ),
-            RoundedInputField(
-              hintText: "Nombre: " + nombre,
+            RoundedInputField2(
+              hintText: S.current.nombre2 + nombre,
               onChanged: (value) {
                 nombre = value;
               },
             ),
-            DropdownButton(
+            /*DropdownButton(
                 items: listItem.map(buildMenuItem).toList(),
-                hint: Text("Edad: " + edad),
+                hint: Text(S.current.edad2 + edad),
                 value: newValue,
                 onChanged: (value) {
                   edad = value;
                   setState(() {
                     newValue = value;
                   });
-                }),
-            RoundedInputField(
-              hintText: "Descripción: " + descripcion,
+                }),*/
+            RaisedButton(
+              color: Colors.white,
+              textColor: Colors.black,
+              child: Text(S.current.edad2),
+              onPressed: () {
+                showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime(1900),
+                        lastDate: DateTime.now())
+                    .then((date) {
+                  setState(() {
+                    edad = date.toString();
+                  });
+                });
+              },
+            ),
+            RoundedInputFieldLargo(
+              hintText: S.current.descripcion2 + descripcion,
               onChanged: (value) {
                 descripcion = value;
               },
@@ -176,9 +205,9 @@ class _BodyState extends State<Body> {
               },
             ),
             RoundedButton(
-              text: "EDITAR PERFIL",
-              color: kPrimaryLightColor,
-              textColor: Colors.white,
+              text: S.current.editar,
+              color: Colors.white,
+              textColor: Colors.black,
               press: () {
                 if ('$username' != "" &&
                     '$password' != "" &&
@@ -192,30 +221,30 @@ class _BodyState extends State<Body> {
                             .hasMatch(email)) {
                       editarUser('$username', '$password', '$email', '$nombre',
                           '$edad', '$descripcion');
-                      
+
                       return Future.delayed(
-                          const Duration(seconds: 1),
-                          () => 
-                          Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) {
-                                    getUserById();
-                                    return FeedScreen();
-                                  },
-                                ),
-                              ),);
+                        const Duration(seconds: 1),
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              getUserById();
+                              return FeedScreen();
+                            },
+                          ),
+                        ),
+                      );
                     } else {
                       showDialog(
                         context: context,
                         builder: (BuildContext context) {
                           return AlertDialog(
                             title: new Text("Error"),
-                            content: new Text("Formato del correo incorrecto"),
+                            content: new Text(S.current.wrongc),
                             actions: <Widget>[
                               // usually buttons at the bottom of the dialog
                               new FlatButton(
-                                child: new Text("Cerrar"),
+                                child: new Text(S.current.close),
                                 onPressed: () {
                                   Navigator.of(context).pop();
                                 },
@@ -231,11 +260,11 @@ class _BodyState extends State<Body> {
                       builder: (BuildContext context) {
                         return AlertDialog(
                           title: new Text("Error"),
-                          content: new Text("Las contraseñas no coinciden."),
+                          content: new Text(S.current.wrongp),
                           actions: <Widget>[
                             // usually buttons at the bottom of the dialog
                             new FlatButton(
-                              child: new Text("Cerrar"),
+                              child: new Text(S.current.close),
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
@@ -251,11 +280,11 @@ class _BodyState extends State<Body> {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: new Text("Error"),
-                        content: new Text("Faltan campos por rellenar."),
+                        content: new Text(S.current.campos),
                         actions: <Widget>[
                           // usually buttons at the bottom of the dialog
                           new FlatButton(
-                            child: new Text("Cerrar"),
+                            child: new Text(S.current.close),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },
@@ -270,7 +299,7 @@ class _BodyState extends State<Body> {
           ],
         ),
       ),
-    );
+    ));
   }
 
   DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
-import 'package:flutter_auth/Screens/Login/components/background.dart';
+import 'package:flutter_auth/Screens/Signup/components/background.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/components/already_have_an_account_acheck.dart';
@@ -10,6 +10,7 @@ import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/data/data.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 
 class Body extends StatefulWidget {
   const Body({
@@ -32,15 +33,15 @@ class _BodyState extends State<Body> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "INICIAR SESIÓN",
+              S.current.iniciar,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
-                  color: Colors.pink[800]),
+                  color: Colors.white),
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
-              hintText: "Correo",
+              hintText: S.current.correo,
               onChanged: (value) {
                 email = value;
               },
@@ -51,9 +52,9 @@ class _BodyState extends State<Body> {
               },
             ),
             RoundedButton(
-              text: "INICIAR SESIÓN",
-              color: kPrimaryLightColor,
-              textColor: Colors.white,
+              text: S.current.iniciar,
+              color: Colors.white,
+              textColor: Colors.black,
               press: () async {
                 GuardarUsuario('$email', '$password');
                 getUser();

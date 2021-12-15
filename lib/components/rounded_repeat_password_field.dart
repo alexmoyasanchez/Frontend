@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/text_field_container.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 
 class RoundedRepeatPasswordField extends StatefulWidget {
   final ValueChanged<String> onChanged;
@@ -24,8 +25,9 @@ class _RoundedRepeatPasswordFieldState
         obscureText: hiddenText,
         onChanged: widget.onChanged,
         cursorColor: Colors.white,
+        style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
-          hintText: "Repetir Contraseña",
+          hintText: S.current.pass2,
           border: InputBorder.none,
           hintStyle: TextStyle(fontSize: 16, color: Colors.white),
           icon: Icon(

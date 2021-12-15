@@ -9,7 +9,7 @@ import 'package:http/http.dart' as http;
 
 Future<User> Login(String email, String password) async {
   final response = await http.post(
-    Uri.parse('http://147.83.7.157:3000/usuarios/login'),
+    Uri.parse('http://10.0.2.2:3000/usuarios/login'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -60,7 +60,7 @@ void GuardarUsuario(String email, String password){
 
 Future<User> getUser() async{
   User user;
-  final data = await http.get(Uri.parse('http://147.83.7.157:3000/usuarios/getUsuarioByEmail/' + currentUser.email));
+  final data = await http.get(Uri.parse('http://10.0.2.2:3000/usuarios/getUsuarioByEmail/' + currentUser.email));
   var jsonData = json.decode(data.body);
   user = User(
     id: jsonData["id"],
@@ -70,7 +70,7 @@ Future<User> getUser() async{
     nombre: jsonData["nombre"],
     edad: jsonData["edad"],
     descripcion: jsonData["descripcion"],
-    imageUrl: "",
+    imageUrl: jsonData["imageUrl"],
     puntuacion: jsonData["puntuacion"],
   );
   currentUser = user;
@@ -79,7 +79,7 @@ Future<User> getUser() async{
 
 Future<User> getUserById() async{
   User user;
-  final data = await http.get(Uri.parse('http://147.83.7.157:3000/usuarios/getUsuario/' + currentUser.id));
+  final data = await http.get(Uri.parse('http://10.0.2.2:3000/usuarios/getUsuario/' + currentUser.id));
   var jsonData = json.decode(data.body);
   user = User(
     id: jsonData["id"],
@@ -89,7 +89,7 @@ Future<User> getUserById() async{
     nombre: jsonData["nombre"],
     edad: jsonData["edad"],
     descripcion: jsonData["descripcion"],
-    imageUrl: "",
+    imageUrl: jsonData["imageUrl"],
     puntuacion: jsonData["puntuacion"],
   );
   currentUser = user;

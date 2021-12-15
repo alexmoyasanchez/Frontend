@@ -18,17 +18,23 @@ class Background extends StatelessWidget {
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Color(0x66ff56d4),
-            Color(0x99ff56d4),
-            Color(0xccff56d4),
-            Color(0xffff56d4),
+            Colors.black,
+            Colors.black,
+            
           ]
         )
       ),
-      // Here i can use size.width but use double.infinity because both work as a same
       child: Stack(
         alignment: Alignment.center,
         children: <Widget>[
+          /*Positioned(
+            bottom: 0,
+            left: 0,
+            child: Image.asset(
+              "assets/images/main_bottom.png",
+              width: size.width * 0.2,
+            ),
+          ),*/
           child,
         ],
       ),

@@ -9,8 +9,7 @@ import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/components/rounded_repeat_password_field.dart';
-import 'package:flutter_auth/constants.dart';
-import 'package:flutter_auth/models/user_model.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -27,21 +26,21 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "REGISTRO",
+              S.current.registro,
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   fontSize: 24,
-                  color: Colors.pink[800]),
+                  color: Colors.white),
             ),
             SizedBox(height: size.height * 0.03),
             RoundedInputField(
-              hintText: "Correo",
+              hintText: S.current.correo,
               onChanged: (value) {
                 email = value;
               },
             ),
             RoundedInputField(
-              hintText: "Nombre de Usuario",
+              hintText: S.current.username,
               onChanged: (value) {
                 username = value;
               },
@@ -57,13 +56,14 @@ class Body extends StatelessWidget {
               },
             ),
             RoundedButton(
-              text: "REGISTRAR",
-              color: kPrimaryLightColor,
-              textColor: Colors.white,
+              text: S.current.registrar,
+              color: Colors.white,
+              textColor: Colors.black,
               press: () {
                 if ('$password2' == '$password') {
-                  if (emailValid == RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email))
-                  {
+                  if (emailValid ==
+                      RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                          .hasMatch(email)) {
                     createUser('$username', '$password', '$email');
                     Navigator.push(
                       context,
@@ -73,26 +73,25 @@ class Body extends StatelessWidget {
                         },
                       ),
                     );
-                  }
-                  else{
+                  } else {
                     showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: new Text("Error"),
-                        content: new Text("Formato del correo incorrecto"),
-                        actions: <Widget>[
-                          // usually buttons at the bottom of the dialog
-                          new FlatButton(
-                            child: new Text("Cerrar"),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: new Text("Error"),
+                          content: new Text(S.current.wrongc),
+                          actions: <Widget>[
+                            // usually buttons at the bottom of the dialog
+                            new FlatButton(
+                              child: new Text(S.current.close),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
                 } else {
                   showDialog(
@@ -100,11 +99,11 @@ class Body extends StatelessWidget {
                     builder: (BuildContext context) {
                       return AlertDialog(
                         title: new Text("Error"),
-                        content: new Text("Las contraseñas no coinciden."),
+                        content: new Text(S.current.wrongp),
                         actions: <Widget>[
                           // usually buttons at the bottom of the dialog
                           new FlatButton(
-                            child: new Text("Cerrar"),
+                            child: new Text(S.current.close),
                             onPressed: () {
                               Navigator.of(context).pop();
                             },

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Signup/components/body.dart';
 import 'package:flutter_auth/data/data.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/models.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
@@ -9,7 +10,7 @@ import 'dart:convert';
 
 Future<User> createUser(String username, String password, String email) async {
   final response = await http.post(
-    Uri.parse('http://147.83.7.157:3000/usuarios/new'),
+    Uri.parse('http://10.0.2.2:3000/usuarios/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -33,7 +34,7 @@ Future<User> createUser(String username, String password, String email) async {
   } else {
     // If the server did not return a 201 CREATED response,
     // then throw an exception.
-    throw Exception('Error al registrar usuario.');
+    throw Exception(S.current.wrongu);
   }
 }
 

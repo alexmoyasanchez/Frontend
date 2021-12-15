@@ -35,7 +35,7 @@ class User{
       nombre: json['nombre'],
       edad: json['edad'],
       descripcion: json['descripcion'],
-      imageUrl: "",
+      imageUrl: json['imageUrl'],
       puntuacion: json['puntuacion'],
     );
   }

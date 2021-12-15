@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 
 class OrDivider extends StatelessWidget {
   @override
@@ -13,7 +14,7 @@ class OrDivider extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Text(
-              "O",
+              S.current.o,
               style: TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
