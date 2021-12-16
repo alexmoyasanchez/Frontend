@@ -38,11 +38,13 @@ class Body extends StatelessWidget {
                           backgroundImage:
                               NetworkImage(snapshot.data[index].imageUrl),
                         ),
-                        title: Text(snapshot.data[index].name,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold)),
+                        title: Text(
+                          snapshot.data[index].name,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
                         subtitle: Text(snapshot.data[index].address,
                             style: TextStyle(
                               color: Colors.white,
@@ -50,13 +52,12 @@ class Body extends StatelessWidget {
                             )),
                         trailing: IconButton(
                             color: Colors.white,
-                            icon: Icon(Icons.edit),
+                            icon: Icon(Icons.edit_sharp),
                             onPressed: () {
                               Navigator.push(
                                   context,
                                   new MaterialPageRoute(
-                                      builder: (context) =>
-                                          AforoPage(snapshot.data[index])));
+                                      builder: (context) => AforoPage(snapshot.data[index])));
                             }),
                         onTap: () {
                           Navigator.push(
@@ -221,6 +222,14 @@ class DetailPage extends StatelessWidget {
               fontWeight: FontWeight.bold,
               letterSpacing: -1.2),
         ),
+        actions: [
+          IconButton(
+              color: Colors.white,
+              icon: Icon(Icons.favorite_border),
+              alignment: Alignment.centerRight,
+              onPressed: () {;
+              }),
+        ],
         centerTitle: true,
       ),
       body: Padding(

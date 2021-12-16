@@ -48,7 +48,7 @@ class Body extends StatelessWidget {
                             fontSize: 15,
                           )),
                       trailing: IconButton(
-                          icon: Icon(Icons.edit),
+                          icon: Icon(Icons.edit, color: Colors.white),
                           onPressed: () {
                             Navigator.push(
                                 context,
