@@ -11,7 +11,7 @@ import 'package:flutter_auth/models/bar_model.dart';
 
 Future<List<Bar>> getBares() async {
   List<Bar> bares = [];
-  final data = await http.get(Uri.parse('http://147.83.7.157:3000/bares/'));
+  final data = await http.get(Uri.parse('http://localhost:3000/bares/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);

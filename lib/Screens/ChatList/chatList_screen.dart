@@ -8,8 +8,7 @@ import 'package:flutter_auth/Screens/ChatList/components/body.dart';
 
 Future<List<Community>> getCommunitys() async {
   List<Community> communitys = [];
-  final data =
-      await http.get(Uri.parse('http://147.83.7.157:3000/comunidades/'));
+  final data = await http.get(Uri.parse('http://localhost:3000/comunidades/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);

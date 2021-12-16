@@ -9,7 +9,7 @@ import 'package:flutter_auth/Screens/Chat/components/body.dart';
 
 Future<List<Message>> getMessages() async {
   List<Message> messages = [];
-  final data = await http.get(Uri.parse('http://147.83.7.157:3000/chat'));
+  final data = await http.get(Uri.parse('http://localhost:3000/chat'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);

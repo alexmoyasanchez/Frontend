@@ -1,16 +1,3 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Chat/Chat_screen.dart';
-import 'package:flutter_auth/SideBar.dart';
-import 'package:flutter_auth/data/data.dart';
-import 'package:flutter_auth/models/bar_model.dart';
-import 'package:flutter_auth/constants.dart';
-import 'dart:async';
-import 'package:flutter_auth/Screens/ChatList/chatList_screen.dart';
-import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
-import 'package:flutter_auth/Screens/UserList/components/background.dart';
-import 'package:flutter_auth/models/community_model.dart';
-import 'package:flutter_auth/models/models.dart';
-
 class Body extends StatelessWidget {
   final Future<Community> community;
 
@@ -41,7 +28,7 @@ class Body extends StatelessWidget {
 
 _buildMessageComposer() {
   return Container(
-    new Positioned(child: child)
+    padding: EdgeInsets.symmetric(horizontal: 8.0),
     height: 70.0,
     color: Colors.white,
     alignment: FractionalOffset.bottomCenter,

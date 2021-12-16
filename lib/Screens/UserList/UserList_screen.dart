@@ -10,7 +10,7 @@ import 'package:flutter_auth/models/user_model.dart';
 
 Future<List<User>> getUser() async {
   List<User> users = [];
-  final data = await http.get(Uri.parse('http://147.83.7.157:3000/usuarios/'));
+  final data = await http.get(Uri.parse('http://localhost:3000/usuarios/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
