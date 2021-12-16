@@ -2,7 +2,7 @@ import 'package:flutter_auth/data/data.dart';
 import 'models.dart';
 
 class Message {
-  final User sender;
+  final String sender;
   final String
       time; // Would usually be type DateTime or Firebase Timestamp in production apps
   final String text;
@@ -42,38 +42,38 @@ final User oscar = User(
     puntuacion: "4");
 //Chats de ejemplo
 List<Message> chats = [
-  Message(sender: oscar, time: '5:30 PM', text: 'Que pasa peñita')
+  Message(sender: "oscar", time: '5:30 PM', text: 'Que pasa peñita')
 ];
 
 //Mensajes dentro del chat de ejemplo
 List<Message> messages = [
   Message(
-    sender: oscar,
+    sender: "oscar",
     time: '5:30 PM',
     text: 'Que pasa peñita',
   ),
   Message(
-    sender: currentUser,
+    sender: "currentUser",
     time: '4:30 PM',
     text: 'Oye cuando se sale?',
   ),
   Message(
-    sender: oscar,
+    sender: "oscar",
     time: '3:45 PM',
     text: 'Un porquito de test',
   ),
   Message(
-    sender: oscar,
+    sender: "oscar",
     time: '3:15 PM',
     text: 'Oleee que bien',
   ),
   Message(
-    sender: currentUser,
+    sender: "currentUser",
     time: '2:30 PM',
     text: 'Hola se me oye???',
   ),
   Message(
-    sender: oscar,
+    sender: "oscar",
     time: '2:00 PM',
     text: 'Ojala funcionesss',
   ),

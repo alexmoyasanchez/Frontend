@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'dart:convert';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/message_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_auth/models/community_model.dart';
@@ -46,16 +47,25 @@ class ChatScreen extends StatelessWidget {
   }
 }
 
-void EnviarMensaje (String sender, String text) {
-  final Message mensage = Message(
-    sender: sender,
-    text: text
-    password: password,
-    email: email,
-    name: null,
-    edad: null,
-    descripcion: null,
-    imageUrl:
-        'https://static.elcomercio.es/www/multimedia/202002/20/media/cortadas/gato-kRID-U100219218863XFC-1248x770@El%20Comercio.jpg',
-    puntuacion: null,
-  )
+void EnviarMensaje(String sender, String text, String time) {
+  final Message message = Message(
+    sender: currentUser.name,
+    text: text,
+    time: time,
+  );
+}
+
+Future<Message> SendMessage(String sender, String text, String time) async {
+  sender = "a";
+  final response = await http.post(
+    Uri.parse('http://localhost:3000/chat/new'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'sender': sender,
+      'text': text,
+      'time': time,
+    }),
+  );
+}

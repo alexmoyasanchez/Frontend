@@ -18,7 +18,15 @@ class Body extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String text = "";
     return Container(
+      child: Stack(
+          alignment: Alignment.center,
+          children: <Widget>[
+            _buildMessageComposer(),
+          ],
+        )
+      child: Container(
       width: double.infinity,
       decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -63,6 +71,9 @@ class Body extends StatelessWidget {
                   ),
                   Expanded(
                     child: TextField(
+                      onChanged: (value) {
+                        text = value;
+                      },
                       decoration: InputDecoration(
                           hintText: "Write message...",
                           hintStyle: TextStyle(color: Colors.black54),
@@ -73,12 +84,14 @@ class Body extends StatelessWidget {
                     width: 15,
                   ),
                   FloatingActionButton(
-                    onPressed: () {},
                     child: Icon(
                       Icons.send,
                       color: Colors.white,
                       size: 18,
                     ),
+                    onPressed: () {
+                      SendMessage(currentUser.name, text, "ara mismo");
+                    },
                     backgroundColor: Colors.blue,
                     elevation: 0,
                   ),
@@ -88,11 +101,49 @@ class Body extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 
+_showMessageComponent() {
+  return Container(
+    child: Center(
+          child: FutureBuilder(
+              future: getMessages(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                print(snapshot.data);
+                if (snapshot.data == null) {
+                  return Container(
+                      child: Center(child: CircularProgressIndicator()));
+                } else {
+                  return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        title: Text(snapshot.data[index].text,
+                            style: TextStyle(
+                                color: Colors.pink[800],
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                        subtitle: Text(
+                            'Enviado por: ' +
+                                snapshot.data[index].sender +
+                                'A las ' +
+                                snapshot.data[index].time,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold)),
+                      );
+                    },
+                  );
+                }
+              })),
+  );
+}
+
 _buildMessageComposer() {
+  String text = "";
   return Container(
     height: 70.0,
     color: Colors.white,
@@ -108,7 +159,9 @@ _buildMessageComposer() {
         Expanded(
           child: TextField(
             textCapitalization: TextCapitalization.sentences,
-            onChanged: (value) {},
+            onChanged: (value) {
+              text = value;
+            },
             decoration: InputDecoration.collapsed(
               hintText: 'Send a message...',
             ),
@@ -118,7 +171,9 @@ _buildMessageComposer() {
           icon: Icon(Icons.send),
           iconSize: 25.0,
           color: Colors.blueAccent,
-          onPressed: () {},
+          onPressed: () {
+            EnviarMensaje(currentUser.name, text, "22/2/12");
+          },
         ),
       ],
     ),
