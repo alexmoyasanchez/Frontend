@@ -8,6 +8,7 @@ import 'package:flutter_auth/components/profile_avatar.dart';
 import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class SideBar extends StatelessWidget {
   @override
@@ -100,7 +101,8 @@ class SideBar extends StatelessWidget {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) {
-                return const MapScreen();
+                //if () permisos
+                return MapScreen2();
               }),
             ),
           ),

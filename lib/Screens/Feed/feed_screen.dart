@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Feed/components/body.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class FeedScreen extends StatelessWidget {
   @override
