@@ -45,3 +45,17 @@ class ChatScreen extends StatelessWidget {
     );
   }
 }
+
+void EnviarMensaje (String sender, String text) {
+  final Message mensage = Message(
+    sender: sender,
+    text: text
+    password: password,
+    email: email,
+    name: null,
+    edad: null,
+    descripcion: null,
+    imageUrl:
+        'https://static.elcomercio.es/www/multimedia/202002/20/media/cortadas/gato-kRID-U100219218863XFC-1248x770@El%20Comercio.jpg',
+    puntuacion: null,
+  )
