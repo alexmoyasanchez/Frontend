@@ -52,12 +52,8 @@ class Body extends StatelessWidget {
                             )),
                         trailing: IconButton(
                             color: Colors.white,
-                            icon: Icon(Icons.edit_sharp),
+                            icon: Icon(Icons.favorite_border),
                             onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  new MaterialPageRoute(
-                                      builder: (context) => AforoPage(snapshot.data[index])));
                             }),
                         onTap: () {
                           Navigator.push(
@@ -177,14 +173,16 @@ class _AforoPageState extends State<AforoPage> {
                     widget.bar.aforoMax,
                     widget.bar.horario,
                     widget.bar.descripcion);
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return ListaBaresScreen();
-                    },
-                  ),
-                );
+                return Future.delayed(
+                    const Duration(milliseconds: 250),
+                    () => Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return ListaBaresScreen();
+                        },
+                      ),
+                    ));
               },
             ),
           ],
@@ -225,9 +223,13 @@ class DetailPage extends StatelessWidget {
         actions: [
           IconButton(
               color: Colors.white,
-              icon: Icon(Icons.favorite_border),
+              icon: Icon(Icons.edit),
               alignment: Alignment.centerRight,
-              onPressed: () {;
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    new MaterialPageRoute(
+                        builder: (context) => AforoPage(bar)));
               }),
         ],
         centerTitle: true,
