@@ -11,6 +11,12 @@ import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/components/rounded_repeat_password_field.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/models/user_model.dart';
+import 'package:flutter_auth/auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+
 
 class Body extends StatelessWidget {
   @override
@@ -62,8 +68,9 @@ class Body extends StatelessWidget {
               textColor: Colors.white,
               press: () {
                 if ('$password2' == '$password') {
-                  if (emailValid == RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$').hasMatch(email))
-                  {
+                  if (emailValid ==
+                      RegExp(r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$')
+                          .hasMatch(email)) {
                     createUser('$username', '$password', '$email');
                     Navigator.push(
                       context,
@@ -73,26 +80,25 @@ class Body extends StatelessWidget {
                         },
                       ),
                     );
-                  }
-                  else{
+                  } else {
                     showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return AlertDialog(
-                        title: new Text("Error"),
-                        content: new Text("Formato del correo incorrecto"),
-                        actions: <Widget>[
-                          // usually buttons at the bottom of the dialog
-                          new FlatButton(
-                            child: new Text("Cerrar"),
-                            onPressed: () {
-                              Navigator.of(context).pop();
-                            },
-                          ),
-                        ],
-                      );
-                    },
-                  );
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: new Text("Error"),
+                          content: new Text("Formato del correo incorrecto"),
+                          actions: <Widget>[
+                            // usually buttons at the bottom of the dialog
+                            new FlatButton(
+                              child: new Text("Cerrar"),
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                            ),
+                          ],
+                        );
+                      },
+                    );
                   }
                 } else {
                   showDialog(
@@ -144,7 +150,11 @@ class Body extends StatelessWidget {
                 ),
                 SocalIcon(
                   iconSrc: "assets/icons/google-plus.svg",
-                  press: () {},
+                  press: () {
+                    AuthService auth = new AuthService();
+                    auth.signInWithGoogle();
+                    auth.SetAuthPersists();
+                  },
                 ),
               ],
             )

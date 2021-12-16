@@ -33,7 +33,7 @@ class Background extends StatelessWidget {
             right: 0,
             child: Image.asset(
               "assets/images/login_bottom.png",
-              color: Color(0x0087CEFA),
+              color: Color(0x0087CE2A),
               width: size.width * 0.4,
             ),
           ),
