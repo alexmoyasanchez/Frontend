@@ -56,9 +56,9 @@ void EnviarMensaje(String sender, String text, String time) {
 }
 
 Future<Message> SendMessage(String sender, String text, String time) async {
-  sender = "a";
+  sender = "b";
   final response = await http.post(
-    Uri.parse('http://localhost:3000/chat/new'),
+    Uri.parse('http://localhost:3000/chat/new/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -66,6 +66,19 @@ Future<Message> SendMessage(String sender, String text, String time) async {
       'sender': sender,
       'text': text,
       'time': time,
+    }),
+  );
+}
+
+Future<Message> DeleteChat() async {
+  String sender = "a";
+  final response = await http.delete(
+    Uri.parse('http://localhost:3000/chat/delete'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'sender': sender,
     }),
   );
 }
