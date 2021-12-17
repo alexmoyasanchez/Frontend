@@ -69,7 +69,9 @@
     "nuevac" : "Nueva Comunidad",
     "crearc" : "CREAR COMUNIDAD",
     "ownerc" : "Dueño: ",
-    "crearp" : "PUBLICAR POST"
+    "crearp" : "PUBLICAR POST",
+    "mapas" : "Mis mapas" 
+
     
 
 }

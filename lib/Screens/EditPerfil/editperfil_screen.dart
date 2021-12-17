@@ -6,22 +6,22 @@ import 'package:flutter_auth/models/models.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-Future<User> editarUser(String username, String password, String email, String nombre, String edad, String descripcion) async {
+Future<User> editarUser(String username, String password, String email,
+    String nombre, String edad, String descripcion) async {
   final response = await http.put(
-    Uri.parse('http://10.0.2.2:3000/usuarios/update/' + currentUser.id),
+    Uri.parse('http://147.83.7.157:3000/usuarios/update/' + currentUser.id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
       'username': username,
-      'password' : password,
-      'email' : email,
+      'password': password,
+      'email': email,
       'nombre': nombre,
       'edad': edad,
       'descripcion': descripcion,
-      'imageUrl' : "",
+      'imageUrl': "",
     }),
-    
   );
 
   if (response.statusCode == 201) {

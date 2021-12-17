@@ -63,6 +63,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "listac" : MessageLookupByLibrary.simpleMessage("Comunities List"),
     "locales" : MessageLookupByLibrary.simpleMessage("List of Locals"),
     "localesfavs" : MessageLookupByLibrary.simpleMessage("Favourites locals"),
+    "mapas" : MessageLookupByLibrary.simpleMessage("My maps"),
     "modificaraforo" : MessageLookupByLibrary.simpleMessage("Modify capacity"),
     "musica" : MessageLookupByLibrary.simpleMessage("Ambient music: "),
     "nombre" : MessageLookupByLibrary.simpleMessage("Name"),

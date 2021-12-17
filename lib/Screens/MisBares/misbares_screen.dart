@@ -12,9 +12,10 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:flutter_auth/models/bar_model.dart';
 
-Future <List<Bar>> getMisBares() async {
+Future<List<Bar>> getMisBares() async {
   List<Bar> bares = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/bares/getBaresByUser/' + currentUser.id));
+  final data = await http.get(Uri.parse(
+      'http://147.83.7.157:3000/bares/getBaresByUser/' + currentUser.id));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     Bar bar = Bar(
@@ -29,8 +30,7 @@ Future <List<Bar>> getMisBares() async {
         horario: u["horario"],
         descripcion: u["descripcion"],
         imageUrl: u["imageUrl"],
-        agresion: u["agresion"]
-        );
+        agresion: u["agresion"]);
 
     bares.add(bar);
   }
@@ -38,9 +38,10 @@ Future <List<Bar>> getMisBares() async {
   return bares;
 }
 
-Future editarBar(String id, String name, String address, String musicTaste, String aforo, String aforoMax, String horario, String descripcion) async {
+Future editarBar(String id, String name, String address, String musicTaste,
+    String aforo, String aforoMax, String horario, String descripcion) async {
   final data = await http.put(
-    Uri.parse('http://10.0.2.2:3000/bares/update/' + id),
+    Uri.parse('http://147.83.7.157:3000/bares/update/' + id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -62,9 +63,9 @@ Future editarBar(String id, String name, String address, String musicTaste, Stri
   }
 }
 
-Future newPost(String texto, Bar bar) async{
+Future newPost(String texto, Bar bar) async {
   final data = await http.post(
-    Uri.parse('http://10.0.2.2:3000/publicaciones/new'),
+    Uri.parse('http://147.83.7.157:3000/publicaciones/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -85,8 +86,6 @@ Future newPost(String texto, Bar bar) async{
   }
 }
 
-
-
 class MisBaresScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -105,10 +104,9 @@ class MisBaresScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.add,
-            color: Colors.white),
-            onPressed: () {
-              Navigator.push(
+              icon: Icon(Icons.add, color: Colors.white),
+              onPressed: () {
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
@@ -116,8 +114,7 @@ class MisBaresScreen extends StatelessWidget {
                     },
                   ),
                 );
-            }
-          )
+              })
         ],
       ),
       body: Body(),

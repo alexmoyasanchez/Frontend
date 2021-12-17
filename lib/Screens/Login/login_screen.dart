@@ -6,21 +6,17 @@ import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
-
 Future<User> Login(String email, String password) async {
   final response = await http.post(
-    Uri.parse('http://10.0.2.2:3000/usuarios/login'),
+    Uri.parse('http://147.83.7.157:3000/usuarios/login'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'password' : password,
-      'email' : email,
+      'password': password,
+      'email': email,
     }),
-    
   );
-
-  
 
   if (response.statusCode == 200) {
     // If the server did return a 201 CREATED response,
@@ -42,44 +38,27 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-void GuardarUsuario(String email, String password){
-    final User usuario = User(
-      id: currentUser.id,
-      username: currentUser.username,
-      password: password,
-      email: email,
-      nombre: '',
-      edad: '',
-      descripcion: '',
-      imageUrl: '',
-      puntuacion: currentUser.puntuacion,
-    );
-
-    currentUser = usuario;
-  }
-
-Future<User> getUser() async{
-  User user;
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/usuarios/getUsuarioByEmail/' + currentUser.email));
-  var jsonData = json.decode(data.body);
-  user = User(
-    id: jsonData["id"],
-    username: jsonData["username"],
-    password: jsonData["password"],
-    email: jsonData["email"],
-    nombre: jsonData["nombre"],
-    edad: jsonData["edad"],
-    descripcion: jsonData["descripcion"],
-    imageUrl: jsonData["imageUrl"],
-    puntuacion: jsonData["puntuacion"],
+void GuardarUsuario(String email, String password) {
+  final User usuario = User(
+    id: currentUser.id,
+    username: currentUser.username,
+    password: password,
+    email: email,
+    nombre: '',
+    edad: '',
+    descripcion: '',
+    imageUrl: '',
+    puntuacion: currentUser.puntuacion,
   );
-  currentUser = user;
 
+  currentUser = usuario;
 }
 
-Future<User> getUserById() async{
+Future<User> getUser() async {
   User user;
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/usuarios/getUsuario/' + currentUser.id));
+  final data = await http.get(Uri.parse(
+      'http://147.83.7.157:3000/usuarios/getUsuarioByEmail/' +
+          currentUser.email));
   var jsonData = json.decode(data.body);
   user = User(
     id: jsonData["id"],
@@ -93,5 +72,23 @@ Future<User> getUserById() async{
     puntuacion: jsonData["puntuacion"],
   );
   currentUser = user;
+}
 
+Future<User> getUserById() async {
+  User user;
+  final data = await http.get(Uri.parse(
+      'http://147.83.7.157:3000/usuarios/getUsuario/' + currentUser.id));
+  var jsonData = json.decode(data.body);
+  user = User(
+    id: jsonData["id"],
+    username: jsonData["username"],
+    password: jsonData["password"],
+    email: jsonData["email"],
+    nombre: jsonData["nombre"],
+    edad: jsonData["edad"],
+    descripcion: jsonData["descripcion"],
+    imageUrl: jsonData["imageUrl"],
+    puntuacion: jsonData["puntuacion"],
+  );
+  currentUser = user;
 }

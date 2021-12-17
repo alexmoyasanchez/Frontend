@@ -11,7 +11,7 @@ import 'package:flutter_auth/models/bar_model.dart';
 
 Future<List<Bar>> getBares() async {
   List<Bar> bares = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/bares/'));
+  final data = await http.get(Uri.parse('http://147.83.7.157:3000/bares/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
@@ -27,8 +27,7 @@ Future<List<Bar>> getBares() async {
         horario: u["horario"],
         descripcion: u["descripcion"],
         imageUrl: u["imageUrl"],
-        agresion: u["agresion"]
-        );
+        agresion: u["agresion"]);
 
     bares.add(bar);
   }
@@ -38,7 +37,7 @@ Future<List<Bar>> getBares() async {
 
 Future<Bar> enviarAgresion(Bar bar) async {
   final data = await http.put(
-    Uri.parse('http://10.0.2.2:3000/bares/update/' + bar.id),
+    Uri.parse('http://147.83.7.157:3000/bares/update/' + bar.id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -64,7 +63,6 @@ Future<Bar> enviarAgresion(Bar bar) async {
     throw Exception('Error al enviar la agresión');
   }
 }
-
 
 class ListaBaresScreen extends StatelessWidget {
   @override
