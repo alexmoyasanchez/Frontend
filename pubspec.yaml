@@ -29,7 +29,8 @@ dependencies:
   equatable: ^2.0.3
   cached_network_image: ^3.2.0
   material_design_icons_flutter: ^5.0.6295
-
+  intl: ^0.17.0
+ 
 dev_dependencies:
   flutter_test:
     sdk: flutter
