@@ -53,8 +53,7 @@ class Body extends StatelessWidget {
                         trailing: IconButton(
                             color: Colors.white,
                             icon: Icon(Icons.favorite_border),
-                            onPressed: () {
-                            }),
+                            onPressed: () {}),
                         onTap: () {
                           Navigator.push(
                               context,
@@ -176,13 +175,13 @@ class _AforoPageState extends State<AforoPage> {
                 return Future.delayed(
                     const Duration(milliseconds: 250),
                     () => Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return ListaBaresScreen();
-                        },
-                      ),
-                    ));
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ListaBaresScreen();
+                            },
+                          ),
+                        ));
               },
             ),
           ],
@@ -207,6 +206,8 @@ class DetailPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    DateTime dt = DateTime.parse(bar.agresion);
+
     return Scaffold(
       backgroundColor: Colors.black,
       drawer: SideBar(),
@@ -239,7 +240,7 @@ class DetailPage extends StatelessWidget {
         child: ListView(
           children: <Widget>[
             Text(
-              S.current.lastagresion + bar.agresion,
+              S.current.lastagresion + timeAgo(dt),
               style: TextStyle(
                 backgroundColor: Colors.red[600],
                 color: Colors.white,
@@ -413,4 +414,21 @@ class DetailPage extends StatelessWidget {
       ),
     );
   }
+}
+
+String timeAgo(DateTime d) {
+  Duration diff = DateTime.now().difference(d);
+  if (diff.inDays > 365)
+    return S.current.hace + "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? S.current.year : S.current.years} " + S.current.atras;
+  if (diff.inDays > 30)
+    return S.current.hace + "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? S.current.mes : S.current.meses} " + S.current.atras;
+  if (diff.inDays > 7)
+    return S.current.hace + "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? S.current.semana : S.current.semanas} " + S.current.atras;
+  if (diff.inDays > 0)
+    return S.current.hace + "${diff.inDays} ${diff.inDays == 1 ? S.current.dia : S.current.dias} " + S.current.atras;
+  if (diff.inHours > 0)
+    return S.current.hace + "${diff.inHours} ${diff.inHours == 1 ? S.current.hora : S.current.horas} " + S.current.atras;
+  if (diff.inMinutes > 0)
+    return S.current.hace + "${diff.inMinutes} ${diff.inMinutes == 1 ? S.current.minuto : S.current.minutos} " + S.current.atras;
+  return S.current.ahora;
 }

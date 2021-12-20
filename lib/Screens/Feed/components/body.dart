@@ -11,6 +11,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 class Body extends StatelessWidget {
   final Future<Bar> bar;
 
+
   Body({Key key, this.bar}) : super(key: key);
 
   @override
@@ -79,6 +80,7 @@ class Body extends StatelessWidget {
 
 class _PostHeader extends StatelessWidget {
   final Post post;
+  
 
   const _PostHeader({
     Key key,
@@ -86,7 +88,12 @@ class _PostHeader extends StatelessWidget {
   }) : super(key: key);
 
   @override
+
+  
   Widget build(BuildContext context) {
+
+    DateTime dt = DateTime.parse(post.fecha);
+
     return Row(
       children: [
         CircleAvatar(
@@ -105,7 +112,7 @@ class _PostHeader extends StatelessWidget {
             Row(
               children: [
                 Text(
-                  '${post.fecha} ',
+                  timeAgo(dt),
                   style: TextStyle(
                     color: Colors.grey[600],
                     fontSize: 12.0,
@@ -216,4 +223,21 @@ class _PostButton extends StatelessWidget {
       ),
     );
   }
+}
+
+String timeAgo(DateTime d) {
+  Duration diff = DateTime.now().difference(d);
+  if (diff.inDays > 365)
+    return S.current.hace + "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? S.current.year : S.current.years} " + S.current.atras;
+  if (diff.inDays > 30)
+    return S.current.hace + "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? S.current.mes : S.current.meses} " + S.current.atras;
+  if (diff.inDays > 7)
+    return S.current.hace + "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? S.current.semana : S.current.semanas} " + S.current.atras;
+  if (diff.inDays > 0)
+    return S.current.hace + "${diff.inDays} ${diff.inDays == 1 ? S.current.dia : S.current.dias} " + S.current.atras;
+  if (diff.inHours > 0)
+    return S.current.hace + "${diff.inHours} ${diff.inHours == 1 ? S.current.hora : S.current.horas} " + S.current.atras;
+  if (diff.inMinutes > 0)
+    return S.current.hace + "${diff.inMinutes} ${diff.inMinutes == 1 ? S.current.minuto : S.current.minutos} " + S.current.atras;
+  return S.current.ahora;
 }

@@ -69,7 +69,22 @@
     "nuevac" : "Nueva Comunidad",
     "crearc" : "CREAR COMUNIDAD",
     "ownerc" : "Dueño: ",
-    "crearp" : "PUBLICAR POST"
+    "crearp" : "PUBLICAR POST",
+    "dia" : "dia",
+    "dias" : "dias",
+    "hora" : "hora",
+    "horas" : "horas",
+    "minuto" : "minuto",
+    "minutos" : "minutos",
+    "year" : "año",
+    "years" : "años",
+    "mes" : "mes",
+    "meses" : "meses",
+    "semana" : "semana",
+    "semanas" : "semanas",
+    "ahora" : " justo ahora",
+    "atras" : "",
+    "hace" : "hace "
     
 
 }

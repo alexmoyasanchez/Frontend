@@ -335,10 +335,10 @@ class S {
     );
   }
 
-  /// `The last agressionat this local was: `
+  /// `The last agression at this local was: `
   String get lastagresion {
     return Intl.message(
-      'The last agressionat this local was: ',
+      'The last agression at this local was: ',
       name: 'lastagresion',
       desc: '',
       args: [],
@@ -405,10 +405,10 @@ class S {
     );
   }
 
-  /// `Schedule`
+  /// `Schedule: `
   String get horario {
     return Intl.message(
-      'Schedule',
+      'Schedule: ',
       name: 'horario',
       desc: '',
       args: [],
@@ -740,6 +740,156 @@ class S {
     return Intl.message(
       'PUBLISH POST',
       name: 'crearp',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `day`
+  String get dia {
+    return Intl.message(
+      'day',
+      name: 'dia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `days`
+  String get dias {
+    return Intl.message(
+      'days',
+      name: 'dias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hour`
+  String get hora {
+    return Intl.message(
+      'hour',
+      name: 'hora',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `hours`
+  String get horas {
+    return Intl.message(
+      'hours',
+      name: 'horas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minute`
+  String get minuto {
+    return Intl.message(
+      'minute',
+      name: 'minuto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `minutes`
+  String get minutos {
+    return Intl.message(
+      'minutes',
+      name: 'minutos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `year`
+  String get year {
+    return Intl.message(
+      'year',
+      name: 'year',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `years`
+  String get years {
+    return Intl.message(
+      'years',
+      name: 'years',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `month`
+  String get mes {
+    return Intl.message(
+      'month',
+      name: 'mes',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `months`
+  String get meses {
+    return Intl.message(
+      'months',
+      name: 'meses',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `week`
+  String get semana {
+    return Intl.message(
+      'week',
+      name: 'semana',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `weeks`
+  String get semanas {
+    return Intl.message(
+      'weeks',
+      name: 'semanas',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `just now`
+  String get ahora {
+    return Intl.message(
+      'just now',
+      name: 'ahora',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ` ago `
+  String get atras {
+    return Intl.message(
+      ' ago ',
+      name: 'atras',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get hace {
+    return Intl.message(
+      '',
+      name: 'hace',
       desc: '',
       args: [],
     );
