@@ -6,7 +6,6 @@ import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
-
 Future<User> Login(String email, String password) async {
   final response = await http.post(
     Uri.parse('http://147.83.7.157:3000/usuarios/login'),
@@ -14,13 +13,10 @@ Future<User> Login(String email, String password) async {
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'password' : password,
-      'email' : email,
+      'password': password,
+      'email': email,
     }),
-    
   );
-
-  
 
   if (response.statusCode == 200) {
     // If the server did return a 201 CREATED response,
@@ -42,23 +38,23 @@ class LoginScreen extends StatelessWidget {
   }
 }
 
-void GuardarUsuario(String email, String password){
-    final User usuario = User(
-      id: currentUser.id,
-      username: currentUser.username,
-      password: password,
-      email: email,
-      nombre: '',
-      edad: '',
-      descripcion: '',
-      imageUrl: '',
-      puntuacion: currentUser.puntuacion,
-    );
+void GuardarUsuario(String email, String password) {
+  final User usuario = User(
+    id: currentUser.id,
+    username: currentUser.username,
+    password: password,
+    email: email,
+    nombre: '',
+    edad: '',
+    descripcion: '',
+    imageUrl: '',
+    puntuacion: currentUser.puntuacion,
+  );
 
-    currentUser = usuario;
-  }
+  currentUser = usuario;
+}
 
-Future<User> getUser() async{
+Future<User> getUser() async {
   User user;
   final data = await http.get(Uri.parse('http://147.83.7.157:3000/usuarios/getUsuarioByEmail/' + currentUser.email));
   var jsonData = json.decode(data.body);
@@ -74,10 +70,9 @@ Future<User> getUser() async{
     puntuacion: jsonData["puntuacion"],
   );
   currentUser = user;
-
 }
 
-Future<User> getUserById() async{
+Future<User> getUserById() async {
   User user;
   final data = await http.get(Uri.parse('http://147.83.7.157:3000/usuarios/getUsuario/' + currentUser.id));
   var jsonData = json.decode(data.body);
@@ -93,5 +88,4 @@ Future<User> getUserById() async{
     puntuacion: jsonData["puntuacion"],
   );
   currentUser = user;
-
 }

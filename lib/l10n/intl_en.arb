@@ -84,7 +84,9 @@
     "semanas" : "weeks",
     "ahora" : "just now",
     "atras" : " ago ",
-    "hace" : ""
-    
+    "hace" : "",    
+    "mapas" : "My maps" 
+
+
 
 }

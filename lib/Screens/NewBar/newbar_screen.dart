@@ -11,26 +11,28 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:flutter_auth/models/bar_model.dart';
 
-Future createBar(String name, String direccion, String musicTaste, String aforoMax, String horario, String descripcion) async {
-  final response = await http.post(Uri.parse('http://147.83.7.157:3000/bares/new'),
-  headers: <String, String>{
+Future createBar(String name, String direccion, String musicTaste,
+    String aforoMax, String horario, String descripcion) async {
+  final response = await http.post(
+    Uri.parse('http://147.83.7.157:3000/bares/new'),
+    headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
       'name': name,
-      'address' : direccion,
-      'musicTaste' : musicTaste,
+      'address': direccion,
+      'musicTaste': musicTaste,
       'owner': currentUser.nombre,
       'idOwner': currentUser.id,
       'aforo': "0",
-      'aforoMax' : aforoMax,
+      'aforoMax': aforoMax,
       'horario': horario,
-      'descripcion' : descripcion,
-      'imageUrl' : "",
+      'descripcion': descripcion,
+      'imageUrl': "",
     }),
   );
 
-   if (response.statusCode == 201) {
+  if (response.statusCode == 201) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
   } else {
@@ -38,10 +40,7 @@ Future createBar(String name, String direccion, String musicTaste, String aforoM
     // then throw an exception.
     throw Exception(S.current.wrongu);
   }
-  
 }
-
-
 
 class NewBarScreen extends StatelessWidget {
   @override

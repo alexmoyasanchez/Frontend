@@ -7,7 +7,6 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
 
-
 Future<User> createUser(String username, String password, String email) async {
   final response = await http.post(
     Uri.parse('http://147.83.7.157:3000/usuarios/new'),
@@ -16,14 +15,13 @@ Future<User> createUser(String username, String password, String email) async {
     },
     body: jsonEncode(<String, String>{
       'username': username,
-      'password' : password,
-      'email' : email,
+      'password': password,
+      'email': email,
       'nombre': "",
       'edad': "",
       'descripcion': "",
-      'imageUrl' : "",
+      'imageUrl': "",
       'puntuacion': '0',
-      
     }),
   );
 
@@ -37,7 +35,6 @@ Future<User> createUser(String username, String password, String email) async {
     throw Exception(S.current.wrongu);
   }
 }
-
 
 class SignUpScreen extends StatelessWidget {
   @override

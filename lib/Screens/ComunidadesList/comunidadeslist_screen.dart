@@ -14,11 +14,12 @@ import 'package:flutter_auth/models/models.dart';
 
 Future<List<Comunidad>> getComunidades() async {
   List<Comunidad> comunidades = [];
-  final data = await http.get(Uri.parse('http://147.83.7.157:3000/comunidades/'));
+  final data =
+      await http.get(Uri.parse('http://147.83.7.157:3000/comunidades/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
-    Comunidad comunidad  = Comunidad(
+    Comunidad comunidad = Comunidad(
         id: u["id"],
         name: u["name"],
         owner: u["owner"],
@@ -33,13 +34,22 @@ Future<List<Comunidad>> getComunidades() async {
 }
 
 Future unirComunidad(String idComunidad) async {
-  final data = await http.put(Uri.parse('http://147.83.7.157:3000/comunidades/addUsuario/' + currentUser.id + '/comunidad/' + idComunidad));
-  if(data.statusCode == 201){
-
-    return ListaComunidadesScreen();
-  }
-  else{
-    throw Exception('Error al unirse a la comunidad');
+  final data = await http.put(Uri.parse(
+      'http://147.83.7.157:3000/comunidades/addUsuario/' +
+          currentUser.id +
+          '/comunidad/' +
+          idComunidad));
+  if (data.statusCode == 201) {
+    final data = await http.put(Uri.parse(
+        'http://147.83.7.157:3000/comunidades/addUsuario/' +
+            currentUser.id +
+            '/comunidad/' +
+            idComunidad));
+    if (data.statusCode == 201) {
+      return ListaComunidadesScreen();
+    } else {
+      throw Exception('Error al unirse a la comunidad');
+    }
   }
 }
 
@@ -61,10 +71,9 @@ class ListaComunidadesScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           IconButton(
-            icon: Icon(Icons.add,
-            color: Colors.white),
-            onPressed: () {
-              Navigator.push(
+              icon: Icon(Icons.add, color: Colors.white),
+              onPressed: () {
+                Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) {
@@ -72,8 +81,7 @@ class ListaComunidadesScreen extends StatelessWidget {
                     },
                   ),
                 );
-            }
-          )
+              })
         ],
       ),
       body: Body(),

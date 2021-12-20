@@ -11,25 +11,25 @@ import 'package:flutter_auth/models/user_model.dart';
 
 Future<List<User>> getUsers() async {
   List<User> users = [];
-  
   final data = await http.get(Uri.parse('http://147.83.7.157:3000/usuarios/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
     User user = User(
-        id: u["id"],
-        username: u["username"],
-        password: u["password"],
-        email: u["email"],
-        nombre: u["nombre"],
-        edad: u["edad"],
-        descripcion: u["descripcion"],
-        imageUrl: u["imageUrl"],
-        puntuacion: u["puntuacion"],);
+      id: u["id"],
+      username: u["username"],
+      password: u["password"],
+      email: u["email"],
+      nombre: u["nombre"],
+      edad: u["edad"],
+      descripcion: u["descripcion"],
+      imageUrl: u["imageUrl"],
+      puntuacion: u["puntuacion"],
+    );
     users.add(user);
   }
   print(users.length);
-  users.sort((b,a) => a.puntuacion.compareTo(b.puntuacion));
+  users.sort((b, a) => a.puntuacion.compareTo(b.puntuacion));
   return users;
 }
 

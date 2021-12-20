@@ -11,20 +11,21 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 
 Future createComunidad(String name, String descripcion) async {
-  final response = await http.post(Uri.parse('http://147.83.7.157:3000/comunidades/new'),
-  headers: <String, String>{
+  final response = await http.post(
+    Uri.parse('http://147.83.7.157:3000/comunidades/new'),
+    headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
       'name': name,
       'owner': currentUser.nombre,
       'idOwner': currentUser.id,
-      'descripcion' : descripcion,
-      'imageUrl' : "",
+      'descripcion': descripcion,
+      'imageUrl': "",
     }),
   );
 
-   if (response.statusCode == 201) {
+  if (response.statusCode == 201) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
   } else {
@@ -32,10 +33,7 @@ Future createComunidad(String name, String descripcion) async {
     // then throw an exception.
     throw Exception(S.current.wrongu);
   }
-  
 }
-
-
 
 class NewComunidadScreen extends StatelessWidget {
   @override

@@ -10,24 +10,23 @@ import 'dart:async';
 
 Future<List<Post>> getPosts() async {
   List<Post> posts = [];
-  
   final data = await http.get(Uri.parse('http://147.83.7.157:3000/publicaciones/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
     Post post = Post(
-        idBar: u["idBar"],
-        nameBar: u["nameBar"],
-        imageBar: u["imageBar"],
-        texto: u["texto"],
-        imageUrl: u["imageUrl"],
-        fecha: u["fecha"],
-        likes: u["likes"],
+      idBar: u["idBar"],
+      nameBar: u["nameBar"],
+      imageBar: u["imageBar"],
+      texto: u["texto"],
+      imageUrl: u["imageUrl"],
+      fecha: u["fecha"],
+      likes: u["likes"],
     );
     posts.add(post);
   }
   print(posts.length);
-  posts.sort((b,a) => a.fecha.compareTo(b.fecha));
+  posts.sort((b, a) => a.fecha.compareTo(b.fecha));
   return posts;
 }
 
