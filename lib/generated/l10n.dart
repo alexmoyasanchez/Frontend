@@ -904,6 +904,16 @@ class S {
       args: [],
     );
   }
+
+  /// `never`
+  String get noagresion {
+    return Intl.message(
+      'never',
+      name: 'noagresion',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

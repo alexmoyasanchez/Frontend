@@ -53,7 +53,7 @@ class Body extends StatelessWidget {
                                 ],
                               ),
                             ),
-                            snapshot.data[index].imageUrl != null
+                            snapshot.data[index].imageUrl != " "
                                 ? Padding(
                                     padding: const EdgeInsets.symmetric(
                                         vertical: 8.0),

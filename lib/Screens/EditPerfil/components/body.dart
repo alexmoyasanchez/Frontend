@@ -13,7 +13,7 @@ import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/user_model.dart';
 import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
-import 'package:flutter_auth/Screens/EditPerfil/components/background.dart';
+import 'package:flutter_auth/Screens/SignUp/components/background.dart';
 
 class Body extends StatefulWidget {
   @override

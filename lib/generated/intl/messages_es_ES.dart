@@ -77,6 +77,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "minutos" : MessageLookupByLibrary.simpleMessage("minutos"),
     "modificaraforo" : MessageLookupByLibrary.simpleMessage("Modificar aforo"),
     "musica" : MessageLookupByLibrary.simpleMessage("Música de ambiente: "),
+    "noagresion" : MessageLookupByLibrary.simpleMessage("nunca"),
     "nombre" : MessageLookupByLibrary.simpleMessage("Nombre"),
     "nombre2" : MessageLookupByLibrary.simpleMessage("Nombre: "),
     "nombrec" : MessageLookupByLibrary.simpleMessage("Nombre de la comunidad: "),

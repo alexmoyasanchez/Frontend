@@ -12,7 +12,7 @@ import 'dart:async';
 
 Future createComunidad(String name, String descripcion) async {
   final response = await http.post(
-    Uri.parse('http://147.83.7.157:3000/comunidades/new'),
+    Uri.parse('http://10.0.2.2:3000/comunidades/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

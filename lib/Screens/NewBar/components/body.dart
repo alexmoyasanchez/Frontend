@@ -7,7 +7,7 @@ import 'package:flutter_auth/components/rounded_input_field_2.dart';
 import 'package:flutter_auth/components/rounded_input_field_description.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/generated/l10n.dart';
-import 'package:flutter_auth/Screens/EditPerfil/components/background.dart';
+import 'package:flutter_auth/Screens/SignUp/components/background.dart';
 
 class Body extends StatefulWidget {
   @override
