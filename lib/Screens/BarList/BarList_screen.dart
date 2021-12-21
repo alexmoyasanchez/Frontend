@@ -8,6 +8,7 @@ import 'package:flutter_auth/generated/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:flutter_auth/models/bar_model.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 Future<List<Bar>> getBares() async {
   List<Bar> bares = [];
@@ -28,6 +29,7 @@ Future<List<Bar>> getBares() async {
         descripcion: u["descripcion"],
         imageUrl: u["imageUrl"],
         agresion: u["agresion"]);
+        
 
     bares.add(bar);
   }
@@ -56,6 +58,29 @@ Future<Bar> enviarAgresion(Bar bar) async {
       'agresion': DateTime.now().toString(),
     }),
   );
+
+  //Future<Bar> enviarOpinion(Bar bar) async {
+  //final data = await http.put(
+    //Uri.parse('http://10.0.2.2:3000/bares/update/' + bar.id),
+    //headers: <String, String>{
+      //'Content-Type': 'application/json; charset=UTF-8',
+    //},
+    //body: jsonEncode(<String, String>{
+      //'id': bar.id,
+      //'name': bar.name,
+      //'address': bar.address,
+      //'musicTaste': bar.musicTaste,
+      //'owner': bar.owner,
+      //'idOwner': bar.idOwner,
+      //'aforo': bar.aforo,
+      //'aforoMax': bar.aforoMax,
+      //'horario': bar.horario,
+      //'descripcion': bar.descripcion,
+      //'imageUrl': bar.imageUrl,
+      //'rating': DateTime.now().toString(),
+      
+    //}),
+  //);
 
   if (data.statusCode == 201) {
     return Bar.fromJson(jsonDecode(data.body));

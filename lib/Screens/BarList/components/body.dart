@@ -3,6 +3,7 @@ import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field_2.dart';
+import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/bar_model.dart';
@@ -10,6 +11,7 @@ import 'package:flutter_auth/constants.dart';
 import 'dart:async';
 import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
 import 'package:flutter_auth/Screens/SignUp/components/background.dart';
+import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 import '../barlist_screen.dart';
 
@@ -106,6 +108,7 @@ class _AforoPageState extends State<AforoPage> {
 
   String newValue;
   String aforo;
+  var rating = 2.0;
 
   @override
   Widget build(BuildContext context) {
@@ -211,6 +214,7 @@ class DetailPage extends StatelessWidget {
       dt = DateTime.parse(bar.agresion);
     }
 
+    var rating;
     return Scaffold(
       backgroundColor: Colors.black,
       drawer: SideBar(),
@@ -395,6 +399,26 @@ class DetailPage extends StatelessWidget {
             Divider(
               color: Colors.purple[200],
             ),
+            SmoothStarRating(
+                rating: rating,
+                isReadOnly: false,
+                size: 80,
+                filledIconData: Icons.star,
+                halfFilledIconData: Icons.star_half,
+                defaultIconData: Icons.star_border,
+                starCount: 5,
+                allowHalfRating: true,
+                spacing: 2.0,
+                onRated: (value) {
+                  print("rating value -> $value");
+                }),
+            RoundedInputField(
+              hintText: "Introduce tu opinion",
+              onChanged: (value) {
+                String comentario = value;
+                //saveOpinion(value);
+              },
+            ),
             RoundedButton(
               text: S.current.notagresion,
               color: Colors.white,
@@ -452,7 +476,6 @@ String timeAgo(DateTime d) {
   return S.current.noagresion;
 }
 
-
 typedef void RatingBares(double rating);
 
 class StarRating extends StatelessWidget {
@@ -461,7 +484,8 @@ class StarRating extends StatelessWidget {
   final RatingBares onRatingChanged;
   final Color color;
 
-  StarRating({this.starCount = 5, this.rating = .0, this.onRatingChanged, this.color});
+  StarRating(
+      {this.starCount = 5, this.rating = .0, this.onRatingChanged, this.color});
 
   Widget buildStar(BuildContext context, int index) {
     Icon icon;
@@ -471,8 +495,7 @@ class StarRating extends StatelessWidget {
         // ignore: deprecated_member_use
         color: Theme.of(context).buttonColor,
       );
-    }
-    else if (index > rating - 1 && index < rating) {
+    } else if (index > rating - 1 && index < rating) {
       icon = new Icon(
         Icons.star_half,
         color: color ?? Theme.of(context).primaryColor,
@@ -484,13 +507,16 @@ class StarRating extends StatelessWidget {
       );
     }
     return new InkResponse(
-      onTap: onRatingChanged == null ? null : () => onRatingChanged(index + 1.0),
+      onTap:
+          onRatingChanged == null ? null : () => onRatingChanged(index + 1.0),
       child: icon,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return new Row(children: new List.generate(starCount, (index) => buildStar(context, index)));
+    return new Row(
+        children:
+            new List.generate(starCount, (index) => buildStar(context, index)));
   }
 }

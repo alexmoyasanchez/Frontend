@@ -1,13 +1,13 @@
-# Welcome page, Login Page and Sign up page - Flutter UI
+Readme para el Minimo 2
 
-## [Watch it on YouTube](https://youtu.be/ExKYjqgswJg)
+La aplicación permite el inicio de sesión y registro
+Una vez dentro podemos unirnos a comunidades, ver listas de bares y consultar bares cercanos
+Podemos tambien disponer de una feed de publicaciones sociales
+La aplicación permite el uso como usuario cliente y como usuario dueño de un bar
 
-**Packages we are using:**
+A día 21/12 y sobre mis funcionalidades, he conseguido trabajar con algunas librerías para implementar
+el rating con estrellas 
+La primera funcionalidad y el comentario asociado a el rating con estrellas faltan por ser introducidos 
 
-- flutter_svg: [link](https://pub.dev/packages/flutter_svg)
+Aunque lo comentaré en el video, el despliegue de flutter en web tarda muchísimo en cargar.
 
-We design 3 screens first one is a welcome screen like then user open your app it shows then users have two options, if he has an account then press the login button and it just shifts him to the login screen or if he or she don't have an account then press signup button its transfers to the signup screen.
-
-### Auth UI
-
-![App UI](/UI.png)
