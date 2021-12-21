@@ -126,7 +126,7 @@ _showMessages() {
                       subtitle: Text(
                           'Enviado por: ' +
                               snapshot.data[index].sender +
-                              'A las ' +
+                              ' a las  ' +
                               snapshot.data[index].time,
                           style: TextStyle(
                               color: Colors.white,

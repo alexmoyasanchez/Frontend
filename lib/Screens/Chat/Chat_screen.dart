@@ -9,6 +9,8 @@ import 'package:http/http.dart' as http;
 import 'package:flutter_auth/models/community_model.dart';
 import 'package:intl/intl.dart';
 
+String user = currentUser.username;
+
 Future<List<Message>> getMessages() async {
   List<Message> messages = [];
   final data = await http.get(Uri.parse('http://localhost:3000/chat'));
@@ -102,7 +104,7 @@ class ChatScreen extends StatelessWidget {
                             subtitle: Text(
                                 'Enviado por: ' +
                                     snapshot.data[index].sender +
-                                    'A las ' +
+                                    ' a las ' +
                                     snapshot.data[index].time,
                                 style: TextStyle(
                                     color: Colors.black,
@@ -128,9 +130,9 @@ void EnviarMensaje(String sender, String text, String time) {
 }
 
 Future<Message> SendMessage(String sender, String text, String time) async {
-  sender = "b";
+  sender = user;
   final response = await http.post(
-    Uri.parse('http://localhost:3000/chat/new/'),
+    Uri.parse('http://localhost:3000/chat/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -143,7 +145,7 @@ Future<Message> SendMessage(String sender, String text, String time) async {
 }
 
 Future<Message> DeleteChat() async {
-  String sender = "a";
+  String sender = user;
   final response = await http.delete(
     Uri.parse('http://localhost:3000/chat/delete'),
     headers: <String, String>{
