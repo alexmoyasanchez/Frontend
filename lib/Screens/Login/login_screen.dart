@@ -1,11 +1,12 @@
 import 'dart:convert';
-
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Login/components/body.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/user_model.dart';
 import 'package:http/http.dart' as http;
 
+IO.Socket socket;
 Future<User> Login(String email, String password) async {
   final response = await http.post(
     Uri.parse('http://localhost:3000/usuarios/login'),
@@ -21,6 +22,17 @@ Future<User> Login(String email, String password) async {
   if (response.statusCode == 201) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
+    socket = IO.io('http://localhost:3000', <String, dynamic>{
+      'transports': ['websocket'],
+      'autoConnect': false,
+    });
+    //Conectando al servidor
+    socket.connect();
+    if (socket.connected) {
+      print('socket connected');
+      socket.emit('users_info_to_signaling_server',
+          {"current_user_name": "abccheck", "meetingid": "testing"});
+    }
     return User.fromJson(jsonDecode(response.body));
   } else {
     // If the server did not return a 201 CREATED response,
@@ -51,6 +63,16 @@ void GuardarUsuario(String email, String password) {
         'https://static.elcomercio.es/www/multimedia/202002/20/media/cortadas/gato-kRID-U100219218863XFC-1248x770@El%20Comercio.jpg',
     puntuacion: null,
   );
-
+  socket = IO.io('http://localhost:3000', <String, dynamic>{
+    'transports': ['websocket'],
+    'autoConnect': false,
+  });
+  //Conectando al servidor
+  socket.connect();
+  if (socket.connected) {
+    print('socket connected');
+    socket.emit('users_info_to_signaling_server',
+        {"current_user_name": "abccheck", "meetingid": "testing"});
+  }
   currentUser = usuario;
 }

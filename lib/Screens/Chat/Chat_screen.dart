@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/ChatList/chatList_screen.dart';
+import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'dart:convert';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/message_model.dart';
+import 'package:flutter_auth/models/user_model.dart';
 import 'package:http/http.dart' as http;
 import 'package:flutter_auth/models/community_model.dart';
 import 'package:intl/intl.dart';
@@ -83,6 +85,16 @@ class ChatScreen extends StatelessWidget {
               }));
             },
           ),
+          IconButton(
+            icon: Icon(Icons.info),
+            iconSize: 25.0,
+            color: Colors.blueAccent,
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return ChatInfoScreen();
+              }));
+            },
+          ),
           Expanded(
               child: FutureBuilder(
                   future: getMessages(),
@@ -155,4 +167,66 @@ Future<Message> DeleteChat() async {
       'sender': sender,
     }),
   );
+}
+
+class ChatInfoScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: Center(
+          child: FutureBuilder(
+              future: getUser(),
+              builder: (BuildContext context, AsyncSnapshot snapshot) {
+                print(snapshot.data);
+                if (snapshot.data == null) {
+                  return Container(
+                      child: Center(child: CircularProgressIndicator()));
+                } else {
+                  return ListView.builder(
+                    itemCount: snapshot.data.length,
+                    itemBuilder: (BuildContext context, int index) {
+                      return ListTile(
+                        leading: CircleAvatar(
+                          backgroundImage:
+                              NetworkImage(snapshot.data[index].imageUrl),
+                        ),
+                        title: Text(snapshot.data[index].username,
+                            style: TextStyle(
+                                color: Colors.pink[800],
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold)),
+                        subtitle: Text(snapshot.data[index].email,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold)),
+                      );
+                    },
+                  );
+                }
+              })),
+    );
+  }
+}
+
+Future<List<User>> getUser() async {
+  List<User> users = [];
+  final data = await http.get(Uri.parse('http://localhost:3000/usuarios/'));
+  var jsonData = json.decode(data.body);
+  for (var u in jsonData) {
+    print(data.body);
+    User user = User(
+        id: u["id"],
+        username: u["username"],
+        password: u["password"],
+        email: u["email"],
+        name: "",
+        edad: "",
+        descripcion: "",
+        imageUrl: "",
+        puntuacion: "");
+    users.add(user);
+  }
+  print(users.length);
+  return users;
 }

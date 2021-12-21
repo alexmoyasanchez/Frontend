@@ -100,10 +100,9 @@ class DetailPage extends StatelessWidget {
             Text(
               user.username,
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.bold
-              ),
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
             ),
             Divider(
               color: Colors.purple[200],
@@ -183,7 +182,6 @@ class DetailPage extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
-            
             Text(
               user.puntuacion,
               style: TextStyle(
