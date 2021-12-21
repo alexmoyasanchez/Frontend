@@ -5,6 +5,7 @@ import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/models.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:cloudinary_public/cloudinary_public.dart';
 
 Future<User> editarUser(String username, String password, String email,
     String nombre, String edad, String descripcion) async {

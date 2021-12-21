@@ -1,13 +1,5 @@
-# Welcome page, Login Page and Sign up page - Flutter UI
-
-## [Watch it on YouTube](https://youtu.be/ExKYjqgswJg)
-
-**Packages we are using:**
-
-- flutter_svg: [link](https://pub.dev/packages/flutter_svg)
-
-We design 3 screens first one is a welcome screen like then user open your app it shows then users have two options, if he has an account then press the login button and it just shifts him to the login screen or if he or she don't have an account then press signup button its transfers to the signup screen.
-
-### Auth UI
-
-![App UI](/UI.png)
+Para subir una imagen en el pefil hay que ir a editar perfil que se encuentra en la barra lateral y ahí  pulsar el botón "Subir imagen"
+Ahí cargas una imagen de la galería que esta se subirá a una base de datos desde la que nos enviará una URL que será la que pondremos
+en la base de datos y nos servirá de icono para nuestro usuario.
+En el caso de la comunidad es exactemente lo mismo, pero lo encontraremos en el apartado de Comunidades y después pulando en el icono 
+"+", para crear una nueva comunidad y subiendo la foto que queramos.

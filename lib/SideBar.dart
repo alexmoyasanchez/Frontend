@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
-import 'package:flutter_auth/Screens/Map/ui/pages/home/map_screen.dart';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
@@ -148,24 +147,7 @@ class SideBar extends StatelessWidget {
               }),
             ),
           ),
-          ListTile(
-            tileColor: Colors.black,
-            leading: Icon(
-              Icons.room_sharp,
-              color: Colors.white,
-            ),
-            title: Text(
-              S.current.mapas,
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                //if () permisos
-                return MapScreen2();
-              }),
-            ),
-          ),
+          
           ListTile(
             tileColor: Colors.black,
             leading: Icon(

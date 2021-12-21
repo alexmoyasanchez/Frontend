@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
 import 'package:flutter_auth/Screens/NewComunidad/newcomunidad_screen.dart';
@@ -6,6 +8,8 @@ import 'package:flutter_auth/components/rounded_input_field_2.dart';
 import 'package:flutter_auth/components/rounded_input_field_description.dart';
 import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/Screens/SignUp/components/background.dart';
+import 'package:image_picker/image_picker.dart';
+
 
 class Body extends StatefulWidget {
   @override
@@ -16,6 +20,7 @@ class _BodyState extends State<Body> {
   
   String name;
   String descripcion;
+  String imagePath;
 
   @override
   Widget build(BuildContext context) {
@@ -29,6 +34,21 @@ class _BodyState extends State<Body> {
               hintText: S.current.nombrec,
               onChanged: (value) {
                 name = value;
+              },
+            ),
+            Text("Selecciona la imagen: "),
+            (imagePath == null) ? Container() : Image.file(File(imagePath)),
+            RoundedButton(
+              text: "SUBE UNA IMAGEN",
+              color: Colors.white,
+              textColor: Colors.black,
+              press: () async{
+                final ImagePicker _picker = ImagePicker();
+                PickedFile _pickedFile = await _picker.getImage(source: ImageSource.gallery);
+                //imagePath = _pickedFile.path;
+                setState(() {
+                  
+                });
               },
             ),
             RoundedInputFieldLargo(
