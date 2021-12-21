@@ -50,10 +50,11 @@ class HomeController extends ChangeNotifier {
     final id = _markers.length.toString();
     //final markerId = MarkerId(id);
     LatLng pepe =
-        new LatLng(41.2745368, 1.9834524); //Residencia universitaria EETAC
+        new LatLng(41.2745368, 1.9834524); //Residencia universitaria EETAC  
+        /*
     LatLng pepe2 =
         new LatLng(41.279730, 1.983748); //Residencia universitaria EETAC
-        /*
+      
     LatLng pepe3 =
         new LatLng(41.2735649, 1.9799459); //Residencia universitaria EETAC
     LatLng pepe4 =
@@ -63,7 +64,7 @@ class HomeController extends ChangeNotifier {
         new LatLng(41.3470487, 2.0389436); //Residencia universitaria EETAC
 
     //List marcadores = [pepe, pepe2, pepe3, pepe4, pepe5];
-    List marcadores = [pepe, pepe2, pepe5];
+    List marcadores = [pepe, pepe5];
     List nearMarcadores = [];
 
 
@@ -114,7 +115,7 @@ class HomeController extends ChangeNotifier {
   }
 
   void onTap(LatLng position) {
-    createMarkers(3, 5.0, true);
+    createMarkers(2, 5.0, true);
     //nearMarkers(5);
   }
 
