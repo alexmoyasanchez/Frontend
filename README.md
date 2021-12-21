@@ -1,13 +1,18 @@
-# Welcome page, Login Page and Sign up page - Flutter UI
+# Minimo 2 EA
+## Javier Ramirez
 
-## [Watch it on YouTube](https://youtu.be/ExKYjqgswJg)
+###Descripción
+En esta rama se encuentra mi mínimo 2 de la asignatura de EA, en este caso, se pedía realizar una mejora en la que el usuario sea capaz de acceder a una ventana extra en el chat que le permita ver los usuarios que pertenecen a ese chat y ver su estado de conexión (verde/rojo en caso de conectado/no conectado)
 
-**Packages we are using:**
+###Estado
+Al momento de finalizar el mínimo, la implementación no está completa y unicamente permite acceder a los nombres de los usuarios conectados, debido a problemas de implementación de los sockets, funciona a base de http y un nuevo atributo en la clase usuario que permite conocer si esta conectado o no:
+```bash
+conected:
+{
+        type: String
+},
+```
+En un futuro se espera utilizar este codigo cambiando a la conexión con sockets.
 
-- flutter_svg: [link](https://pub.dev/packages/flutter_svg)
-
-We design 3 screens first one is a welcome screen like then user open your app it shows then users have two options, if he has an account then press the login button and it just shifts him to the login screen or if he or she don't have an account then press signup button its transfers to the signup screen.
-
-### Auth UI
-
-![App UI](/UI.png)
+Per Javier Ramirez.
+[Click aqui per accedir al repo de backend](https://github.com/gabrielp6/ProyectoEA_Backend/tree/JaviMinimo2)
