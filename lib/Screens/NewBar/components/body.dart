@@ -15,7 +15,17 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  final listItem = ['Pop', 'Rock', 'R&B', 'Heavy Metal', 'Hardcore', 'Techno', 'Reggaeton', 'Salsa', "-"];
+  final listItem = [
+    'Pop',
+    'Rock',
+    'R&B',
+    'Heavy Metal',
+    'Hardcore',
+    'Techno',
+    'Reggaeton',
+    'Salsa',
+    "-"
+  ];
   String newValue;
   String nombre;
   String address;
@@ -46,8 +56,16 @@ class _BodyState extends State<Body> {
               },
             ),
             DropdownButton(
+                dropdownColor: Colors.black,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                ),
                 items: listItem.map(buildMenuItem).toList(),
-                hint: Text(S.current.musica),
+                hint: Text(
+                  S.current.musica,
+                  style: TextStyle(color: Colors.white),
+                ),
                 value: newValue,
                 onChanged: (value) {
                   musicTaste = value;
@@ -78,17 +96,23 @@ class _BodyState extends State<Body> {
               color: kPrimaryLightColor,
               textColor: Colors.white,
               press: () {
-                if ('$nombre' != "" && '$address' != "" && '$musicTaste' != "" && '$aforoMax' != "" && '$horario' != "" && '$descripcion' != "") {
-                  createBar('$nombre', '$address', '$musicTaste', '$aforoMax', '$horario', '$descripcion');
+                if ('$nombre' != "" &&
+                    '$address' != "" &&
+                    '$musicTaste' != "" &&
+                    '$aforoMax' != "" &&
+                    '$horario' != "" &&
+                    '$descripcion' != "") {
+                  createBar('$nombre', '$address', '$musicTaste', '$aforoMax',
+                      '$horario', '$descripcion');
                   getBares();
                   Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return MisBaresScreen();
-                        },
-                      ),
-                    );
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MisBaresScreen();
+                      },
+                    ),
+                  );
                 } else {
                   showDialog(
                     context: context,

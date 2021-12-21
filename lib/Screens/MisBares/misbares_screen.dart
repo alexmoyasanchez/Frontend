@@ -73,7 +73,7 @@ Future newPost(String texto, Bar bar) async {
       'nameBar': bar.name,
       'imageBar': bar.imageUrl,
       'texto': texto,
-      'imageUrl': null,
+      'imageUrl': " ",
       'fecha': DateTime.now().toString(),
       'likes': "0",
     }),

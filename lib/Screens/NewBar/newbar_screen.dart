@@ -28,7 +28,7 @@ Future createBar(String name, String direccion, String musicTaste,
       'aforoMax': aforoMax,
       'horario': horario,
       'descripcion': descripcion,
-      'imageUrl': "",
+      'imageUrl': " ",
     }),
   );
 
