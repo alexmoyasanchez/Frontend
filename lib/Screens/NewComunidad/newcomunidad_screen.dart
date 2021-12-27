@@ -7,10 +7,11 @@ import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/generated/l10n.dart';
+import 'package:flutter_auth/models/models.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 
-Future createComunidad(String name, String descripcion) async {
+Future createComunidad(String name, String descripcion, String imageUrl) async {
   final response = await http.post(
     Uri.parse('http://10.0.2.2:3000/comunidades/new'),
     headers: <String, String>{
@@ -21,7 +22,7 @@ Future createComunidad(String name, String descripcion) async {
       'owner': currentUser.nombre,
       'idOwner': currentUser.id,
       'descripcion': descripcion,
-      'imageUrl': "",
+      'imageUrl': imageUrl,
     }),
   );
 
@@ -35,13 +36,28 @@ Future createComunidad(String name, String descripcion) async {
   }
 }
 
+void GuardarFotoBar (String imageUrl) async{
+  final User usuario = User(
+    id: currentUser.id,
+    username: currentUser.username,
+    password: currentUser.password,
+    email: currentUser.email,
+    nombre: '',
+    edad: '',
+    descripcion: '',
+    imageUrl: imageUrl,
+    puntuacion: currentUser.puntuacion,
+  );
+  currentUser = usuario;
+}
+
 class NewComunidadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: SideBar(),
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: PrimaryColor,
         title: Text(
           S.current.nuevac,
           style: const TextStyle(

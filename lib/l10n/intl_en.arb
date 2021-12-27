@@ -86,7 +86,15 @@
     "atras" : " ago ",
     "hace" : "",    
     "mapas" : "My maps",
-    "noagresion" : "never"
+    "noagresion" : "never",
+    "atencion" : "¡Atención!",
+    "seleccionFoto" : "¿Desde donde quieres seleccionar la imagen?",
+    "galeria" : "Galería",
+    "camara" : "Cámara",
+    "editarC" : "EDIT COMUNITY",
+    "editC" : "Edit Comunity",
+    "miscomunidades" : "My Comunities",
+    "eliminarc" : "DELETE COMUNITY"
 
 
 

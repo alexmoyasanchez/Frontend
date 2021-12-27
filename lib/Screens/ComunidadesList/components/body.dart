@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/MisComunidades/miscomunidades_screen.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
+import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/models.dart';
 import 'package:flutter_auth/constants.dart';
@@ -38,7 +40,8 @@ class Body extends StatelessWidget {
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
-                        subtitle: Text(S.current.ownerc + snapshot.data[index].owner,
+                        subtitle: Text(
+                            S.current.ownerc + snapshot.data[index].owner,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 15,
@@ -63,7 +66,6 @@ class DetailPage extends StatelessWidget {
   final Comunidad comunidad;
 
   DetailPage(this.comunidad);
-  
 
   @override
   Widget build(BuildContext context) {
@@ -104,10 +106,9 @@ class DetailPage extends StatelessWidget {
             Text(
               comunidad.name,
               style: TextStyle(
-                color: Colors.white,
-                fontSize: 15,
-                fontWeight: FontWeight.bold
-              ),
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
             ),
             Divider(
               color: Colors.purple[200],
@@ -156,7 +157,6 @@ class DetailPage extends StatelessWidget {
                   fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
-            
             Text(
               comunidad.descripcion,
               style: TextStyle(

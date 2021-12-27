@@ -7,8 +7,27 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:cloudinary_public/cloudinary_public.dart';
 
+void GuardarFotoUsuario (String imageUrl) async{
+  final User usuario = User(
+    id: currentUser.id,
+    username: currentUser.username,
+    password: currentUser.password,
+    email: currentUser.email,
+    nombre: '',
+    edad: '',
+    descripcion: '',
+    imageUrl: imageUrl,
+    puntuacion: currentUser.puntuacion,
+  );
+  currentUser = usuario;
+}
+
+void DeleteCurrentPhoto(){
+  currentPhoto = " ";
+}
+
 Future<User> editarUser(String username, String password, String email,
-    String nombre, String edad, String descripcion) async {
+    String nombre, String edad, String descripcion, String imageUrl) async {
   final response = await http.put(
     Uri.parse('http://10.0.2.2:3000/usuarios/update/' + currentUser.id),
     headers: <String, String>{
@@ -21,7 +40,7 @@ Future<User> editarUser(String username, String password, String email,
       'nombre': nombre,
       'edad': edad,
       'descripcion': descripcion,
-      'imageUrl': "",
+      'imageUrl': imageUrl,
     }),
   );
 

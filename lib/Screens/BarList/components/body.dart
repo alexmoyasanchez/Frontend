@@ -171,7 +171,8 @@ class _AforoPageState extends State<AforoPage> {
                     '$aforo',
                     widget.bar.aforoMax,
                     widget.bar.horario,
-                    widget.bar.descripcion);
+                    widget.bar.descripcion,
+                    currentPhoto);
                 return Future.delayed(
                     const Duration(milliseconds: 250),
                     () => Navigator.push(

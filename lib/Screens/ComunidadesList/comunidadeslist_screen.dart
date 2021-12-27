@@ -69,20 +69,7 @@ class ListaComunidadesScreen extends StatelessWidget {
               letterSpacing: -1.2),
         ),
         centerTitle: true,
-        actions: [
-          IconButton(
-              icon: Icon(Icons.add, color: Colors.white),
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return NewComunidadScreen();
-                    },
-                  ),
-                );
-              })
-        ],
+        
       ),
       body: Body(),
     );

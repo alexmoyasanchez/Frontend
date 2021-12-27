@@ -1,7 +1,8 @@
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
+import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
+import 'package:flutter_auth/Screens/MisComunidades/miscomunidades_screen.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/components/create_post_container.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
@@ -12,21 +13,30 @@ import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/bar_model.dart';
 import 'package:flutter_auth/constants.dart';
 import 'dart:async';
-import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
+import 'package:flutter_auth/models/models.dart';
 import 'package:image_picker/image_picker.dart';
 
-class Body extends StatelessWidget {
+class Body extends StatefulWidget {
   final Future<Bar> bar;
 
   Body({Key key, this.bar}) : super(key: key);
+
+  @override
+  State<Body> createState() => _BodyState();
+}
+
+class _BodyState extends State<Body> {
+  String name;
+  String descripcion;
+  String imagePath;
 
   @override
   Widget build(BuildContext context) {
     return Background(
       child: Center(
         child: FutureBuilder(
-            future: getMisBares(),
+            future: getComunidadesById(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               print(snapshot.data);
               if (snapshot.data == null) {
@@ -46,7 +56,7 @@ class Body extends StatelessWidget {
                               color: Colors.white,
                               fontSize: 20,
                               fontWeight: FontWeight.bold)),
-                      subtitle: Text(snapshot.data[index].address,
+                      subtitle: Text(snapshot.data[index].owner,
                           style: TextStyle(
                             color: Colors.white,
                             fontSize: 15,
@@ -78,54 +88,15 @@ class Body extends StatelessWidget {
 }
 
 class EditPage extends StatefulWidget {
-  final Bar bar;
+  final Comunidad comunidad;
 
-  EditPage(this.bar);
+  EditPage(this.comunidad);
 
   @override
   State<EditPage> createState() => _EditPageState();
 }
 
 class _EditPageState extends State<EditPage> {
-  final listItem = [
-    'Pop',
-    'Rock',
-    'R&B',
-    'Heavy Metal',
-    'Hardcore',
-    'Techno',
-    'Reggaeton',
-    'Salsa',
-    "-"
-  ];
-  final listItem2 = [
-    '0%',
-    '5%',
-    '10%',
-    '15%',
-    '20%',
-    '25%',
-    '30%',
-    '35%',
-    '40%',
-    '45%',
-    '50%',
-    '55%',
-    '60%',
-    '65%',
-    '70%',
-    '75%',
-    '80%',
-    '85%',
-    '90%',
-    '95%',
-    '100%'
-  ];
-
-  String newValue;
-  String newValue2;
-  String aforo;
-  String musicTaste;
   bool isloading = false;
   final cloudinary = CloudinaryPublic("dbyf2oped", 'proyectoEA', cache: false);
 
@@ -151,21 +122,12 @@ class _EditPageState extends State<EditPage> {
           CloudinaryFile.fromFile(image.path,
               resourceType: CloudinaryResourceType.Image));
       currentPhoto = response.secureUrl;
-      await editarBar(
-          widget.bar.id,
-          widget.bar.name,
-          widget.bar.address,
-          widget.bar.musicTaste,
-          widget.bar.aforo,
-          widget.bar.aforoMax,
-          widget.bar.horario,
-          widget.bar.descripcion,
-          currentPhoto);
-      currentPhoto = " ";
+      await updateComunidad(widget.comunidad.id, widget.comunidad.name, widget.comunidad.descripcion, currentPhoto);
+      DeleteCurrentPhoto();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return MisBaresScreen();
+          return MisComunidadesScreen();
         }),
       );
     } catch (e) {
@@ -195,21 +157,12 @@ class _EditPageState extends State<EditPage> {
           CloudinaryFile.fromFile(image.path,
               resourceType: CloudinaryResourceType.Image));
       currentPhoto = response.secureUrl;
-      await editarBar(
-          widget.bar.id,
-          widget.bar.name,
-          widget.bar.address,
-          widget.bar.musicTaste,
-          widget.bar.aforo,
-          widget.bar.aforoMax,
-          widget.bar.horario,
-          widget.bar.descripcion,
-          currentPhoto);
-      currentPhoto = " ";
+      await updateComunidad(widget.comunidad.id, widget.comunidad.name, widget.comunidad.descripcion, currentPhoto);
+      DeleteCurrentPhoto();
       Navigator.push(
         context,
         MaterialPageRoute(builder: (context) {
-          return MisBaresScreen();
+          return MisComunidadesScreen();
         }),
       );
     } catch (e) {
@@ -219,14 +172,9 @@ class _EditPageState extends State<EditPage> {
 
   @override
   Widget build(BuildContext context) {
-    var currentPhoto = widget.bar.imageUrl;
-    String name = widget.bar.name;
-    String address = widget.bar.address;
-    String aforoMax = widget.bar.aforoMax;
-    String horario = widget.bar.horario;
-    String descripcion = widget.bar.descripcion;
-    String aforo2 = widget.bar.aforo;
-    String musicTaste2 = widget.bar.musicTaste;
+    var currentPhoto = widget.comunidad.imageUrl;
+    String name = widget.comunidad.name;
+    String descripcion = widget.comunidad.descripcion;
 
     return Scaffold(
       backgroundColor: Colors.black,
@@ -234,7 +182,7 @@ class _EditPageState extends State<EditPage> {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         title: Text(
-          widget.bar.name,
+          widget.comunidad.name,
           style: const TextStyle(
               color: Colors.white,
               fontSize: 28.0,
@@ -285,102 +233,30 @@ class _EditPageState extends State<EditPage> {
               ),
             ),
             RoundedInputField2(
-              hintText: S.current.nombrel + name,
+              hintText: S.current.nombrec + widget.comunidad.name,
               onChanged: (value) {
                 name = value;
               },
             ),
-            RoundedInputField2(
-              hintText: S.current.direccion + address,
-              onChanged: (value) {
-                address = value;
-              },
-            ),
-            DropdownButton(
-                dropdownColor: Colors.black,
-                alignment: Alignment.centerRight,
-                items: listItem.map(buildMenuItem).toList(),
-                style: TextStyle(color: Colors.white),
-                hint: Text(S.current.musica + musicTaste2,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                    )),
-                value: newValue,
-                onChanged: (value) {
-                  musicTaste = value;
-                  setState(() {
-                    newValue = value;
-                  });
-                }),
-            RoundedInputField2(
-              hintText: S.current.horario + horario,
-              onChanged: (value) {
-                horario = value;
-              },
-            ),
-            DropdownButton(
-                dropdownColor: Colors.black,
-                alignment: Alignment.centerRight,
-                items: listItem2.map(buildMenuItem).toList(),
-                style: TextStyle(color: Colors.white),
-                hint: Text(S.current.aforo + aforo2,
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                    )),
-                value: newValue2,
-                onChanged: (value) {
-                  aforo = value;
-                  setState(() {
-                    newValue2 = value;
-                  });
-                }),
-            RoundedInputField2(
-              hintText: S.current.aforomax + aforoMax,
-              onChanged: (value) {
-                aforoMax = value;
-              },
-            ),
             RoundedInputFieldLargo(
-              hintText: S.current.descripcion2 + descripcion,
+              hintText: S.current.descripcion2 + widget.comunidad.descripcion,
               onChanged: (value) {
                 descripcion = value;
               },
             ),
             RoundedButton(
-              text: S.current.editarl,
+              text: S.current.editarC,
               color: Colors.white,
               textColor: Colors.black,
               press: () {
-                if (aforo == null) {
-                  aforo = aforo2;
-                }
-                if (musicTaste == null) {
-                  musicTaste = musicTaste2;
-                }
-                if ('$name' != "" &&
-                    '$address' != "" &&
-                    '$musicTaste' != "" &&
-                    '$aforoMax' != "" &&
-                    '$horario' != "" &&
-                    '$descripcion' != "") {
-                  editarBar(
-                      widget.bar.id,
-                      '$name',
-                      '$address',
-                      '$musicTaste',
-                      '$aforo',
-                      '$aforoMax',
-                      '$horario',
-                      '$descripcion',
-                      currentPhoto);
-                  getBares();
+                if ('$name' != "" && '$descripcion' != "") {
+                  updateComunidad(widget.comunidad.id,'$name', '$descripcion', currentPhoto);
+                  DeleteCurrentPhoto();
                   Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return MisBaresScreen();
+                        return MisComunidadesScreen();
                       },
                     ),
                   );
@@ -406,25 +282,33 @@ class _EditPageState extends State<EditPage> {
                 }
               },
             ),
+            RoundedButton(
+              text: S.current.eliminarc,
+              color: Colors.white,
+              textColor: Colors.black,
+              press: () {
+                deleteComunidad(widget.comunidad.id);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return MisComunidadesScreen();
+                    },
+                  ),
+                );
+              },
+            ),
           ],
         ),
       ),
     );
   }
-
-  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
-        value: item,
-        child: Text(
-          item,
-          style: TextStyle(fontSize: 20),
-        ),
-      );
 }
 
 class DetailPage extends StatelessWidget {
-  final Bar bar;
+  final Comunidad comunidad;
 
-  DetailPage(this.bar);
+  DetailPage(this.comunidad);
 
   @override
   Widget build(BuildContext context) {
@@ -434,7 +318,7 @@ class DetailPage extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         title: Text(
-          bar.name,
+          comunidad.name,
           style: const TextStyle(
               color: Colors.white,
               fontSize: 28.0,
@@ -443,12 +327,90 @@ class DetailPage extends StatelessWidget {
         ),
         centerTitle: true,
       ),
-      body: CustomScrollView(
-        slivers: [
-          SliverToBoxAdapter(
-            child: CreatePostContainer(bar: bar),
-          ),
-        ],
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: ListView(
+          children: <Widget>[
+            CircleAvatar(
+              radius: 100.0,
+              backgroundImage: NetworkImage(comunidad.imageUrl),
+            ),
+            Divider(
+              color: Colors.purple[200],
+            ),
+            Text(
+              S.current.nombrec,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              comunidad.name,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
+            Divider(
+              color: Colors.purple[200],
+            ),
+            Text(
+              S.current.administrador,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              comunidad.owner,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
+            Divider(
+              color: Colors.purple[200],
+            ),
+            /*Text(
+              "Número de usuarios en la comunidad",
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              comunidad.usuarios.length.toString(),
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),*/
+            Divider(
+              color: Colors.purple[200],
+            ),
+            Divider(
+              color: Colors.purple[200],
+            ),
+            Text(
+              S.current.descripcion,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              comunidad.descripcion,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold),
+            ),
+            Divider(
+              color: Colors.purple[200],
+            ),
+          ],
+        ),
       ),
     );
   }

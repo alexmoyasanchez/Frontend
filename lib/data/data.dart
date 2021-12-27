@@ -12,6 +12,8 @@ User currentUser = User(
   puntuacion: 0,
 );
 
+String currentPhoto = " ";
+
 final List<User> onlineUsers = [
   
   User(

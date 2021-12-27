@@ -2,91 +2,70 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/NewBar/newbar_screen.dart';
-import 'package:flutter_auth/Screens/MisBares/components/body.dart';
+import 'package:flutter_auth/Screens/MisComunidades/components/body.dart';
+import 'package:flutter_auth/Screens/NewComunidad/newcomunidad_screen.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/generated/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'package:flutter_auth/models/bar_model.dart';
+import 'package:flutter_auth/models/models.dart';
 
-Future<List<Bar>> getMisBares() async {
-  List<Bar> bares = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/bares/getBaresByUser/' + currentUser.id));
+Future<List<Comunidad>> getComunidadesById() async {
+  List<Comunidad> comunidades = [];
+  final data = await http.get(Uri.parse(
+      'http://10.0.2.2:3000/comunidades/getComunidadesByUser/' +
+          currentUser.id));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
-    Bar bar = Bar(
+    print(data.body);
+    Comunidad comunidad = Comunidad(
         id: u["id"],
         name: u["name"],
-        address: u["address"],
-        musicTaste: u["musicTaste"],
         owner: u["owner"],
         idOwner: u["idOwner"],
-        aforo: u["aforo"],
-        aforoMax: u["aforoMax"],
-        horario: u["horario"],
+        usuarios: u["usuarios"],
         descripcion: u["descripcion"],
-        imageUrl: u["imageUrl"],
-        agresion: u["agresion"]);
-
-    bares.add(bar);
+        imageUrl: u["imageUrl"]);
+    comunidades.add(comunidad);
   }
-  print(bares.length);
-  return bares;
+  print(comunidades.length);
+  return comunidades;
 }
 
-Future editarBar(String id, String name, String address, String musicTaste,
-    String aforo, String aforoMax, String horario, String descripcion, String imageUrl) async {
+Future updateComunidad(String idComunidad, String name, String descripcion,
+    String imageUrl) async {
   final data = await http.put(
-    Uri.parse('http://10.0.2.2:3000/bares/update/' + id),
+    Uri.parse('http://10.0.2.2:3000/comunidades/update/' + idComunidad),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
       'name': name,
-      'address': address,
-      'musicTaste': musicTaste,
-      'aforo': aforo,
-      'aforoMax': aforoMax,
-      'horario': horario,
       'descripcion': descripcion,
       'imageUrl': imageUrl,
     }),
   );
-
   if (data.statusCode == 201) {
+    return MisComunidadesScreen();
   } else {
-    throw Exception('Error al enviar la agresión');
+    throw Exception('Error al unirse a la comunidad');
   }
 }
 
-Future newPost(String texto, Bar bar) async {
-  final data = await http.post(
-    Uri.parse('http://10.0.2.2:3000/publicaciones/new'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'idBar': bar.id,
-      'nameBar': bar.name,
-      'imageBar': bar.imageUrl,
-      'texto': texto,
-      'imageUrl': " ",
-      'fecha': DateTime.now().toString(),
-      'likes': "0",
-    }),
-  );
+Future deleteComunidad(String idComunidad) async {
+  final data = await http.delete(
+      Uri.parse('http://10.0.2.2:3000/comunidades/delete/' + idComunidad));
 
   if (data.statusCode == 201) {
+    return MisComunidadesScreen();
   } else {
-    throw Exception('Error al crear post');
+    throw Exception('Error al unirse a la comunidad');
   }
 }
 
-
-class MisBaresScreen extends StatelessWidget {
+class MisComunidadesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,7 +73,7 @@ class MisBaresScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: PrimaryColor,
         title: Text(
-          S.current.bares,
+          S.current.miscomunidades,
           style: const TextStyle(
               color: Colors.white,
               fontSize: 28.0,
@@ -110,7 +89,7 @@ class MisBaresScreen extends StatelessWidget {
                   context,
                   MaterialPageRoute(
                     builder: (context) {
-                      return NewBarScreen();
+                      return NewComunidadScreen();
                     },
                   ),
                 );

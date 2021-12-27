@@ -5,6 +5,7 @@ import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
+import 'package:flutter_auth/Screens/MisComunidades/miscomunidades_screen.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
@@ -31,22 +32,24 @@ class SideBar extends StatelessWidget {
                 color: PrimaryColor,
               )),
           ListTile(
-            tileColor: Colors.black,
-            leading: Icon(
-              Icons.home_filled,
-              color: Colors.white,
-            ),
-            title: Text(
-              S.current.inicio,
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return FeedScreen();
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.home_filled,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.inicio,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return FeedScreen();
+                  }),
+                );
               }),
-            ),
-          ),
           ListTile(
             tileColor: Colors.black,
             leading: Icon(
@@ -60,39 +63,43 @@ class SideBar extends StatelessWidget {
             onTap: () => null,
           ),
           ListTile(
-            tileColor: Colors.black,
-            leading: Icon(
-              Icons.local_bar,
-              color: Colors.white,
-            ),
-            title: Text(
-              S.current.locales,
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return ListaBaresScreen();
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.local_bar,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.locales,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ListaBaresScreen();
+                  }),
+                );
               }),
-            ),
-          ),
           ListTile(
-            tileColor: Colors.black,
-            leading: Icon(
-              Icons.people_alt,
-              color: Colors.white,
-            ),
-            title: Text(
-              S.current.comunidades,
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return ListaComunidadesScreen();
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.people_alt,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.comunidades,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ListaComunidadesScreen();
+                  }),
+                );
               }),
-            ),
-          ),
           ListTile(
               tileColor: Colors.black,
               leading: Icon(
@@ -131,23 +138,43 @@ class SideBar extends StatelessWidget {
             onTap: () => null,
           ),
           ListTile(
-            tileColor: Colors.black,
-            leading: Icon(
-              Icons.vpn_key_rounded,
-              color: Colors.white,
-            ),
-            title: Text(
-              S.current.bares,
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return MisBaresScreen();
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.vpn_key_rounded,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.bares,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return MisBaresScreen();
+                  }),
+                );
               }),
-            ),
-          ),
-          
+          ListTile(
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.contact_phone_outlined,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.miscomunidades,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return MisComunidadesScreen();
+                  }),
+                );
+              }),
           ListTile(
             tileColor: Colors.black,
             leading: Icon(
@@ -161,39 +188,43 @@ class SideBar extends StatelessWidget {
             onTap: () => null,
           ),
           ListTile(
-            tileColor: Colors.black,
-            leading: Icon(
-              Icons.emoji_events_rounded,
-              color: Colors.white,
-            ),
-            title: Text(
-              'Ranking',
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return ListaUsuariosScreen();
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.emoji_events_rounded,
+                color: Colors.white,
+              ),
+              title: Text(
+                'Ranking',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ListaUsuariosScreen();
+                  }),
+                );
               }),
-            ),
-          ),
           ListTile(
-            tileColor: Colors.black,
-            leading: Icon(
-              Icons.account_circle_rounded,
-              color: Colors.white,
-            ),
-            title: Text(
-              S.current.perfil,
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return EditPerfilScreen();
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.account_circle_rounded,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.perfil,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return EditPerfilScreen();
+                  }),
+                );
               }),
-            ),
-          ),
           Divider(
             height: 0.1,
             thickness: 2.0,
@@ -218,22 +249,24 @@ class SideBar extends StatelessWidget {
             onTap: () => null,
           ),
           ListTile(
-            tileColor: Colors.black,
-            leading: Icon(
-              Icons.exit_to_app,
-              color: Colors.white,
-            ),
-            title: Text(
-              S.current.cerrar,
-              style: TextStyle(color: Colors.white),
-            ),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return WelcomeScreen();
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.exit_to_app,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.cerrar,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return WelcomeScreen();
+                  }),
+                );
               }),
-            ),
-          ),
         ],
       ),
     );

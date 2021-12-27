@@ -86,7 +86,16 @@
     "atras" : "",
     "hace" : "hace ",
     "mapas" : "Mis mapas",
-    "noagresion" : "nunca"
+    "noagresion" : "nunca",
+    "atencion" : "Atention",
+    "seleccionFoto" : "Where do you want to select the image from?",
+    "galeria" : "Gallery",
+    "camara" : "Camera",
+    "editarC" : "EDITAR COMUNIDAD",
+    "editC" : "Editar Comunidad",
+    "miscomunidades" : "Mis Comunidades",
+    "eliminarc" : "ELIMINAR COMUNIDAD"
+    
     
 
 }

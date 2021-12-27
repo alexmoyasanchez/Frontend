@@ -914,6 +914,86 @@ class S {
       args: [],
     );
   }
+
+  /// `¡Atención!`
+  String get atencion {
+    return Intl.message(
+      '¡Atención!',
+      name: 'atencion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `¿Desde donde quieres seleccionar la imagen?`
+  String get seleccionFoto {
+    return Intl.message(
+      '¿Desde donde quieres seleccionar la imagen?',
+      name: 'seleccionFoto',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Galería`
+  String get galeria {
+    return Intl.message(
+      'Galería',
+      name: 'galeria',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Cámara`
+  String get camara {
+    return Intl.message(
+      'Cámara',
+      name: 'camara',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `EDIT COMUNITY`
+  String get editarC {
+    return Intl.message(
+      'EDIT COMUNITY',
+      name: 'editarC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit Comunity`
+  String get editC {
+    return Intl.message(
+      'Edit Comunity',
+      name: 'editC',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Comunities`
+  String get miscomunidades {
+    return Intl.message(
+      'My Comunities',
+      name: 'miscomunidades',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `DELETE COMUNITY`
+  String get eliminarc {
+    return Intl.message(
+      'DELETE COMUNITY',
+      name: 'eliminarc',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
