@@ -994,6 +994,16 @@ class S {
       args: [],
     );
   }
+
+  /// `DELETE LOCAL`
+  String get eliminarl {
+    return Intl.message(
+      'DELETE LOCAL',
+      name: 'eliminarl',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

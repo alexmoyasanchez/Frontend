@@ -62,7 +62,7 @@ Future editarBar(String id, String name, String address, String musicTaste,
   }
 }
 
-Future newPost(String texto, Bar bar) async {
+Future newPost(String texto, Bar bar, String imageUrl) async {
   final data = await http.post(
     Uri.parse('http://10.0.2.2:3000/publicaciones/new'),
     headers: <String, String>{
@@ -73,7 +73,7 @@ Future newPost(String texto, Bar bar) async {
       'nameBar': bar.name,
       'imageBar': bar.imageUrl,
       'texto': texto,
-      'imageUrl': " ",
+      'imageUrl': imageUrl,
       'fecha': DateTime.now().toString(),
       'likes': "0",
     }),
@@ -85,6 +85,15 @@ Future newPost(String texto, Bar bar) async {
   }
 }
 
+Future DeleteBar(String idBar) async {
+  final data = await http.delete(
+      Uri.parse('http://10.0.2.2:3000/Bares/delete/' + idBar));
+
+  if (data.statusCode == 201) {
+  } else {
+    throw Exception('Error al unirse a la comunidad');
+  }
+}
 
 class MisBaresScreen extends StatelessWidget {
   @override

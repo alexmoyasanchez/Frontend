@@ -10,6 +10,7 @@ import 'package:flutter_auth/Screens/NewComunidad/newcomunidad_screen.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field_2.dart';
 import 'package:flutter_auth/components/rounded_input_field_description.dart';
+import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/Screens/SignUp/components/background.dart';
@@ -106,7 +107,7 @@ class _BodyState extends State<Body> {
           children: <Widget>[
             CircleAvatar(
               radius: 100,
-              backgroundColor: Colors.blueAccent,
+              backgroundColor: PrimaryColor,
               backgroundImage: NetworkImage(currentPhoto),
               child: IconButton(
                 icon: Icon(Icons.add_a_photo, color: Colors.white),

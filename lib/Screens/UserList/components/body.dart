@@ -29,6 +29,7 @@ class Body extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: PrimaryColor,
                           backgroundImage:
                               NetworkImage(snapshot.data[index].imageUrl),
                         ),
@@ -86,10 +87,11 @@ class DetailPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: ListView(
+        child: ListView(          
           children: <Widget>[
             CircleAvatar(
               radius: 100.0,
+              backgroundColor: PrimaryColor,
               backgroundImage: NetworkImage(user.imageUrl),
             ),
             Divider(

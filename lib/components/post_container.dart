@@ -69,7 +69,9 @@ class _PostHeader extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
-            radius: 20.0, backgroundImage: NetworkImage(post.imageBar)),
+            radius: 20.0,
+            backgroundColor: PrimaryColor,
+            backgroundImage: NetworkImage(post.imageBar)),
         const SizedBox(width: 8.0),
         Expanded(
           child:

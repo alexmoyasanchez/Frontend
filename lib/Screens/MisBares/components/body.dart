@@ -38,6 +38,7 @@ class Body extends StatelessWidget {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       leading: CircleAvatar(
+                        backgroundColor: PrimaryColor,
                         backgroundImage:
                             NetworkImage(snapshot.data[index].imageUrl),
                       ),
@@ -249,7 +250,7 @@ class _EditPageState extends State<EditPage> {
           children: <Widget>[
             CircleAvatar(
               radius: 100,
-              backgroundColor: Colors.blueAccent,
+              backgroundColor: PrimaryColor,
               backgroundImage: NetworkImage(currentPhoto),
               child: IconButton(
                 icon: Icon(Icons.add_a_photo, color: Colors.white),
@@ -406,6 +407,17 @@ class _EditPageState extends State<EditPage> {
                 }
               },
             ),
+            RoundedButton(
+                text: S.current.eliminarl,
+                color: Colors.white,
+                textColor: Colors.black,
+                press: () {
+                  DeleteBar(widget.bar.id);
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => MisBaresScreen()));
+                }),
           ],
         ),
       ),

@@ -119,7 +119,7 @@ class _BodyState extends State<Body> {
           children: <Widget>[
             CircleAvatar(
               radius: 100,
-              backgroundColor: Colors.blueAccent,
+              backgroundColor: PrimaryColor,
               backgroundImage: NetworkImage(currentPhoto),
               child: IconButton(
                 icon: Icon(Icons.add_a_photo, color: Colors.white),
@@ -204,18 +204,18 @@ class _BodyState extends State<Body> {
             ),
             RoundedButton(
               text: S.current.crearl,
-              color: kPrimaryLightColor,
-              textColor: Colors.white,
-              press: () {
+              color: Colors.white,
+              textColor: Colors.black,
+              press: () async {
                 if ('$nombre' != "" &&
                     '$address' != "" &&
                     '$musicTaste' != "" &&
                     '$aforoMax' != "" &&
                     '$horario' != "" &&
                     '$descripcion' != "") {
-                  createBar('$nombre', '$address', '$musicTaste', '$aforoMax',
+                  await createBar('$nombre', '$address', '$musicTaste', '$aforoMax',
                       '$horario', '$descripcion', currentPhoto);
-                  getBares();
+                  await getBares();
                   Navigator.push(
                     context,
                     MaterialPageRoute(

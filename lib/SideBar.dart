@@ -26,6 +26,7 @@ class SideBar extends StatelessWidget {
               accountEmail: Text(currentUser.email),
               currentAccountPicture: CircleAvatar(
                 radius: 20.0,
+                backgroundColor: PrimaryColor,
                 backgroundImage: NetworkImage(currentUser.imageUrl),
               ),
               decoration: BoxDecoration(

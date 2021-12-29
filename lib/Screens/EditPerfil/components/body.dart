@@ -222,6 +222,7 @@ class _BodyState extends State<Body> {
             children: <Widget>[
               CircleAvatar(
                 radius: 100.0,
+                backgroundColor: PrimaryColor,
                 backgroundImage: NetworkImage(currentPhoto),
                 child: IconButton(
                   icon: Icon(Icons.add_a_photo, color: Colors.white),

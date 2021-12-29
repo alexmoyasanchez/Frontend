@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Auth',
       theme: ThemeData(
         primaryColor: kPrimaryColor,
-        scaffoldBackgroundColor: Colors.white,
+        scaffoldBackgroundColor: PrimaryColor,
       ),
       localizationsDelegates: [
         S.delegate,

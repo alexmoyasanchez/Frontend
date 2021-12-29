@@ -64,6 +64,7 @@ Future<Bar> enviarAgresion(Bar bar) async {
   }
 }
 
+
 class ListaBaresScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

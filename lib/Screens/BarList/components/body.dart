@@ -35,6 +35,7 @@ class Body extends StatelessWidget {
                     itemBuilder: (BuildContext context, int index) {
                       return ListTile(
                         leading: CircleAvatar(
+                          backgroundColor: PrimaryColor,
                           backgroundImage:
                               NetworkImage(snapshot.data[index].imageUrl),
                         ),
@@ -185,6 +186,7 @@ class _AforoPageState extends State<AforoPage> {
                         ));
               },
             ),
+            
           ],
         ),
       ),
@@ -257,6 +259,7 @@ class DetailPage extends StatelessWidget {
             ),
             CircleAvatar(
               radius: 100.0,
+              backgroundColor: PrimaryColor,
               backgroundImage: NetworkImage(bar.imageUrl),
             ),
             Divider(

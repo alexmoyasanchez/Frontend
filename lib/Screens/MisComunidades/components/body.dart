@@ -48,6 +48,7 @@ class _BodyState extends State<Body> {
                   itemBuilder: (BuildContext context, int index) {
                     return ListTile(
                       leading: CircleAvatar(
+                        backgroundColor: PrimaryColor,
                         backgroundImage:
                             NetworkImage(snapshot.data[index].imageUrl),
                       ),
@@ -197,7 +198,7 @@ class _EditPageState extends State<EditPage> {
           children: <Widget>[
             CircleAvatar(
               radius: 100,
-              backgroundColor: Colors.blueAccent,
+              backgroundColor: PrimaryColor,
               backgroundImage: NetworkImage(currentPhoto),
               child: IconButton(
                 icon: Icon(Icons.add_a_photo, color: Colors.white),
@@ -333,6 +334,7 @@ class DetailPage extends StatelessWidget {
           children: <Widget>[
             CircleAvatar(
               radius: 100.0,
+              backgroundColor: PrimaryColor,
               backgroundImage: NetworkImage(comunidad.imageUrl),
             ),
             Divider(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
 import 'package:flutter_auth/components/post_container.dart';
+import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/models.dart';
 import 'package:flutter_auth/data/data.dart';
@@ -97,7 +98,9 @@ class _PostHeader extends StatelessWidget {
     return Row(
       children: [
         CircleAvatar(
-            radius: 20.0, backgroundImage: NetworkImage(post.imageBar)),
+            radius: 20.0, 
+            backgroundColor: PrimaryColor,
+            backgroundImage: NetworkImage(post.imageBar)),
         const SizedBox(width: 8.0),
         Expanded(
           child:

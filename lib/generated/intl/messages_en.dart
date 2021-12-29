@@ -59,6 +59,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "editara" : MessageLookupByLibrary.simpleMessage("EDIT CAPACITY"),
     "editarl" : MessageLookupByLibrary.simpleMessage("EDIT LOCAL"),
     "eliminarc" : MessageLookupByLibrary.simpleMessage("DELETE COMUNITY"),
+    "eliminarl" : MessageLookupByLibrary.simpleMessage("DELETE LOCAL"),
     "email" : MessageLookupByLibrary.simpleMessage("Email"),
     "fav" : MessageLookupByLibrary.simpleMessage("Favorite"),
     "favs" : MessageLookupByLibrary.simpleMessage(" Favorites"),
