@@ -34,7 +34,7 @@ class _CreatePostContainerState extends State<CreatePostContainer> {
   Future uploadImage() async {
     const url =
         "https://api.cloudinary.com/v1_1/dbyf2oped/auto/upload/w_200,h_200,c_fill,r_max";
-    var image = await ImagePicker.pickImage(source: ImageSource.camera);
+    var image = await ImagePicker.platform.getImage(source: ImageSource.camera);
 
     setState(() {
       isloading = true;
@@ -62,7 +62,7 @@ class _CreatePostContainerState extends State<CreatePostContainer> {
   Future uploadImage2() async {
     const url =
         "https://api.cloudinary.com/v1_1/dbyf2oped/auto/upload/w_200,h_200,c_fill,r_max";
-    var image = await ImagePicker.pickImage(source: ImageSource.gallery);
+    var image = await ImagePicker.platform.getImage(source: ImageSource.gallery);
 
     setState(() {
       isloading = true;
