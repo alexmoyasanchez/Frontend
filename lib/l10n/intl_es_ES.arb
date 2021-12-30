@@ -23,7 +23,7 @@
     "chats" : "Chats de comunidad",
     "localesfavs" : "Locales favoritos",
     "bares" : "Mis locales",
-    "cupones" : "Mis cupones",
+    "cupones" : "Mis Insignias",
     "perfil" : "Editar perfil",
     "config" : "Configuración",
     "about" : "Sobre nosotros",
@@ -95,7 +95,8 @@
     "editC" : "Editar Comunidad",
     "miscomunidades" : "Mis Comunidades",
     "eliminarc" : "ELIMINAR COMUNIDAD",
-    "eliminarl" : "ELIMINAR LOCAL"
+    "eliminarl" : "ELIMINAR LOCAL",
+    "insignias" : "Mis Insignias"
     
     
 

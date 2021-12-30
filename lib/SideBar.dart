@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
+import 'package:flutter_auth/Screens/MisInsignias/misinsignias_screen.dart';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/Screens/Map/ui/pages/home/map_screen.dart';
@@ -198,19 +199,27 @@ class SideBar extends StatelessWidget {
           ListTile(
             tileColor: Colors.black,
             leading: Icon(
-              Icons.local_attraction_rounded,
+              Icons.emoji_events_rounded,
               color: Colors.white,
             ),
             title: Text(
               S.current.cupones,
               style: TextStyle(color: Colors.white),
             ),
-            onTap: () => null,
+            onTap: () {
+              DeleteCurrentPhoto();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return MisInsigniasScreen();
+                }),
+              );
+            },
           ),
           ListTile(
               tileColor: Colors.black,
               leading: Icon(
-                Icons.emoji_events_rounded,
+                Icons.align_vertical_bottom,
                 color: Colors.white,
               ),
               title: Text(

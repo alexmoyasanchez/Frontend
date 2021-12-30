@@ -13,16 +13,6 @@ class Body extends StatelessWidget {
 
   Body({Key key, this.user}) : super(key: key);
 
-  var stars = Row(
-    mainAxisSize: MainAxisSize.min,
-    children: [
-      Text(
-        "data",
-        style: TextStyle(color: Colors.white, fontSize: 20.0),
-      ),
-    ],
-  );
-
   @override
   Widget build(BuildContext context) {
     return Background(
@@ -125,21 +115,20 @@ class Body extends StatelessWidget {
                           backgroundImage:
                               NetworkImage(snapshot.data[index].imageUrl),
                         ),
-                        title: Text(
-                            '$pos' + '. ' + snapshot.data[index].username,
+                        title: Text(snapshot.data[index].username,
                             style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 20,
                                 fontWeight: FontWeight.bold)),
-                        trailing: Text(
-                            S.current.puntuacion2 +
-                                snapshot.data[index].puntuacion.toString(),
-                            textAlign: TextAlign.right,
+                        trailing: Text('$pos',
+                            textAlign: TextAlign.left,
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 15,
                             )),
-                        subtitle: Text(snapshot.data[index].email,
+                        subtitle: Text(
+                            S.current.puntuacion2 +
+                                snapshot.data[index].puntuacion.toString(),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 15,
@@ -162,11 +151,193 @@ class Body extends StatelessWidget {
 
 class DetailPage extends StatelessWidget {
   final User user;
+  String insignia1;
+  String insignia2;
+  String insignia3;
+  String insignia4;
+  String insignia5;
+  String insignia6;
+  String insignia7;
+  String insignia8;
+  String insignia9;
+  String insignia10;
+  String insignia11;
+  String insignia12;
 
   DetailPage(this.user);
 
   @override
   Widget build(BuildContext context) {
+    if (user.puntuacion < 25 && user.puntuacion >= 0) {
+      insignia1 = 'assets/images/insignia1_desactivada.png';
+      insignia2 = 'assets/images/insignia2_desactivada.png';
+      insignia3 = 'assets/images/insignia3_desactivada.png';
+      insignia4 = 'assets/images/insignia4_desactivada.png';
+      insignia5 = 'assets/images/insignia5_desactivada.png';
+      insignia6 = 'assets/images/insignia6_desactivada.png';
+      insignia7 = 'assets/images/insignia7_desactivada.png';
+      insignia8 = 'assets/images/insignia8_desactivada.png';
+      insignia9 = 'assets/images/insignia9_desactivada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 50 && user.puntuacion >= 25) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_desactivada.png';
+      insignia3 = 'assets/images/insignia3_desactivada.png';
+      insignia4 = 'assets/images/insignia4_desactivada.png';
+      insignia5 = 'assets/images/insignia5_desactivada.png';
+      insignia6 = 'assets/images/insignia6_desactivada.png';
+      insignia7 = 'assets/images/insignia7_desactivada.png';
+      insignia8 = 'assets/images/insignia8_desactivada.png';
+      insignia9 = 'assets/images/insignia9_desactivada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 75 && user.puntuacion >= 50) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_desactivada.png';
+      insignia4 = 'assets/images/insignia4_desactivada.png';
+      insignia5 = 'assets/images/insignia5_desactivada.png';
+      insignia6 = 'assets/images/insignia6_desactivada.png';
+      insignia7 = 'assets/images/insignia7_desactivada.png';
+      insignia8 = 'assets/images/insignia8_desactivada.png';
+      insignia9 = 'assets/images/insignia9_desactivada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 100 && user.puntuacion >= 75) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_desactivada.png';
+      insignia5 = 'assets/images/insignia5_desactivada.png';
+      insignia6 = 'assets/images/insignia6_desactivada.png';
+      insignia7 = 'assets/images/insignia7_desactivada.png';
+      insignia8 = 'assets/images/insignia8_desactivada.png';
+      insignia9 = 'assets/images/insignia9_desactivada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 150 && user.puntuacion >= 100) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_activada.png';
+      insignia5 = 'assets/images/insignia5_desactivada.png';
+      insignia6 = 'assets/images/insignia6_desactivada.png';
+      insignia7 = 'assets/images/insignia7_desactivada.png';
+      insignia8 = 'assets/images/insignia8_desactivada.png';
+      insignia9 = 'assets/images/insignia9_desactivada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 200 && user.puntuacion >= 150) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_activada.png';
+      insignia5 = 'assets/images/insignia5_activada.png';
+      insignia6 = 'assets/images/insignia6_desactivada.png';
+      insignia7 = 'assets/images/insignia7_desactivada.png';
+      insignia8 = 'assets/images/insignia8_desactivada.png';
+      insignia9 = 'assets/images/insignia9_desactivada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 250 && user.puntuacion >= 200) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_activada.png';
+      insignia5 = 'assets/images/insignia5_activada.png';
+      insignia6 = 'assets/images/insignia6_activada.png';
+      insignia7 = 'assets/images/insignia7_desactivada.png';
+      insignia8 = 'assets/images/insignia8_desactivada.png';
+      insignia9 = 'assets/images/insignia9_desactivada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 300 && user.puntuacion >= 250) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_activada.png';
+      insignia5 = 'assets/images/insignia5_activada.png';
+      insignia6 = 'assets/images/insignia6_activada.png';
+      insignia7 = 'assets/images/insignia7_activada.png';
+      insignia8 = 'assets/images/insignia8_desactivada.png';
+      insignia9 = 'assets/images/insignia9_desactivada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 350 && user.puntuacion >= 300) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_activada.png';
+      insignia5 = 'assets/images/insignia5_activada.png';
+      insignia6 = 'assets/images/insignia6_activada.png';
+      insignia7 = 'assets/images/insignia7_activada.png';
+      insignia8 = 'assets/images/insignia8_activada.png';
+      insignia9 = 'assets/images/insignia9_desactivada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 400 && user.puntuacion >= 350) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_activada.png';
+      insignia5 = 'assets/images/insignia5_activada.png';
+      insignia6 = 'assets/images/insignia6_activada.png';
+      insignia7 = 'assets/images/insignia7_activada.png';
+      insignia8 = 'assets/images/insignia8_activada.png';
+      insignia9 = 'assets/images/insignia9_activada.png';
+      insignia10 = 'assets/images/insignia10_desactivada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 500 && user.puntuacion >= 400) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_activada.png';
+      insignia5 = 'assets/images/insignia5_activada.png';
+      insignia6 = 'assets/images/insignia6_activada.png';
+      insignia7 = 'assets/images/insignia7_activada.png';
+      insignia8 = 'assets/images/insignia8_activada.png';
+      insignia9 = 'assets/images/insignia9_activada.png';
+      insignia10 = 'assets/images/insignia10_activada.png';
+      insignia11 = 'assets/images/insignia11_desactivada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else if (user.puntuacion < 1000 && user.puntuacion >= 500) {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_activada.png';
+      insignia5 = 'assets/images/insignia5_activada.png';
+      insignia6 = 'assets/images/insignia6_activada.png';
+      insignia7 = 'assets/images/insignia7_activada.png';
+      insignia8 = 'assets/images/insignia8_activada.png';
+      insignia9 = 'assets/images/insignia9_activada.png';
+      insignia10 = 'assets/images/insignia10_activada.png';
+      insignia11 = 'assets/images/insignia11_activada.png';
+      insignia12 = 'assets/images/insignia12_desactivada.png';
+    } else {
+      insignia1 = 'assets/images/insignia1_activada.png';
+      insignia2 = 'assets/images/insignia2_activada.png';
+      insignia3 = 'assets/images/insignia3_activada.png';
+      insignia4 = 'assets/images/insignia4_activada.png';
+      insignia5 = 'assets/images/insignia5_activada.png';
+      insignia6 = 'assets/images/insignia6_activada.png';
+      insignia7 = 'assets/images/insignia7_activada.png';
+      insignia8 = 'assets/images/insignia8_activada.png';
+      insignia9 = 'assets/images/insignia9_activada.png';
+      insignia10 = 'assets/images/insignia10_activada.png';
+      insignia11 = 'assets/images/insignia11_activada.png';
+      insignia12 = 'assets/images/insignia12_activada.png';
+    }
     return Scaffold(
       backgroundColor: Colors.black,
       drawer: SideBar(),
@@ -292,6 +463,102 @@ class DetailPage extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
+            ),
+            Divider(
+              color: Colors.black,
+              height: 20.0,
+            ),
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia1),
+                ),
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia2),
+                ),
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia3),
+                ),
+              ],
+            ),
+            Divider(
+              color: Colors.black,
+              height: 10.0,
+            ),
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia4),
+                ),
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia5),
+                ),
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia6),
+                ),
+              ],
+            ),
+            Divider(
+              color: Colors.black,
+              height: 10.0,
+            ),
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia7),
+                ),
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia8),
+                ),
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia9),
+                ),
+              ],
+            ),
+            Divider(
+              color: Colors.black,
+              height: 10.0,
+            ),
+            Row(
+              children: [
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia10),
+                ),
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia11),
+                ),
+                CircleAvatar(
+                  radius: 58.0,
+                  backgroundColor: Colors.black,
+                  backgroundImage: AssetImage(insignia12),
+                ),
+              ],
+            ),
+            Divider(
+              color: Colors.black,
+              height: 10.0,
             ),
           ],
         ),

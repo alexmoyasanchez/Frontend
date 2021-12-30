@@ -275,10 +275,10 @@ class S {
     );
   }
 
-  /// `My Coupons`
+  /// `My Badges`
   String get cupones {
     return Intl.message(
-      'My Coupons',
+      'My Badges',
       name: 'cupones',
       desc: '',
       args: [],
@@ -1000,6 +1000,16 @@ class S {
     return Intl.message(
       'DELETE LOCAL',
       name: 'eliminarl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `My Badges`
+  String get insignias {
+    return Intl.message(
+      'My Badges',
+      name: 'insignias',
       desc: '',
       args: [],
     );
