@@ -117,6 +117,11 @@ class _BodyState extends State<Body> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            Divider(
+                  height: 20.0,
+                  thickness: 2.0,
+                  color: Colors.black,
+            ),
             CircleAvatar(
               radius: 100,
               backgroundColor: PrimaryColor,
