@@ -29,6 +29,7 @@ Future createBar(String name, String direccion, String musicTaste,
       'horario': horario,
       'descripcion': descripcion,
       'imageUrl': imageUrl,
+      'idAgresion' : ' ',
     }),
   );
 

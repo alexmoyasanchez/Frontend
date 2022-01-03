@@ -12,7 +12,11 @@ User currentUser = User(
   puntuacion: 0,
 );
 
+
 String currentPhoto = " ";
+String motivo, icono1 = 'assets/images/mujer.png', icono2 = 'assets/images/pride.png', icono3 = 'assets/images/black.png';
+
+
 
 final List<User> onlineUsers = [
   

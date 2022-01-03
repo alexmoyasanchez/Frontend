@@ -3,7 +3,7 @@
 import 'dart:async';
 
 import 'package:flutter/cupertino.dart' show ChangeNotifier;
-import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
+import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
 import 'package:flutter_auth/Screens/Map/ui/utils/map_style.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:flutter/material.dart';

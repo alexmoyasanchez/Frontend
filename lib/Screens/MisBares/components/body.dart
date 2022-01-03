@@ -1,7 +1,7 @@
 import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
+import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/components/create_post_container.dart';
 import 'package:flutter_auth/components/rounded_button.dart';

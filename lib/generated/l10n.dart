@@ -915,40 +915,40 @@ class S {
     );
   }
 
-  /// `¡Atención!`
+  /// `Caution!`
   String get atencion {
     return Intl.message(
-      '¡Atención!',
+      'Caution!',
       name: 'atencion',
       desc: '',
       args: [],
     );
   }
 
-  /// `¿Desde donde quieres seleccionar la imagen?`
+  /// `Where do you want to select the image from?`
   String get seleccionFoto {
     return Intl.message(
-      '¿Desde donde quieres seleccionar la imagen?',
+      'Where do you want to select the image from?',
       name: 'seleccionFoto',
       desc: '',
       args: [],
     );
   }
 
-  /// `Galería`
+  /// `Gallery`
   String get galeria {
     return Intl.message(
-      'Galería',
+      'Gallery',
       name: 'galeria',
       desc: '',
       args: [],
     );
   }
 
-  /// `Cámara`
+  /// `Camera`
   String get camara {
     return Intl.message(
-      'Cámara',
+      'Camera',
       name: 'camara',
       desc: '',
       args: [],
@@ -1010,6 +1010,96 @@ class S {
     return Intl.message(
       'My Badges',
       name: 'insignias',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Motive for the assault: `
+  String get motivo {
+    return Intl.message(
+      'Motive for the assault: ',
+      name: 'motivo',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Description of the assault: `
+  String get descripciona {
+    return Intl.message(
+      'Description of the assault: ',
+      name: 'descripciona',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Solution by the local: `
+  String get solucion {
+    return Intl.message(
+      'Solution by the local: ',
+      name: 'solucion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ADD INFORMATION`
+  String get info {
+    return Intl.message(
+      'ADD INFORMATION',
+      name: 'info',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Male chauvinist`
+  String get machista {
+    return Intl.message(
+      'Male chauvinist',
+      name: 'machista',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `LGTBIQ+phobic`
+  String get LGTBIQ {
+    return Intl.message(
+      'LGTBIQ+phobic',
+      name: 'LGTBIQ',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Racist`
+  String get racista {
+    return Intl.message(
+      'Racist',
+      name: 'racista',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Add information about agression`
+  String get infoagresion {
+    return Intl.message(
+      'Add information about agression',
+      name: 'infoagresion',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Agression`
+  String get agresion {
+    return Intl.message(
+      'Agression',
+      name: 'agresion',
       desc: '',
       args: [],
     );

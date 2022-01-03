@@ -14,6 +14,10 @@ class Bar{
   final String descripcion;
   final String imageUrl;
   final String agresion;
+  final String idUserAgresion;
+  final String motivacionAgresion;
+  final String descAgresion;
+  final String solAgresion;
 
   const Bar({
     @required this.id,
@@ -27,7 +31,11 @@ class Bar{
     @required this.horario,
     @required this.descripcion,
     @required this.imageUrl,
-    @required this.agresion
+    @required this.agresion,
+    @required this.idUserAgresion,
+    @required this.motivacionAgresion,
+    @required this.descAgresion,
+    @required this.solAgresion,
     
   });
 
@@ -44,7 +52,11 @@ class Bar{
       horario: json['horario'],
       descripcion: json['descripcion'],
       imageUrl: json['imageUrl'],
-      agresion: json['agresion']
+      agresion: json['agresion'],
+      idUserAgresion: json['idUserAgresion'],
+      motivacionAgresion: json['motivacionAgresion'],
+      descAgresion: json['descAgresion'],
+      solAgresion: json['solAgresion']
     );
   }
 }

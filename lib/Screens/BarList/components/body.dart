@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
 import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/components/rounded_input_field_2.dart';
+import 'package:flutter_auth/components/rounded_input_field_description.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/generated/l10n.dart';
+import 'package:flutter_auth/models/agresion_model.dart';
 import 'package:flutter_auth/models/bar_model.dart';
 import 'package:flutter_auth/constants.dart';
 import 'dart:async';
-import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
 import 'package:flutter_auth/Screens/SignUp/components/background.dart';
+import 'package:imagebutton/imagebutton.dart';
 
 import '../barlist_screen.dart';
 
@@ -186,7 +189,6 @@ class _AforoPageState extends State<AforoPage> {
                         ));
               },
             ),
-            
           ],
         ),
       ),
@@ -245,14 +247,30 @@ class DetailPage extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
         child: ListView(
           children: <Widget>[
-            Text(
-              S.current.lastagresion + timeAgo(dt),
-              style: TextStyle(
-                backgroundColor: Colors.red[600],
-                color: Colors.white,
-                fontSize: 18,
+            GestureDetector(
+              onTap: () {
+                if (bar.idUserAgresion == currentUser.id) {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AgresionPage(bar)));
+                }
+                else {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => AgresionDetailPage(bar)));
+                }
+              },
+              child: Text(
+                S.current.lastagresion + timeAgo(dt),
+                style: TextStyle(
+                  backgroundColor: Colors.red[600],
+                  color: Colors.white,
+                  fontSize: 18,
+                ),
+                textAlign: TextAlign.center,
               ),
-              textAlign: TextAlign.center,
             ),
             Divider(
               color: Colors.black,
@@ -403,18 +421,289 @@ class DetailPage extends StatelessWidget {
               text: S.current.notagresion,
               color: Colors.white,
               textColor: Colors.black,
-              press: () {
-                enviarAgresion(bar);
+              press: () async {
+                await notificarAgresion(bar);
                 getBares();
                 Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return ListaBaresScreen();
-                    },
-                  ),
-                );
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => ListaBaresScreen()));
               },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AgresionPage extends StatefulWidget {
+  final Bar bar;
+  AgresionPage(this.bar);
+
+  @override
+  State<AgresionPage> createState() => _AgresionPageState();
+}
+
+class _AgresionPageState extends State<AgresionPage> {
+  String descripcion;
+
+  String solucion;
+
+  @override
+  Widget build(BuildContext context) {
+
+    return Scaffold(
+      backgroundColor: Colors.black,
+      drawer: SideBar(),
+      appBar: AppBar(
+        backgroundColor: PrimaryColor,
+        title: Text(
+          S.current.infoagresion,
+          style: const TextStyle(
+              color: Colors.white,
+              fontSize: 22.0,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -1.2),
+        ),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: ListView(
+          children: <Widget>[
+            Text(S.current.motivo,
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                    fontWeight: FontWeight.bold)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Column(
+                  children: <Widget>[
+                    IconButton(
+                        iconSize: 80.0,
+                        icon: Image.asset(icono1),
+                        onPressed: () {
+                          if (icono1 == 'assets/images/mujer.png') {
+                            icono1 = 'assets/images/mujer_relleno.png';
+                            icono2 = 'assets/images/pride.png';
+                            icono3 = 'assets/images/black.png';
+                            motivo = S.current.machista;
+                          } else if (icono1 ==
+                              'assets/images/mujer_relleno.png') {
+                            icono1 = 'assets/images/mujer.png';
+                            motivo = " ";
+
+                          }
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AgresionPage(widget.bar)));
+                        }),
+                    Text("  " + S.current.machista,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    IconButton(
+                        iconSize: 80.0,
+                        icon: Image.asset(icono2),
+                        onPressed: () {
+                          if (icono2 == 'assets/images/pride.png') {
+                            icono1 = 'assets/images/mujer.png';
+                            icono2 = 'assets/images/pride_relleno.png';
+                            icono3 = 'assets/images/black.png';
+                            motivo = S.current.LGTBIQ;
+                          } else if (icono2 ==
+                              'assets/images/pride_relleno.png') {
+                            icono2 = 'assets/images/pride.png';
+                            motivo = " ";
+                          }
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AgresionPage(widget.bar)));
+                        }),
+                    Text("  " + S.current.LGTBIQ,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                Column(
+                  children: <Widget>[
+                    IconButton(
+                        iconSize: 80.0,
+                        icon: Image.asset(icono3),
+                        onPressed: () {
+                          if (icono3 == 'assets/images/black.png') {
+                            icono1 = 'assets/images/mujer.png';
+                            icono2 = 'assets/images/pride.png';
+                            icono3 = 'assets/images/black_relleno.png';
+                            motivo = S.current.racista;
+                          } else if (icono3 ==
+                              'assets/images/black_relleno.png') {
+                            icono3 = 'assets/images/black.png';
+                            motivo = " ";
+                          }
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AgresionPage(widget.bar)));
+                        }),
+                    Text("  " + S.current.racista,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold)),
+                  ],
+                ),
+                
+              ],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            RoundedInputFieldLargo(
+              hintText: S.current.descripciona + widget.bar.descAgresion,
+              onChanged: (value) {
+                descripcion = value;
+              },
+            ),
+            RoundedInputFieldLargo(
+              hintText: S.current.solucion + widget.bar.solAgresion,
+              onChanged: (value) {
+                solucion = value;
+              },
+            ),
+            RoundedButton(
+              text: S.current.info,
+              color: Colors.white,
+              textColor: Colors.black,
+              press: () {
+                updateBar(widget.bar, motivo, descripcion, solucion);
+                icono1 = 'assets/images/mujer.png';
+                icono2 = 'assets/images/pride.png';
+                icono3 = 'assets/images/black.png';
+                motivo = " ";
+                return Future.delayed(
+                    const Duration(milliseconds: 250),
+                    () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return DetailPage(widget.bar);
+                            },
+                          ),
+                        ));
+              },
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class AgresionDetailPage extends StatelessWidget {
+  final Bar bar;
+  DateTime dt = new DateTime(0, 0, 0, 0, 0, 0);
+
+  AgresionDetailPage(this.bar);
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.black,
+      drawer: SideBar(),
+      appBar: AppBar(
+        backgroundColor: PrimaryColor,
+        title: Text(
+          S.current.agresion,
+          style: const TextStyle(
+              color: Colors.white,
+              fontSize: 28.0,
+              fontWeight: FontWeight.bold,
+              letterSpacing: -1.2),
+        ),
+        centerTitle: true,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        child: ListView(
+          children: <Widget>[
+            Divider(
+              color: Colors.black,
+            ),
+            Text(
+              S.current.motivo,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              bar.motivacionAgresion,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Divider(
+              color: Colors.purple[200],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Text(
+              S.current.descripciona,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              bar.descAgresion,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Divider(
+              color: Colors.purple[200],
+            ),
+            SizedBox(
+              height: 20.0,
+            ),
+            Text(
+              S.current.solucion,
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 22,
+                  fontWeight: FontWeight.bold),
+            ),
+            Text(
+              bar.solAgresion,
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 18,
+              ),
             ),
           ],
         ),

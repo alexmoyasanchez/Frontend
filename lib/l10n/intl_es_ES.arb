@@ -87,16 +87,25 @@
     "hace" : "hace ",
     "mapas" : "Mis mapas",
     "noagresion" : "nunca",
-    "atencion" : "Atention",
-    "seleccionFoto" : "Where do you want to select the image from?",
-    "galeria" : "Gallery",
-    "camara" : "Camera",
+    "atencion" : "¡Atención!",
+    "seleccionFoto" : "¿Desde dónde quieres seleccionar la imagen?",
+    "galeria" : "Galería",
+    "camara" : "Cámara",
     "editarC" : "EDITAR COMUNIDAD",
     "editC" : "Editar Comunidad",
     "miscomunidades" : "Mis Comunidades",
     "eliminarc" : "ELIMINAR COMUNIDAD",
     "eliminarl" : "ELIMINAR LOCAL",
-    "insignias" : "Mis Insignias"
+    "insignias" : "Mis Insignias",
+    "motivo" : "Motivo de la agresión: ",
+    "descripciona" : "Descripción de la agresión: ",
+    "solucion" : "Solución por parte del local: ",
+    "info" : "AÑADIR INFORMACIÓN",
+    "machista" : "Machista",
+    "LGTBIQ" : "LGTBIQ+fóbico",
+    "racista" : "Racista",
+    "infoagresion" : "Añadir información sobre agresión",
+    "agresion" : "Agresión"
     
     
 

@@ -29,7 +29,11 @@ Future<List<Bar>> getMisBares() async {
         horario: u["horario"],
         descripcion: u["descripcion"],
         imageUrl: u["imageUrl"],
-        agresion: u["agresion"]);
+        agresion: u["agresion"],
+        idUserAgresion: u["idAgresion"],
+        motivacionAgresion: u["motivacionAgresion"],
+        descAgresion: u["descAgresion"],
+        solAgresion: u["solAgresion"]);
 
     bares.add(bar);
   }

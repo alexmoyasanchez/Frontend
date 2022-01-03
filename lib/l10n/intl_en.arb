@@ -87,16 +87,25 @@
     "hace" : "",    
     "mapas" : "My maps",
     "noagresion" : "never",
-    "atencion" : "¡Atención!",
-    "seleccionFoto" : "¿Desde donde quieres seleccionar la imagen?",
-    "galeria" : "Galería",
-    "camara" : "Cámara",
+    "atencion" : "Caution!",
+    "seleccionFoto" : "Where do you want to select the image from?",
+    "galeria" : "Gallery",
+    "camara" : "Camera",
     "editarC" : "EDIT COMUNITY",
     "editC" : "Edit Comunity",
     "miscomunidades" : "My Comunities",
     "eliminarc" : "DELETE COMUNITY",
     "eliminarl" : "DELETE LOCAL",
-    "insignias" : "My Badges"
+    "insignias" : "My Badges",
+    "motivo" : "Motive for the assault: ",
+    "descripciona" : "Description of the assault: ",
+    "solucion" : "Solution by the local: ",
+    "info" : "ADD INFORMATION",
+    "machista" : "Male chauvinist",
+    "LGTBIQ" : "LGTBIQ+phobic",
+    "racista" : "Racist",
+    "infoagresion" : "Add information about agression",
+    "agresion" : "Agression"
 
 
 
