@@ -1104,6 +1104,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Another`
+  String get otro {
+    return Intl.message(
+      'Another',
+      name: 'otro',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `User not found`
+  String get nouser {
+    return Intl.message(
+      'User not found',
+      name: 'nouser',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

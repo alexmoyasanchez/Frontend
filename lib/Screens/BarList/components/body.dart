@@ -245,7 +245,8 @@ class DetailPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: ListView(
+        child: 
+        ListView(
           children: <Widget>[
             GestureDetector(
               onTap: () {
@@ -254,8 +255,7 @@ class DetailPage extends StatelessWidget {
                       context,
                       MaterialPageRoute(
                           builder: (context) => AgresionPage(bar)));
-                }
-                else {
+                } else {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
@@ -452,7 +452,6 @@ class _AgresionPageState extends State<AgresionPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       backgroundColor: Colors.black,
       drawer: SideBar(),
@@ -483,19 +482,19 @@ class _AgresionPageState extends State<AgresionPage> {
                 Column(
                   children: <Widget>[
                     IconButton(
-                        iconSize: 80.0,
+                        iconSize: 60.0,
                         icon: Image.asset(icono1),
                         onPressed: () {
                           if (icono1 == 'assets/images/mujer.png') {
                             icono1 = 'assets/images/mujer_relleno.png';
                             icono2 = 'assets/images/pride.png';
                             icono3 = 'assets/images/black.png';
+                            icono4 = 'assets/images/otro.png';
                             motivo = S.current.machista;
                           } else if (icono1 ==
                               'assets/images/mujer_relleno.png') {
                             icono1 = 'assets/images/mujer.png';
                             motivo = " ";
-
                           }
                           Navigator.push(
                               context,
@@ -513,13 +512,14 @@ class _AgresionPageState extends State<AgresionPage> {
                 Column(
                   children: <Widget>[
                     IconButton(
-                        iconSize: 80.0,
+                        iconSize: 60.0,
                         icon: Image.asset(icono2),
                         onPressed: () {
                           if (icono2 == 'assets/images/pride.png') {
                             icono1 = 'assets/images/mujer.png';
                             icono2 = 'assets/images/pride_relleno.png';
                             icono3 = 'assets/images/black.png';
+                            icono4 = 'assets/images/otro.png';
                             motivo = S.current.LGTBIQ;
                           } else if (icono2 ==
                               'assets/images/pride_relleno.png') {
@@ -542,13 +542,14 @@ class _AgresionPageState extends State<AgresionPage> {
                 Column(
                   children: <Widget>[
                     IconButton(
-                        iconSize: 80.0,
+                        iconSize: 60.0,
                         icon: Image.asset(icono3),
                         onPressed: () {
                           if (icono3 == 'assets/images/black.png') {
                             icono1 = 'assets/images/mujer.png';
                             icono2 = 'assets/images/pride.png';
                             icono3 = 'assets/images/black_relleno.png';
+                            icono4 = 'assets/images/otro.png';
                             motivo = S.current.racista;
                           } else if (icono3 ==
                               'assets/images/black_relleno.png') {
@@ -568,7 +569,36 @@ class _AgresionPageState extends State<AgresionPage> {
                             fontWeight: FontWeight.bold)),
                   ],
                 ),
-                
+                Column(
+                  children: <Widget>[
+                    IconButton(
+                        iconSize: 60.0,
+                        icon: Image.asset(icono4),
+                        onPressed: () {
+                          if (icono4 == 'assets/images/otro.png') {
+                            icono1 = 'assets/images/mujer.png';
+                            icono2 = 'assets/images/pride.png';
+                            icono3 = 'assets/images/black.png';
+                            icono4 = 'assets/images/otro_relleno.png';
+                            motivo = S.current.otro;
+                          } else if (icono4 ==
+                              'assets/images/otro_relleno.png') {
+                            icono4 = 'assets/images/otro.png';
+                            motivo = " ";
+                          }
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) =>
+                                      AgresionPage(widget.bar)));
+                        }),
+                    Text("  " + S.current.otro,
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 16.0,
+                            fontWeight: FontWeight.bold)),
+                  ],
+                ),
               ],
             ),
             SizedBox(

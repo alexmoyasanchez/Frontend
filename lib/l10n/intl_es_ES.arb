@@ -105,7 +105,9 @@
     "LGTBIQ" : "LGTBIQ+fóbico",
     "racista" : "Racista",
     "infoagresion" : "Añadir información sobre agresión",
-    "agresion" : "Agresión"
+    "agresion" : "Agresión",
+    "otro" : "Otro",
+    "nouser" : "No se ha encontrado al usuario"
     
     
 

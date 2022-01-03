@@ -14,8 +14,12 @@ User currentUser = User(
 
 
 String currentPhoto = " ";
-String motivo, icono1 = 'assets/images/mujer.png', icono2 = 'assets/images/pride.png', icono3 = 'assets/images/black.png';
+String motivo, icono1 = 'assets/images/mujer.png', icono2 = 'assets/images/pride.png', icono3 = 'assets/images/black.png', icono4 = 'assets/images/otro.png';
+String icono5 = 'assets/images/usuario.png', icono6 = 'assets/images/comunidad.png', icono7 = 'assets/images/bar.png';
+String bbar, busuario, bcomunidad;
 
+
+  bool buscaBar = false, buscaComunidad = false, buscaUsuario = true;
 
 
 final List<User> onlineUsers = [

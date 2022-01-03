@@ -296,7 +296,9 @@ class _BodyState extends State<Body> {
                           lastDate: DateTime.now())
                       .then((date) {
                     setState(() {
-                      edad = date.toString();
+                      edad = date.day.toString() + "-";
+                      edad = edad + date.month.toString() + "-";
+                      edad = edad + date.year.toString();
                     });
                   });
                 },

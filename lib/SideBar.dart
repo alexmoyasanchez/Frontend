@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/Busqueda/busqueda_screen.dart';
 import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
@@ -63,7 +64,15 @@ class SideBar extends StatelessWidget {
               S.current.buscar,
               style: TextStyle(color: Colors.white),
             ),
-            onTap: () => null,
+            onTap: () {
+              DeleteCurrentPhoto();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return BusquedaScreen();
+                }),
+              );
+            },
           ),
           ListTile(
               tileColor: Colors.black,
