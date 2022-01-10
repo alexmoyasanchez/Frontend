@@ -27,6 +27,9 @@ dependencies:
   provider: ^6.0.1    
   permission_handler: ^8.3.0 
   geojson: ^1.0.0 
+  agora_rtc_engine: ^4.0.7
+
+
  
   
   #http:
@@ -44,7 +47,7 @@ dependencies:
   cloudinary_public: ^0.11.0
   dio: 
   loading: 
- 
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -88,3 +91,4 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_intl:
   enabled: true
+

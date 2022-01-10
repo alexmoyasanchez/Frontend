@@ -21,6 +21,8 @@ String bbar, busuario, bcomunidad;
 
   bool buscaBar = false, buscaComunidad = false, buscaUsuario = true;
 
+const APP_ID = "069b353ebf464a92b92accd413b58fb7";
+const Token = "006069b353ebf464a92b92accd413b58fb7IABLyJObkoa6JFWyZA2JS40t0f8ExvwtFPWMCBaXYRVFXtzDPrsAAAAAEADDRZkOCA7cYQEAAQAGDtxh";
 
 final List<User> onlineUsers = [
   
