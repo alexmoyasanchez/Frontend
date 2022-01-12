@@ -51,6 +51,23 @@ void GuardarFotoBar (String imageUrl) async{
   currentUser = usuario;
 }
 
+Future<void> sumarPuntuacionCrear () async{
+  final response = await http.put(
+    Uri.parse(
+        'http://10.0.2.2:3000/usuarios/updatePuntuacion/' + currentUser.id + '/10'),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{}),
+  );
+
+  if (response.statusCode != 201) {
+    // If the server did return a 201 CREATED response,
+    // then parse the JSON.
+    throw Exception('Error al dar un like.');
+  }
+}
+
 class NewComunidadScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

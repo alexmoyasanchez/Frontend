@@ -15,6 +15,7 @@ Future<List<Post>> getPosts() async {
   for (var u in jsonData) {
     print(data.body);
     Post post = Post(
+      id: u["id"],
       idBar: u["idBar"],
       nameBar: u["nameBar"],
       imageBar: u["imageBar"],
@@ -28,6 +29,42 @@ Future<List<Post>> getPosts() async {
   print(posts.length);
   posts.sort((b, a) => a.fecha.compareTo(b.fecha));
   return posts;
+}
+
+Future<void> Like(String idUser, String idPost) async {
+  final response = await http.put(
+    Uri.parse(
+        'http://10.0.2.2:3000/publicaciones/like/' + idUser + '/' + idPost),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{}),
+  );
+
+  if (response.statusCode != 201) {
+    // If the server did return a 201 CREATED response,
+    // then parse the JSON.
+    throw Exception('Error al dar un like.');
+  }
+}
+
+Future<void> DeshacerLike(String idUser, String idPost) async {
+  final response = await http.put(
+    Uri.parse('http://10.0.2.2:3000/publicaciones/deshacerLike/' +
+        idUser +
+        '/' +
+        idPost),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{}),
+  );
+
+  if (response.statusCode != 201) {
+    // If the server did return a 201 CREATED response,
+    // then parse the JSON.
+    throw Exception('Error al deshacer un like.');
+  }
 }
 
 class FeedScreen extends StatelessWidget {

@@ -177,6 +177,7 @@ class _AforoPageState extends State<AforoPage> {
                     widget.bar.horario,
                     widget.bar.descripcion,
                     currentPhoto);
+                sumarPuntuacion();
                 return Future.delayed(
                     const Duration(milliseconds: 250),
                     () => Navigator.push(
@@ -245,8 +246,7 @@ class DetailPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: 
-        ListView(
+        child: ListView(
           children: <Widget>[
             GestureDetector(
               onTap: () {

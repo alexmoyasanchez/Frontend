@@ -1,12 +1,17 @@
+import 'dart:convert';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_auth/components/profile_avatar.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/models.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
+import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
+import 'package:http/http.dart' as http;
 
 class PostContainer extends StatelessWidget {
   final Post post;
@@ -135,7 +140,7 @@ class _PostStats extends StatelessWidget {
             const SizedBox(width: 4.0),
             Expanded(
               child: Text(
-                '${post.likes}' + S.current.favs,
+                '${post.likes.length}' + S.current.favs,
                 style: TextStyle(
                   color: Colors.grey[600],
                 ),
@@ -150,12 +155,29 @@ class _PostStats extends StatelessWidget {
               icon: Icon(MdiIcons.starOutline,
                   color: Colors.grey[600], size: 20.0),
               label: S.current.fav,
-              onTap: () => print('Favorito'),
+              onTap: () => Like(currentUser.id, post.id),
             ),
           ],
         )
       ],
     );
+  }
+
+  Future<void> Like(String idUser, String idPost) async {
+    final response = await http.put(
+      Uri.parse(
+          'http://10.0.2.2:3000/publicaciones/like/' + idUser + '/' + idPost),
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{}),
+    );
+
+    if (response.statusCode != 201) {
+      // If the server did return a 201 CREATED response,
+      // then parse the JSON.
+      throw Exception('Error al crear la denuncia.');
+    }
   }
 }
 

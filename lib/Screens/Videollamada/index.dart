@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Videollamada/components/body.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:http/http.dart' as http;
