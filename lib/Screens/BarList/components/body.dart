@@ -12,7 +12,7 @@ import 'package:flutter_auth/constants.dart';
 import 'dart:async';
 
 import 'package:flutter_auth/Screens/SignUp/components/background.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+
 
 class Body extends StatelessWidget {
   final Future<Bar> bar;

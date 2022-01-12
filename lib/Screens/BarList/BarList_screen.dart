@@ -8,7 +8,7 @@ import 'package:flutter_auth/generated/l10n.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:flutter_auth/models/bar_model.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
+
 
 Future<List<Bar>> getBares() async {
   List<Bar> bares = [];
