@@ -8,7 +8,7 @@ import 'package:http/http.dart' as http;
 
 Future<User> Login(String email, String password) async {
   final response = await http.post(
-    Uri.parse('http://10.0.2.2:3000/usuarios/login'),
+    Uri.parse('http://147.83.7.157:3000/usuarios/login'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

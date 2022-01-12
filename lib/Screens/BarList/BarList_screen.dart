@@ -12,7 +12,7 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 Future<List<Bar>> getBares() async {
   List<Bar> bares = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/bares/'));
+  final data = await http.get(Uri.parse('http://147.83.7.157:3000/bares/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
@@ -28,7 +28,9 @@ Future<List<Bar>> getBares() async {
         horario: u["horario"],
         descripcion: u["descripcion"],
         imageUrl: u["imageUrl"],
-        agresion: u["agresion"]);
+        agresion: u["agresion"],
+        valoracion: u["valoracion"],
+        opinion: u["opinion"]);
         
 
     bares.add(bar);
@@ -39,7 +41,7 @@ Future<List<Bar>> getBares() async {
 
 Future<Bar> enviarAgresion(Bar bar) async {
   final data = await http.put(
-    Uri.parse('http://10.0.2.2:3000/bares/update/' + bar.id),
+    Uri.parse('http://147.83.7.157:3000/bares/update/' + bar.id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -56,36 +58,45 @@ Future<Bar> enviarAgresion(Bar bar) async {
       'descripcion': bar.descripcion,
       'imageUrl': bar.imageUrl,
       'agresion': DateTime.now().toString(),
+      
     }),
   );
 
-  //Future<Bar> enviarOpinion(Bar bar) async {
-  //final data = await http.put(
-    //Uri.parse('http://10.0.2.2:3000/bares/update/' + bar.id),
-    //headers: <String, String>{
-      //'Content-Type': 'application/json; charset=UTF-8',
-    //},
-    //body: jsonEncode(<String, String>{
-      //'id': bar.id,
-      //'name': bar.name,
-      //'address': bar.address,
-      //'musicTaste': bar.musicTaste,
-      //'owner': bar.owner,
-      //'idOwner': bar.idOwner,
-      //'aforo': bar.aforo,
-      //'aforoMax': bar.aforoMax,
-      //'horario': bar.horario,
-      //'descripcion': bar.descripcion,
-      //'imageUrl': bar.imageUrl,
-      //'rating': DateTime.now().toString(),
-      
-    //}),
-  //);
+
 
   if (data.statusCode == 201) {
     return Bar.fromJson(jsonDecode(data.body));
   } else {
-    throw Exception('Error al enviar la agresión');
+    throw Exception('Error al enviar tu agresion');
+  }
+}
+
+  Future<Bar> enviarOpinion(Bar bar) async {
+  final data = await http.put(
+    Uri.parse('http://147.83.7.157:3000/bares/update/' + bar.id),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'id': bar.id,
+      'name': bar.name,
+      'address': bar.address,
+      'musicTaste': bar.musicTaste,
+      'owner': bar.owner,
+      'idOwner': bar.idOwner,
+      'aforo': bar.aforo,
+      'aforoMax': bar.aforoMax,
+      'horario': bar.horario,
+      'descripcion': bar.descripcion,
+      'imageUrl': bar.imageUrl,
+      'valoracion': bar.valoracion.toString(),
+      'opinion': bar.opinion
+    }),
+  );
+    if (data.statusCode == 201) {
+    return Bar.fromJson(jsonDecode(data.body));
+  } else {
+    throw Exception('Error al enviar tu opinion');
   }
 }
 

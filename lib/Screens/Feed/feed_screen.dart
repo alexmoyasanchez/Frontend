@@ -10,7 +10,7 @@ import 'dart:async';
 
 Future<List<Post>> getPosts() async {
   List<Post> posts = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/publicaciones/'));
+  final data = await http.get(Uri.parse('http://147.83.7.157:3000/publicaciones/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);

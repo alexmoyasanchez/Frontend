@@ -15,7 +15,7 @@ import 'package:flutter_auth/models/models.dart';
 Future<List<Comunidad>> getComunidades() async {
   List<Comunidad> comunidades = [];
   final data =
-      await http.get(Uri.parse('http://10.0.2.2:3000/comunidades/'));
+      await http.get(Uri.parse('http://147.83.7.157:3000/comunidades/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);

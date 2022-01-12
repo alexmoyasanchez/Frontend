@@ -64,7 +64,7 @@ Future editarBar(String id, String name, String address, String musicTaste,
 
 Future newPost(String texto, Bar bar) async {
   final data = await http.post(
-    Uri.parse('http://10.0.2.2:3000/publicaciones/new'),
+    Uri.parse('http://147.83.7.157:3000/publicaciones/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

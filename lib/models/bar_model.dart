@@ -13,9 +13,10 @@ class Bar {
   final String descripcion;
   final String imageUrl;
   final String agresion;
-  
+   String opinion;
+   double valoracion;
 
-  const Bar(
+  Bar(
       {@required this.id,
       @required this.name,
       @required this.address,
@@ -27,7 +28,9 @@ class Bar {
       @required this.horario,
       @required this.descripcion,
       @required this.imageUrl,
-      @required this.agresion});
+      @required this.agresion,
+      @required this.opinion,
+      @required this.valoracion});
 
   factory Bar.fromJson(Map<String, dynamic> json) {
     return Bar(
@@ -42,6 +45,8 @@ class Bar {
         horario: json['horario'],
         descripcion: json['descripcion'],
         imageUrl: json['imageUrl'],
-        agresion: json['agresion']);
+        agresion: json['agresion'],
+        opinion: json['opinion'],
+        valoracion: json['valoracion']);
   }
 }

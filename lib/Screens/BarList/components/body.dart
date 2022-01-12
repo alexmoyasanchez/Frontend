@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
 import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
@@ -9,11 +10,9 @@ import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/bar_model.dart';
 import 'package:flutter_auth/constants.dart';
 import 'dart:async';
-import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
+
 import 'package:flutter_auth/Screens/SignUp/components/background.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
-
-import '../barlist_screen.dart';
 
 class Body extends StatelessWidget {
   final Future<Bar> bar;
@@ -399,24 +398,42 @@ class DetailPage extends StatelessWidget {
             Divider(
               color: Colors.purple[200],
             ),
-            SmoothStarRating(
-                rating: rating,
-                isReadOnly: false,
-                size: 80,
-                filledIconData: Icons.star,
-                halfFilledIconData: Icons.star_half,
-                defaultIconData: Icons.star_border,
-                starCount: 5,
-                allowHalfRating: true,
-                spacing: 2.0,
-                onRated: (value) {
-                  print("rating value -> $value");
-                }),
+            // SmoothStarRating(
+            //     rating: rating,
+            //     isReadOnly: false,
+            //     size: 80,
+            //     filledIconData: Icons.star,
+            //     halfFilledIconData: Icons.star_half,
+            //     defaultIconData: Icons.star_border,
+            //     starCount: 5,
+            //     allowHalfRating: true,
+            //     spacing: 2.0,
+            //     onRated: (value) {
+            //       print("rating value -> $value");
+            //       bar.valoracion = value;
+            //     }),
             RoundedInputField(
               hintText: "Introduce tu opinion",
               onChanged: (value) {
-                String comentario = value;
-                //saveOpinion(value);
+                bar.opinion = value;
+                
+              },
+            ),
+             RoundedButton(
+              text: "Envia Opinion",
+              color: Colors.white,
+              textColor: Colors.black,
+              press: () {
+                enviarOpinion(bar);
+                getBares();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ListaBaresScreen();
+                    },
+                  ),
+                );
               },
             ),
             RoundedButton(

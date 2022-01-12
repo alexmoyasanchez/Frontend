@@ -146,12 +146,12 @@ class Body extends StatelessWidget {
                   iconSrc: "assets/icons/twitter.svg",
                   press: () {},
                 ),
-                SocalIcon(
+                SocalIcon( //funciona web, no funciona android
                   iconSrc: "assets/icons/google-plus.svg",
                   press: () {
-                    AuthService auth = new AuthService();
-                    auth.signInWithGoogle();
-                    auth.SetAuthPersists();
+                    
+                    Authentication.signInWithGoogle();
+                    
                   },
                 ),
               ],
