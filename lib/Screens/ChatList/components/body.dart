@@ -54,8 +54,8 @@ class Body extends StatelessWidget {
                         Navigator.push(
                             context,
                             new MaterialPageRoute(
-                                builder: (context) => ChatPage(
-                                    roomId: snapshot.data[index].name)));
+                                builder: (context) =>
+                                    ChatPage(room: snapshot.data[index])));
                       },
                     );
                   },

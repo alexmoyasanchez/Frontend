@@ -2,15 +2,17 @@ import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
+import 'package:flutter_auth/models/community_model.dart';
+import 'package:flutter_auth/models/comunidades_model.dart';
 import 'package:flutter_auth/models/message_model.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
 
 class ChatPage extends StatefulWidget {
-  final String roomId;
+  final Comunidad room;
+  // final String room.name;
   final String username;
 
-  const ChatPage({Key key, this.roomId, this.username}) : super(key: key);
-
+  const ChatPage({Key key, this.room, this.username}) : super(key: key);
   @override
   _ChatPageState createState() => _ChatPageState();
 }
@@ -20,7 +22,6 @@ class _ChatPageState extends State<ChatPage> {
   GlobalKey<FormState> formKey;
   TextEditingController messageController = TextEditingController();
   IO.Socket socket;
-  String theRoomId;
   List<Message> messages = [];
   FocusNode messageNode;
 
@@ -49,7 +50,7 @@ class _ChatPageState extends State<ChatPage> {
       socket = IO.io('http://localhost:3000/', <String, dynamic>{
         'transports': ['websocket'],
       });
-      socket.emit("login", [widget.roomId, currentUser.username]);
+      socket.emit("login", [widget.room.name, currentUser.username]);
       socket.on("sendMessage", (res) {
         Message msg = (res is String)
             ? Message(message: res, username: "Admin")
@@ -71,7 +72,7 @@ class _ChatPageState extends State<ChatPage> {
   void sendMessage() {
     try {
       socket.emit("sendMessage",
-          [messageController.text, widget.roomId, currentUser.username]);
+          [messageController.text, widget.room.name, currentUser.username]);
       Message msg = Message(
           message: messageController.text, username: currentUser.username);
       setState(() {
@@ -91,7 +92,23 @@ class _ChatPageState extends State<ChatPage> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xBBb470b8),
-        title: SelectableText(widget.roomId),
+        title: SelectableText(widget.room.name),
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      new MaterialPageRoute(
+                          builder: (context) => InfoChat(widget.room)));
+                },
+                child: Icon(
+                  Icons.info,
+                  size: 26.0,
+                ),
+              )),
+        ],
       ),
       backgroundColor: Colors.black,
       body: Column(
@@ -218,15 +235,23 @@ class _ChatPageState extends State<ChatPage> {
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.02,
                 ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.11,
-                  child: RaisedButton(
-                    child: Text("Send"),
-                    onPressed: () {
-                      sendMessage();
-                    },
-                  ),
+                IconButton(
+                  icon: Icon(Icons.send),
+                  iconSize: 25.0,
+                  color: Color(0xBBb470b8),
+                  onPressed: () {
+                    sendMessage();
+                  },
                 ),
+                // SizedBox(
+                //   width: MediaQuery.of(context).size.width * 0.11,
+                //   child: RaisedButton(
+                //     child: Text("Send"),
+                //     onPressed: () {
+                //       sendMessage();
+                //     },
+                //   ),
+                // ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.01,
                 ),
@@ -234,6 +259,26 @@ class _ChatPageState extends State<ChatPage> {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class InfoChat extends StatelessWidget {
+  final Comunidad comunidad;
+
+  InfoChat(this.comunidad);
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Welcome to Flutter',
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text('Welcome to Flutter'),
+        ),
+        body: const Center(
+          child: Text('Hello World'),
+        ),
       ),
     );
   }
