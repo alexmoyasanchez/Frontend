@@ -1,5 +1,6 @@
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/message_model.dart';
 import 'package:socket_io_client/socket_io_client.dart' as IO;
@@ -89,9 +90,10 @@ class _ChatPageState extends State<ChatPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color(0xBBb470b8),
         title: SelectableText(widget.roomId),
       ),
-      backgroundColor: Colors.blueGrey[50],
+      backgroundColor: Colors.black,
       body: Column(
         children: [
           Expanded(
@@ -110,7 +112,7 @@ class _ChatPageState extends State<ChatPage> {
                       alignment: Alignment.topRight,
                       nip: BubbleNip.rightTop,
                       elevation: 2,
-                      color: Color.fromRGBO(225, 255, 199, 1.0),
+                      color: Color(0xBBb470b8),
                       child: SelectableText(
                         message.message,
                         textAlign: TextAlign.right,
@@ -118,31 +120,61 @@ class _ChatPageState extends State<ChatPage> {
                       ),
                     );
                   }
-                  return Bubble(
-                    margin: BubbleEdges.only(top: 8),
-                    radius: Radius.circular(12),
-                    alignment: Alignment.topLeft,
-                    nip: BubbleNip.leftTop,
-                    elevation: 2,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          message.username,
-                          style: TextStyle(
-                            fontSize: 11,
-                            color: Colors.grey,
+                  if (message.username == 'Admin') {
+                    return Bubble(
+                      margin: BubbleEdges.only(top: 8),
+                      radius: Radius.circular(12),
+                      alignment: Alignment.topLeft,
+                      nip: BubbleNip.leftTop,
+                      elevation: 2,
+                      color: Color.fromRGBO(0, 0, 0, 1.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            message.username,
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: Colors.black,
+                            ),
+                            textAlign: TextAlign.left,
                           ),
-                          textAlign: TextAlign.left,
-                        ),
-                        SelectableText(
-                          message.message,
-                          textAlign: TextAlign.left,
-                          style: TextStyle(fontSize: 18),
-                        ),
-                      ],
-                    ),
-                  );
+                          SelectableText(
+                            message.message,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                fontSize: 18, color: Color(0xBBb470b8)),
+                          ),
+                        ],
+                      ),
+                    );
+                  } else {
+                    return Bubble(
+                      margin: BubbleEdges.only(top: 8),
+                      radius: Radius.circular(12),
+                      alignment: Alignment.topLeft,
+                      nip: BubbleNip.leftTop,
+                      elevation: 2,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            message.username,
+                            style: TextStyle(
+                              fontSize: 11,
+                              color: Color(0xBBb470b8),
+                            ),
+                            textAlign: TextAlign.left,
+                          ),
+                          SelectableText(
+                            message.message,
+                            textAlign: TextAlign.left,
+                            style: TextStyle(fontSize: 18),
+                          ),
+                        ],
+                      ),
+                    );
+                  }
                 },
               ),
             ),
@@ -158,14 +190,25 @@ class _ChatPageState extends State<ChatPage> {
                   child: Form(
                     key: formKey,
                     child: TextFormField(
+                      style: TextStyle(color: Colors.white),
                       focusNode: messageNode,
                       onFieldSubmitted: (val) {
                         sendMessage();
                       },
                       decoration: InputDecoration(
-                        labelText: "Message",
-                        border: OutlineInputBorder(
+                        labelText: "Escribe algo...",
+                        labelStyle: TextStyle(color: Color(0xBBb470b8)),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: const BorderSide(
+                              color: Color(0xBBb470b8), width: 2.0),
+                          borderRadius: BorderRadius.circular(25.0),
+                        ),
+                        enabledBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(8),
+                          borderSide: BorderSide(
+                            color: Color(0xBBb470b8),
+                            width: 2.0,
+                          ),
                         ),
                       ),
                       controller: messageController,
