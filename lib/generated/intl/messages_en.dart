@@ -1,0 +1,134 @@
+// DO NOT EDIT. This is code generated via package:intl/generate_localized.dart
+// This is a library that provides messages for a en locale. All the
+// messages from the main program should be duplicated here with the same
+// function name.
+
+// Ignore issues from commonly used lints in this file.
+// ignore_for_file:unnecessary_brace_in_string_interps, unnecessary_new
+// ignore_for_file:prefer_single_quotes,comment_references, directives_ordering
+// ignore_for_file:annotate_overrides,prefer_generic_function_type_aliases
+// ignore_for_file:unused_import, file_names
+
+import 'package:intl/intl.dart';
+import 'package:intl/message_lookup_by_library.dart';
+
+final messages = new MessageLookup();
+
+typedef String MessageIfAbsent(String messageStr, List<dynamic> args);
+
+class MessageLookup extends MessageLookupByLibrary {
+  String get localeName => 'en';
+
+  final messages = _notInlinedMessages(_notInlinedMessages);
+  static _notInlinedMessages(_) => <String, Function> {
+    "LGTBIQ" : MessageLookupByLibrary.simpleMessage("LGTBIQ+phobic"),
+    "about" : MessageLookupByLibrary.simpleMessage("About Us"),
+    "account" : MessageLookupByLibrary.simpleMessage("Do you have an account? "),
+    "administrador" : MessageLookupByLibrary.simpleMessage("Adminstrator"),
+    "aforo" : MessageLookupByLibrary.simpleMessage("Capacity: "),
+    "aforomax" : MessageLookupByLibrary.simpleMessage("Maximum capacity: "),
+    "agresion" : MessageLookupByLibrary.simpleMessage("Agression"),
+    "ahora" : MessageLookupByLibrary.simpleMessage("just now"),
+    "atencion" : MessageLookupByLibrary.simpleMessage("Caution!"),
+    "atras" : MessageLookupByLibrary.simpleMessage(" ago "),
+    "bares" : MessageLookupByLibrary.simpleMessage("My locals"),
+    "bienvenida" : MessageLookupByLibrary.simpleMessage("WELCOME TO BAREA"),
+    "buscar" : MessageLookupByLibrary.simpleMessage("Search"),
+    "camara" : MessageLookupByLibrary.simpleMessage("Camera"),
+    "campos" : MessageLookupByLibrary.simpleMessage("Missing fields to fill"),
+    "cerrar" : MessageLookupByLibrary.simpleMessage("Log Out"),
+    "chats" : MessageLookupByLibrary.simpleMessage("Communities chats"),
+    "close" : MessageLookupByLibrary.simpleMessage("Close"),
+    "comunidades" : MessageLookupByLibrary.simpleMessage("Communities"),
+    "config" : MessageLookupByLibrary.simpleMessage("Configuration"),
+    "correo" : MessageLookupByLibrary.simpleMessage("Email"),
+    "correo2" : MessageLookupByLibrary.simpleMessage("Email: "),
+    "crearc" : MessageLookupByLibrary.simpleMessage("CREATE COMUNITY"),
+    "crearl" : MessageLookupByLibrary.simpleMessage("CREATE LOCAL"),
+    "crearp" : MessageLookupByLibrary.simpleMessage("PUBLISH POST"),
+    "cuenta" : MessageLookupByLibrary.simpleMessage("Do not you have an account yet? "),
+    "cupones" : MessageLookupByLibrary.simpleMessage("My Badges"),
+    "descripcion" : MessageLookupByLibrary.simpleMessage("Description: "),
+    "descripcion2" : MessageLookupByLibrary.simpleMessage("Description: "),
+    "descripciona" : MessageLookupByLibrary.simpleMessage("Description of the assault: "),
+    "dia" : MessageLookupByLibrary.simpleMessage("day"),
+    "dias" : MessageLookupByLibrary.simpleMessage("days"),
+    "direccion" : MessageLookupByLibrary.simpleMessage("Address: "),
+    "edad" : MessageLookupByLibrary.simpleMessage("Date of birth"),
+    "edad2" : MessageLookupByLibrary.simpleMessage("Date of birth: "),
+    "editC" : MessageLookupByLibrary.simpleMessage("Edit Comunity"),
+    "editar" : MessageLookupByLibrary.simpleMessage("EDIT PROFILE"),
+    "editarC" : MessageLookupByLibrary.simpleMessage("EDIT COMUNITY"),
+    "editara" : MessageLookupByLibrary.simpleMessage("EDIT CAPACITY"),
+    "editarl" : MessageLookupByLibrary.simpleMessage("EDIT LOCAL"),
+    "eliminarc" : MessageLookupByLibrary.simpleMessage("DELETE COMUNITY"),
+    "eliminarl" : MessageLookupByLibrary.simpleMessage("DELETE LOCAL"),
+    "email" : MessageLookupByLibrary.simpleMessage("Email"),
+    "fav" : MessageLookupByLibrary.simpleMessage("Favorite"),
+    "favs" : MessageLookupByLibrary.simpleMessage(" Favorites"),
+    "foto" : MessageLookupByLibrary.simpleMessage("Photo"),
+    "galeria" : MessageLookupByLibrary.simpleMessage("Gallery"),
+    "hace" : MessageLookupByLibrary.simpleMessage(""),
+    "hora" : MessageLookupByLibrary.simpleMessage("hour"),
+    "horario" : MessageLookupByLibrary.simpleMessage("Schedule: "),
+    "horas" : MessageLookupByLibrary.simpleMessage("hours"),
+    "info" : MessageLookupByLibrary.simpleMessage("ADD INFORMATION"),
+    "infoagresion" : MessageLookupByLibrary.simpleMessage("Add information about agression"),
+    "inicia" : MessageLookupByLibrary.simpleMessage("Log In"),
+    "iniciar" : MessageLookupByLibrary.simpleMessage("LOG IN"),
+    "inicio" : MessageLookupByLibrary.simpleMessage("Home"),
+    "insignias" : MessageLookupByLibrary.simpleMessage("My Badges"),
+    "lastagresion" : MessageLookupByLibrary.simpleMessage("The last agression at this local was: "),
+    "listabares" : MessageLookupByLibrary.simpleMessage("Locals List"),
+    "listac" : MessageLookupByLibrary.simpleMessage("Comunities List"),
+    "locales" : MessageLookupByLibrary.simpleMessage("List of Locals"),
+    "localesfavs" : MessageLookupByLibrary.simpleMessage("Favourites locals"),
+    "machista" : MessageLookupByLibrary.simpleMessage("Male chauvinist"),
+    "mapas" : MessageLookupByLibrary.simpleMessage("My maps"),
+    "mes" : MessageLookupByLibrary.simpleMessage("month"),
+    "meses" : MessageLookupByLibrary.simpleMessage("months"),
+    "minuto" : MessageLookupByLibrary.simpleMessage("minute"),
+    "minutos" : MessageLookupByLibrary.simpleMessage("minutes"),
+    "miscomunidades" : MessageLookupByLibrary.simpleMessage("My Comunities"),
+    "modificaraforo" : MessageLookupByLibrary.simpleMessage("Modify capacity"),
+    "motivo" : MessageLookupByLibrary.simpleMessage("Motive for the assault: "),
+    "musica" : MessageLookupByLibrary.simpleMessage("Ambient music: "),
+    "noagresion" : MessageLookupByLibrary.simpleMessage("never"),
+    "nombre" : MessageLookupByLibrary.simpleMessage("Name"),
+    "nombre2" : MessageLookupByLibrary.simpleMessage("Name: "),
+    "nombrec" : MessageLookupByLibrary.simpleMessage("Comunity name"),
+    "nombrel" : MessageLookupByLibrary.simpleMessage("Local name: "),
+    "notagresion" : MessageLookupByLibrary.simpleMessage("NOTIFY AGRESSION"),
+    "nouser" : MessageLookupByLibrary.simpleMessage("User not found"),
+    "nuevac" : MessageLookupByLibrary.simpleMessage("New Comunity"),
+    "nuevol" : MessageLookupByLibrary.simpleMessage("New Local"),
+    "o" : MessageLookupByLibrary.simpleMessage("OR"),
+    "otro" : MessageLookupByLibrary.simpleMessage("Another"),
+    "owner" : MessageLookupByLibrary.simpleMessage("Local owner: "),
+    "ownerc" : MessageLookupByLibrary.simpleMessage("Owner: "),
+    "pass" : MessageLookupByLibrary.simpleMessage("Password"),
+    "pass2" : MessageLookupByLibrary.simpleMessage("Repeat Password"),
+    "pass3" : MessageLookupByLibrary.simpleMessage("Password: "),
+    "perfil" : MessageLookupByLibrary.simpleMessage("Edit profile"),
+    "personas" : MessageLookupByLibrary.simpleMessage(" people"),
+    "post" : MessageLookupByLibrary.simpleMessage("What\'s happening in your local? "),
+    "puntuacion" : MessageLookupByLibrary.simpleMessage("Score"),
+    "puntuacion2" : MessageLookupByLibrary.simpleMessage("Score: "),
+    "racista" : MessageLookupByLibrary.simpleMessage("Racist"),
+    "registrar" : MessageLookupByLibrary.simpleMessage("SIGN UP"),
+    "registrate" : MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "registro" : MessageLookupByLibrary.simpleMessage("SIGN UP"),
+    "seleccionFoto" : MessageLookupByLibrary.simpleMessage("Where do you want to select the image from?"),
+    "semana" : MessageLookupByLibrary.simpleMessage("week"),
+    "semanas" : MessageLookupByLibrary.simpleMessage("weeks"),
+    "solucion" : MessageLookupByLibrary.simpleMessage("Solution by the local: "),
+    "unirme" : MessageLookupByLibrary.simpleMessage("JOIN TO THIS COMMUNITY"),
+    "username" : MessageLookupByLibrary.simpleMessage("Username"),
+    "username2" : MessageLookupByLibrary.simpleMessage("Username: "),
+    "wrongc" : MessageLookupByLibrary.simpleMessage("Wrong email format"),
+    "wrongp" : MessageLookupByLibrary.simpleMessage("Passwords do not match"),
+    "wrongu" : MessageLookupByLibrary.simpleMessage("Failed to register user"),
+    "year" : MessageLookupByLibrary.simpleMessage("year"),
+    "years" : MessageLookupByLibrary.simpleMessage("years")
+  };
+}

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/text_field_container.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 
 class RoundedPasswordField extends StatefulWidget {
   
@@ -23,8 +24,9 @@ class _RoundedPasswordFieldState extends State<RoundedPasswordField> {
         obscureText: hiddenText,
         onChanged: widget.onChanged,
         cursorColor: Colors.white,
+        style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
-          hintText: "Contraseña",
+          hintText: S.current.pass,
           border: InputBorder.none,
           hintStyle: TextStyle(fontSize: 16, color: Colors.white),
           icon: Icon(

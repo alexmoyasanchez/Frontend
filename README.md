@@ -1,18 +1,13 @@
-# Minimo 2 EA
-## Javier Ramirez
+Para subir una imagen en el pefil hay que ir a editar perfil que se encuentra en la barra lateral y ahí  pulsar el botón "Subir imagen"
+Ahí cargas una imagen de la galería que esta se subirá a una base de datos desde la que nos enviará una URL que será la que pondremos
+en la base de datos y nos servirá de icono para nuestro usuario.
+En el caso de la comunidad es exactemente lo mismo, pero lo encontraremos en el apartado de Comunidades y después pulando en el icono 
+"+", para crear una nueva comunidad y subiendo la foto que queramos.
+# Minimo 2 Oscar Vilamitjana
 
-##Descripción
-En esta rama se encuentra mi mínimo 2 de la asignatura de EA, en este caso, se pedía realizar una mejora en la que el usuario sea capaz de acceder a una ventana extra en el chat que le permita ver los usuarios que pertenecen a ese chat y ver su estado de conexión (verde/rojo en caso de conectado/no conectado)
+## Nueva mejora que permita búsquedas geospaciales de locales a una determinada distancia. El resultado puede mostrarse en formato lista o sobre un mapa.
 
-##Estado
-Al momento de finalizar el mínimo, la implementación no está completa y unicamente permite acceder a los nombres de los usuarios conectados, debido a problemas de implementación de los sockets, funciona a base de http y un nuevo atributo en la clase usuario que permite conocer si esta conectado o no:
-```bash
-conected:
-{
-        type: String
-},
-```
-En un futuro se espera utilizar este codigo cambiando a la conexión con sockets.
 
-Per Javier Ramirez.
-[Click aqui per accedir al repo de backend](https://github.com/gabrielp6/ProyectoEA_Backend/tree/JaviMinimo2)
+### podemos seleccionar mediante el codigo la distancia en kilometros de la posición inicial los bares que queremos que nos muestre mediante el mapa (no lista)
+
+![App UI](/UI.png)

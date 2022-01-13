@@ -4,6 +4,7 @@ import 'package:flutter_auth/Screens/Signup/signup_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/components/background.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -16,8 +17,11 @@ class Body extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
-              "BIENVENIDO A BAREA",
-              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 24, color: Colors.pink[800]),
+              S.current.bienvenida,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontSize: 24,
+                  color: Colors.white),
             ),
             SizedBox(height: size.height * 0.0005),
             Image.asset(
@@ -26,8 +30,8 @@ class Body extends StatelessWidget {
             ),
             SizedBox(height: size.height * 0.005),
             RoundedButton(
-              text: "INICIAR SESIÓN",
-              color: kPrimaryLightColor,
+              text: S.current.iniciar,
+              color: Colors.black87,
               textColor: Colors.white,
               press: () {
                 Navigator.push(
@@ -41,8 +45,8 @@ class Body extends StatelessWidget {
               },
             ),
             RoundedButton(
-              text: "REGISTRAR",
-              color: kPrimaryLightColor,
+              text: S.current.registrar,
+              color: Colors.black87,
               textColor: Colors.white,
               press: () {
                 Navigator.push(

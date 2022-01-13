@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/constants.dart';
 
 class ProfileAvatar extends StatelessWidget{
   final String imageUrl;
@@ -16,7 +17,7 @@ class ProfileAvatar extends StatelessWidget{
   Widget build(BuildContext context) {
     return  CircleAvatar(
       radius: 20.0,
-      backgroundColor: Colors.grey[200],
+      backgroundColor: PrimaryColor,
       backgroundImage: CachedNetworkImageProvider(imageUrl),              
     );
   }

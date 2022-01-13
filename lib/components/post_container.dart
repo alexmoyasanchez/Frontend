@@ -4,10 +4,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_auth/components/profile_avatar.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/models.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
-class PostContainer extends StatelessWidget{
+class PostContainer extends StatelessWidget {
   final Post post;
 
   const PostContainer({
@@ -18,9 +19,9 @@ class PostContainer extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(vertical: 5.0),
+      margin: const EdgeInsets.symmetric(vertical: 1.0),
       padding: const EdgeInsets.symmetric(vertical: 8.0),
-      color: Colors.white,
+      color: Colors.black,
       child: Column(
         children: [
           Padding(
@@ -30,18 +31,20 @@ class PostContainer extends StatelessWidget{
               children: [
                 _PostHeader(post: post),
                 const SizedBox(height: 4.0),
-                Text(post.caption),
+                Text(post.texto, style: TextStyle(color: Colors.white)),
                 post.imageUrl != null
                     ? const SizedBox.shrink()
-                    : const SizedBox(height: 6.0,),
+                    : const SizedBox(
+                        height: 6.0,
+                      ),
               ],
             ),
           ),
-          post.imageUrl != null 
+          post.imageUrl != null
               ? Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8.0),
-                child: CachedNetworkImage(imageUrl: post.imageUrl),
-              )
+                  padding: const EdgeInsets.symmetric(vertical: 8.0),
+                  child: CachedNetworkImage(imageUrl: post.imageUrl),
+                )
               : const SizedBox.shrink(),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
@@ -53,7 +56,7 @@ class PostContainer extends StatelessWidget{
   }
 }
 
-class _PostHeader extends StatelessWidget{
+class _PostHeader extends StatelessWidget {
   final Post post;
 
   const _PostHeader({
@@ -62,56 +65,57 @@ class _PostHeader extends StatelessWidget{
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Row(
       children: [
-        ProfileAvatar(imageUrl: post.user.imageUrl),
+        CircleAvatar(
+            radius: 20.0,
+            backgroundColor: PrimaryColor,
+            backgroundImage: NetworkImage(post.imageBar)),
         const SizedBox(width: 8.0),
         Expanded(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                post.user.username, 
-                style: const TextStyle(
-                  fontWeight: FontWeight.w600,
-                ),
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+            Text(
+              post.nameBar,
+              style: const TextStyle(
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
               ),
-              Row(
-                children: [
-                  Text(
-                    '${post.timeAgo} ·',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 12.0,
-                    ),
-                  ),
-                  Icon(
-                    Icons.public,
+            ),
+            Row(
+              children: [
+                Text(
+                  '${post.fecha} ',
+                  style: TextStyle(
                     color: Colors.grey[600],
-                    size: 12.0,
-                  )
-                ],
-              )              
-            ]
-            
-          ),
+                    fontSize: 12.0,
+                  ),
+                ),
+                Icon(
+                  Icons.public,
+                  color: Colors.grey[600],
+                  size: 12.0,
+                )
+              ],
+            )
+          ]),
         ),
         IconButton(
           icon: const Icon(Icons.more_horiz),
+          color: Colors.white,
           onPressed: () => print('More'),
         )
-      ],   
+      ],
     );
   }
 }
 
 class _PostStats extends StatelessWidget {
-
   final Post post;
 
-  const _PostStats({ 
-    Key key, 
+  const _PostStats({
+    Key key,
     @required this.post,
   }) : super(key: key);
 
@@ -122,96 +126,56 @@ class _PostStats extends StatelessWidget {
         Row(
           children: [
             Container(
-              padding: const EdgeInsets.all(4.0),
-              child: const Icon(
-                Icons.star,
-                size: 20.0,
-                color: Colors.yellow,
-              )
-            ),
+                padding: const EdgeInsets.all(4.0),
+                child: const Icon(
+                  Icons.star,
+                  size: 20.0,
+                  color: Colors.yellow,
+                )),
             const SizedBox(width: 4.0),
             Expanded(
               child: Text(
-                '${post.likes} Favoritos',
+                '${post.likes}' + S.current.favs,
                 style: TextStyle(
                   color: Colors.grey[600],
                 ),
               ),
             ),
-            Text(
-              '${post.comments} Comentarios',
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
-            ),
-            const SizedBox(width: 8.0),
-            Text(
-              '${post.shares} Compartidos',
-              style: TextStyle(
-                color: Colors.grey[600],
-              ),
-            )
           ],
         ),
         const Divider(),
         Row(
           children: [
             _PostButton(
-              icon: Icon(
-                MdiIcons.starOutline,
-                color: Colors.grey[600],
-                size: 20.0
-              ),
-              label: 'Favorito',
+              icon: Icon(MdiIcons.starOutline,
+                  color: Colors.grey[600], size: 20.0),
+              label: S.current.fav,
               onTap: () => print('Favorito'),
             ),
-            _PostButton(
-              icon: Icon(
-                MdiIcons.commentOutline,
-                color: Colors.grey[600],
-                size: 20.0
-              ),
-              label: 'Comentar',
-              onTap: () => print('Comentar'),
-            ),
-            _PostButton(
-              icon: Icon(
-                MdiIcons.shareOutline,
-                color: Colors.grey[600],
-                size: 20.0
-              ),
-              label: 'Compartir',
-              onTap: () => print('Compartir'),
-            )
           ],
         )
       ],
-      
     );
   }
 }
 
 class _PostButton extends StatelessWidget {
-
   final Icon icon;
   final String label;
   final Function onTap;
 
-
-  const _PostButton({ 
-
+  const _PostButton({
     Key key,
     @required this.icon,
     @required this.label,
-    @required this.onTap, 
-
+    @required this.onTap,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: Material(
-        color: Colors.white,
+        color: Colors.black,
         child: InkWell(
           onTap: onTap,
           child: Container(
@@ -222,7 +186,10 @@ class _PostButton extends StatelessWidget {
               children: [
                 icon,
                 const SizedBox(width: 4.0),
-                Text(label),
+                Text(
+                  label,
+                  style: TextStyle(color: Colors.grey[600]),
+                ),
               ],
             ),
           ),
@@ -231,4 +198,3 @@ class _PostButton extends StatelessWidget {
     );
   }
 }
-  

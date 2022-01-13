@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/components/text_field_container.dart';
+import 'package:flutter_auth/constants.dart';
 
 class RoundedInputField extends StatefulWidget {
   final String hintText;
@@ -32,6 +33,7 @@ class _RoundedInputFieldState extends State<RoundedInputField> {
         controller: _controller,
         onChanged: widget.onChanged,
         cursorColor: Colors.white,
+        style: TextStyle(color: Colors.white),
         decoration: InputDecoration(
           icon: Icon(
             widget.icon,

@@ -1,8 +1,35 @@
+import 'dart:convert';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Feed/components/body.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/constants.dart';
+import 'package:flutter_auth/models/models.dart';
+import 'package:http/http.dart' as http;
+import 'dart:async';
+
+Future<List<Post>> getPosts() async {
+  List<Post> posts = [];
+  final data =
+      await http.get(Uri.parse('http://localhost:3000/publicaciones/'));
+  var jsonData = json.decode(data.body);
+  for (var u in jsonData) {
+    print(data.body);
+    Post post = Post(
+      idBar: u["idBar"],
+      nameBar: u["nameBar"],
+      imageBar: u["imageBar"],
+      texto: u["texto"],
+      imageUrl: u["imageUrl"],
+      fecha: u["fecha"],
+      likes: u["likes"],
+    );
+    posts.add(post);
+  }
+  print(posts.length);
+  posts.sort((b, a) => a.fecha.compareTo(b.fecha));
+  return posts;
+}
 
 class FeedScreen extends StatelessWidget {
   @override

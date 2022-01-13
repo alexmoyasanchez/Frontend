@@ -1,232 +1,197 @@
+import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/ChatList/chatList_screen.dart';
-import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
-import 'dart:convert';
-import 'package:flutter_auth/SideBar.dart';
-import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/message_model.dart';
-import 'package:flutter_auth/models/user_model.dart';
-import 'package:http/http.dart' as http;
-import 'package:flutter_auth/models/community_model.dart';
-import 'package:intl/intl.dart';
+import 'package:socket_io_client/socket_io_client.dart' as IO;
 
-String user = currentUser.username;
+class ChatPage extends StatefulWidget {
+  final String roomId;
+  final String username;
 
-Future<List<Message>> getMessages() async {
-  List<Message> messages = [];
-  final data = await http.get(Uri.parse('http://localhost:3000/chat'));
-  var jsonData = json.decode(data.body);
-  for (var u in jsonData) {
-    print(data.body);
-    Message message = Message(
-      sender: u["sender"],
-      time: u["time"],
-      text: u["text"],
-    );
-    messages.add(message);
-  }
-  print(messages.length);
-  return messages;
+  const ChatPage({Key key, this.roomId, this.username}) : super(key: key);
+
+  @override
+  _ChatPageState createState() => _ChatPageState();
 }
 
-class ChatScreen extends StatelessWidget {
+class _ChatPageState extends State<ChatPage> {
+  ScrollController controller = ScrollController();
+  GlobalKey<FormState> formKey;
+  TextEditingController messageController = TextEditingController();
+  IO.Socket socket;
+  String theRoomId;
+  List<Message> messages = [];
+  FocusNode messageNode;
+
+  @override
+  void initState() {
+    messageNode = FocusNode();
+    initSocket();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    messageNode.dispose();
+    return super.dispose();
+  }
+
+  @override
+  void setState(VoidCallback fn) {
+    if (this.mounted) {
+      return super.setState(fn);
+    }
+  }
+
+  void initSocket() {
+    try {
+      socket = IO.io('http://localhost:3000/', <String, dynamic>{
+        'transports': ['websocket'],
+      });
+      socket.emit("login", [widget.roomId, currentUser.username]);
+      socket.on("sendMessage", (res) {
+        Message msg = (res is String)
+            ? Message(message: res, username: "Admin")
+            : Message(message: res[0], username: res[1]);
+        if (msg.username == currentUser.username) {
+          return;
+        }
+        setState(() {
+          messages.add(msg);
+          controller.animateTo(controller.position.maxScrollExtent,
+              duration: Duration(milliseconds: 100), curve: Curves.linear);
+        });
+      });
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  void sendMessage() {
+    try {
+      socket.emit("sendMessage",
+          [messageController.text, widget.roomId, currentUser.username]);
+      Message msg = Message(
+          message: messageController.text, username: currentUser.username);
+      setState(() {
+        messages.add(msg);
+        controller.animateTo(controller.position.maxScrollExtent,
+            duration: Duration(milliseconds: 100), curve: Curves.linear);
+      });
+      messageController.clear();
+      messageNode.requestFocus();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    String text = "";
-    DateTime now = DateTime.now();
-    DateFormat formatter = DateFormat('Hm');
-    String formatted = formatter.format(now);
-    String name = currentUser.name;
-
     return Scaffold(
-      drawer: SideBar(),
       appBar: AppBar(
-        backgroundColor: PrimaryColor,
-        title: Text(
-          'Chat',
-          style: const TextStyle(
-              color: Colors.white,
-              fontSize: 28.0,
-              fontWeight: FontWeight.bold,
-              letterSpacing: -1.2),
-        ),
-        centerTitle: true,
+        title: SelectableText(widget.roomId),
       ),
+      backgroundColor: Colors.blueGrey[50],
       body: Column(
-        children: <Widget>[
-          TextField(
-            decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(15.0),
-              hintText: 'Send message',
+        children: [
+          Expanded(
+            flex: 9,
+            child: Container(
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 2, horizontal: 16),
+                controller: controller,
+                itemCount: messages.length,
+                itemBuilder: (context, index) {
+                  final message = messages[index];
+                  if (message.username == currentUser.username) {
+                    return Bubble(
+                      margin: BubbleEdges.only(top: 8),
+                      radius: Radius.circular(12),
+                      alignment: Alignment.topRight,
+                      nip: BubbleNip.rightTop,
+                      elevation: 2,
+                      color: Color.fromRGBO(225, 255, 199, 1.0),
+                      child: SelectableText(
+                        message.message,
+                        textAlign: TextAlign.right,
+                        style: TextStyle(fontSize: 18),
+                      ),
+                    );
+                  }
+                  return Bubble(
+                    margin: BubbleEdges.only(top: 8),
+                    radius: Radius.circular(12),
+                    alignment: Alignment.topLeft,
+                    nip: BubbleNip.leftTop,
+                    elevation: 2,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          message.username,
+                          style: TextStyle(
+                            fontSize: 11,
+                            color: Colors.grey,
+                          ),
+                          textAlign: TextAlign.left,
+                        ),
+                        SelectableText(
+                          message.message,
+                          textAlign: TextAlign.left,
+                          style: TextStyle(fontSize: 18),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ),
-            onChanged: (value) {
-              text = value;
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.send),
-            iconSize: 25.0,
-            color: Colors.blueAccent,
-            onPressed: () {
-              SendMessage(name, text, formatted);
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ChatScreen();
-              }));
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.refresh),
-            iconSize: 25.0,
-            color: Colors.blueAccent,
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ChatScreen();
-              }));
-            },
-          ),
-          IconButton(
-            icon: Icon(Icons.info),
-            iconSize: 25.0,
-            color: Colors.blueAccent,
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return ChatInfoScreen();
-              }));
-            },
           ),
           Expanded(
-              child: FutureBuilder(
-                  future: getMessages(),
-                  builder: (BuildContext context, AsyncSnapshot snapshot) {
-                    print(snapshot.data);
-                    if (snapshot.data == null) {
-                      return Container(
-                          child: Center(child: CircularProgressIndicator()));
-                    } else {
-                      return ListView.builder(
-                        itemCount: snapshot.data.length,
-                        itemBuilder: (BuildContext context, int index) {
-                          return ListTile(
-                            title: Text(snapshot.data[index].text,
-                                style: TextStyle(
-                                    color: Colors.pink[800],
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold)),
-                            subtitle: Text(
-                                'Enviado por: ' +
-                                    snapshot.data[index].sender +
-                                    ' a las ' +
-                                    snapshot.data[index].time,
-                                style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold)),
-                          );
-                        },
-                      );
-                    }
-                  }))
+            child: Row(
+              children: [
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.01,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.85,
+                  child: Form(
+                    key: formKey,
+                    child: TextFormField(
+                      focusNode: messageNode,
+                      onFieldSubmitted: (val) {
+                        sendMessage();
+                      },
+                      decoration: InputDecoration(
+                        labelText: "Message",
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      controller: messageController,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.02,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.11,
+                  child: RaisedButton(
+                    child: Text("Send"),
+                    onPressed: () {
+                      sendMessage();
+                    },
+                  ),
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.01,
+                ),
+              ],
+            ),
+          ),
         ],
       ),
     );
   }
-}
-
-void EnviarMensaje(String sender, String text, String time) {
-  final Message message = Message(
-    sender: currentUser.name,
-    text: text,
-    time: time,
-  );
-}
-
-Future<Message> SendMessage(String sender, String text, String time) async {
-  sender = user;
-  final response = await http.post(
-    Uri.parse('http://localhost:3000/chat/new'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'sender': sender,
-      'text': text,
-      'time': time,
-    }),
-  );
-}
-
-Future<Message> DeleteChat() async {
-  String sender = user;
-  final response = await http.delete(
-    Uri.parse('http://localhost:3000/chat/delete'),
-    headers: <String, String>{
-      'Content-Type': 'application/json; charset=UTF-8',
-    },
-    body: jsonEncode(<String, String>{
-      'sender': sender,
-    }),
-  );
-}
-
-class ChatInfoScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      body: Center(
-          child: FutureBuilder(
-              future: getUser(),
-              builder: (BuildContext context, AsyncSnapshot snapshot) {
-                print(snapshot.data);
-                if (snapshot.data == null) {
-                  return Container(
-                      child: Center(child: CircularProgressIndicator()));
-                } else {
-                  return ListView.builder(
-                    itemCount: snapshot.data.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      return ListTile(
-                        leading: CircleAvatar(
-                          backgroundImage:
-                              NetworkImage(snapshot.data[index].imageUrl),
-                        ),
-                        title: Text(snapshot.data[index].username,
-                            style: TextStyle(
-                                color: Colors.pink[800],
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold)),
-                        subtitle: Text(snapshot.data[index].email,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold)),
-                      );
-                    },
-                  );
-                }
-              })),
-    );
-  }
-}
-
-Future<List<User>> getUser() async {
-  List<User> users = [];
-  final data = await http.get(Uri.parse('http://localhost:3000/usuarios/'));
-  var jsonData = json.decode(data.body);
-  for (var u in jsonData) {
-    print(data.body);
-    User user = User(
-        id: u["id"],
-        username: u["username"],
-        password: u["password"],
-        email: u["email"],
-        name: "",
-        edad: "",
-        descripcion: "",
-        imageUrl: "",
-        puntuacion: "");
-    users.add(user);
-  }
-  print(users.length);
-  return users;
 }

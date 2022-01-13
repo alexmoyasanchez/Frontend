@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Signup/components/body.dart';
-import 'package:flutter_auth/models/user_model.dart';
+import 'package:flutter_auth/data/data.dart';
+import 'package:flutter_auth/generated/l10n.dart';
+import 'package:flutter_auth/models/models.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'dart:convert';
@@ -15,6 +17,11 @@ Future<User> createUser(String username, String password, String email) async {
       'username': username,
       'password': password,
       'email': email,
+      'nombre': "",
+      'edad': "",
+      'descripcion': "",
+      'imageUrl': "",
+      'puntuacion': '0',
     }),
   );
 
@@ -25,7 +32,7 @@ Future<User> createUser(String username, String password, String email) async {
   } else {
     // If the server did not return a 201 CREATED response,
     // then throw an exception.
-    throw Exception('Error al registrar usuario.');
+    throw Exception(S.current.wrongu);
   }
 }
 

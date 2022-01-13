@@ -1,6 +1,6 @@
 {
-    "name": "ea_frontend",
-    "short_name": "ea_frontend",
+    "name": "eafrontend",
+    "short_name": "eafrontend",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

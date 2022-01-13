@@ -1,14 +1,21 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_auth/Screens/Chat/Chat_screen.dart';
-import 'package:flutter_auth/Screens/ChatList/chatList_screen.dart';
+import 'package:flutter_auth/Screens/Busqueda/busqueda_screen.dart';
+import 'package:flutter_auth/Screens/ChatList/ChatList_screen.dart';
+import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
+import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
+import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
+import 'package:flutter_auth/Screens/MisInsignias/misinsignias_screen.dart';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
-import 'package:flutter_auth/components/profile_avatar.dart';
+import 'package:flutter_auth/Screens/Map/ui/pages/home/map_screen.dart';
+import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
+import 'package:flutter_auth/Screens/MisComunidades/miscomunidades_screen.dart';
+import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
-import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
-import 'package:flutter_auth/models/message_model.dart';
+import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 
-import 'models/user_model.dart';
+import 'generated/l10n.dart';
 
 class SideBar extends StatelessWidget {
   @override
@@ -18,132 +25,296 @@ class SideBar extends StatelessWidget {
         padding: EdgeInsets.zero,
         children: [
           UserAccountsDrawerHeader(
+              margin: const EdgeInsets.only(bottom: 0.0),
               accountName: Text(currentUser.username),
               accountEmail: Text(currentUser.email),
-              currentAccountPicture:
-                  ProfileAvatar(imageUrl: currentUser.imageUrl),
+              currentAccountPicture: CircleAvatar(
+                radius: 20.0,
+                backgroundColor: PrimaryColor,
+                backgroundImage: NetworkImage(currentUser.imageUrl),
+              ),
               decoration: BoxDecoration(
-                  color: Colors.pink[300],
-                  image: DecorationImage(
-                    image: NetworkImage(
-                      'https://png.pngtree.com/background/20210717/original/pngtree-purple-bright-watercolor-background-picture-image_1432727.jpg',
-                    ),
-                    fit: BoxFit.cover,
-                  ))),
+                color: PrimaryColor,
+              )),
           ListTile(
-            leading: Icon(Icons.home_filled),
-            title: Text('Inicio'),
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.home_filled,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.inicio,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return FeedScreen();
+                  }),
+                );
+              }),
+          ListTile(
+            tileColor: Colors.black,
+            leading: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+            title: Text(
+              S.current.buscar,
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () {
+              DeleteCurrentPhoto();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return BusquedaScreen();
+                }),
+              );
+            },
+          ),
+          ListTile(
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.local_bar,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.locales,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ListaBaresScreen();
+                  }),
+                );
+              }),
+          ListTile(
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.people_alt,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.comunidades,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ListaComunidadesScreen();
+                  }),
+                );
+              }),
+          ListTile(
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.chat_bubble,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.chats,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ListaChatsScreen();
+                  }),
+                );
+              },
+              trailing: ClipOval(
+                child: Container(
+                  color: Colors.redAccent[700],
+                  width: 20,
+                  height: 20,
+                  child: Center(
+                    child: Text('3',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 12,
+                        )),
+                  ),
+                ),
+              )),
+          ListTile(
+            tileColor: Colors.black,
+            leading: Icon(
+              Icons.favorite,
+              color: Colors.white,
+            ),
+            title: Text(
+              S.current.localesfavs,
+              style: TextStyle(color: Colors.white),
+            ),
             onTap: () => null,
           ),
           ListTile(
-            leading: Icon(Icons.search),
-            title: Text('Busqueda'),
-            onTap: () => null,
-          ),
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.vpn_key_rounded,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.bares,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return MisBaresScreen();
+                  }),
+                );
+              }),
           ListTile(
-            leading: Icon(Icons.local_bar),
-            title: Text('Lista de locales'),
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.contact_phone_outlined,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.miscomunidades,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return MisComunidadesScreen();
+                  }),
+                );
+              }),
+          ListTile(
+            tileColor: Colors.black,
+            leading: Icon(
+              Icons.room_sharp,
+              color: Colors.white,
+            ),
+            title: Text(
+              S.current.mapas,
+              style: TextStyle(color: Colors.white),
+            ),
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(builder: (context) {
-                return ListaBaresScreen();
+                //if () permisos
+                return MapScreen2();
               }),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.people_alt),
-            title: Text('Comunidades'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.chat_bubble),
-            title: Text('Chats'),
-            onTap: () =>
-                Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return ChatListScreen();
-            })),
-          ),
-          // ListTile(
-          //     leading: Icon(Icons.chat_bubble),
-          //     title: Text('Chats de comunidad'),
-          //     onTap: () => Navigator.push(
-          //         context,
-          //         MaterialPageRoute(
-          //             builder: (_) => ChatScreen(
-          //                 user: User(
-          //                     id: '1',
-          //                     username: "oscar08850",
-          //                     password: "45654",
-          //                     email: "asdfa@gmail.com",
-          //                     name: "oscar",
-          //                     edad: "24",
-          //                     descripcion: "holahola",
-          //                     imageUrl: currentUser.imageUrl,
-          //                     puntuacion: "4"))
-          //                     )),
-          //     trailing: ClipOval(
-          //       child: Container(
-          //         color: Colors.redAccent[700],
-          //         width: 20,
-          //         height: 20,
-          //         child: Center(
-          //           child: Text('3',
-          //               style: TextStyle(
-          //                 color: Colors.white,
-          //                 fontSize: 12,
-          //               )),
-          //         ),
-          //       ),
-          //     )),
-          ListTile(
-            leading: Icon(Icons.favorite),
-            title: Text('Locales favoritos'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.vpn_key_rounded),
-            title: Text('Mis bares'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.local_attraction_rounded),
-            title: Text('Mis cupones'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.emoji_events_rounded),
-            title: Text('Ranking'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return ListaUsuariosScreen();
-              }),
+            tileColor: Colors.black,
+            leading: Icon(
+              Icons.emoji_events_rounded,
+              color: Colors.white,
             ),
-          ),
-          Divider(),
-          ListTile(
-            leading: Icon(Icons.settings_sharp),
-            title: Text('Configuración'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.info_outline),
-            title: Text('Sobre nosotros'),
-            onTap: () => null,
-          ),
-          ListTile(
-            leading: Icon(Icons.exit_to_app),
-            title: Text('Cerrar Sesión'),
-            onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) {
-                return WelcomeScreen();
-              }),
+            title: Text(
+              S.current.cupones,
+              style: TextStyle(color: Colors.white),
             ),
+            onTap: () {
+              DeleteCurrentPhoto();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return MisInsigniasScreen();
+                }),
+              );
+            },
           ),
+          ListTile(
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.align_vertical_bottom,
+                color: Colors.white,
+              ),
+              title: Text(
+                'Ranking',
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ListaUsuariosScreen();
+                  }),
+                );
+              }),
+          ListTile(
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.account_circle_rounded,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.perfil,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return EditPerfilScreen();
+                  }),
+                );
+              }),
+          Divider(
+            height: 0.1,
+            thickness: 2.0,
+            color: Colors.white,
+          ),
+          ListTile(
+            tileColor: Colors.black,
+            leading: Icon(
+              Icons.settings_sharp,
+              color: Colors.white,
+            ),
+            title: Text(
+              S.current.config,
+              style: TextStyle(color: Colors.white),
+            ),
+            onTap: () => null,
+          ),
+          ListTile(
+            tileColor: Colors.black,
+            leading: Icon(Icons.info_outline, color: Colors.white),
+            title: Text(S.current.about, style: TextStyle(color: Colors.white)),
+            onTap: () => null,
+          ),
+          ListTile(
+              tileColor: Colors.black,
+              leading: Icon(
+                Icons.exit_to_app,
+                color: Colors.white,
+              ),
+              title: Text(
+                S.current.cerrar,
+                style: TextStyle(color: Colors.white),
+              ),
+              onTap: () {
+                DeleteCurrentPhoto();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return WelcomeScreen();
+                  }),
+                );
+              }),
         ],
       ),
-      //backgroundColor: Color(0xFFEDF6E5),
     );
   }
 }
