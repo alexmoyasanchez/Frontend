@@ -27,7 +27,9 @@ Future<List<Bar>> getBares() async {
         horario: u["horario"],
         descripcion: u["descripcion"],
         imageUrl: u["imageUrl"],
-        agresion: u["agresion"]);
+        agresion: u["agresion"],
+        longitud: u["longitud"],
+        latitud: u["latitud"]);
 
     bares.add(bar);
   }
@@ -63,7 +65,6 @@ Future<Bar> enviarAgresion(Bar bar) async {
     throw Exception('Error al enviar la agresión');
   }
 }
-
 
 class ListaBaresScreen extends StatelessWidget {
   @override

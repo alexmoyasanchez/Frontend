@@ -14,6 +14,8 @@ class Bar{
   final String descripcion;
   final String imageUrl;
   final String agresion;
+  final String longitud;
+  final String latitud;
 
   const Bar({
     @required this.id,
@@ -27,7 +29,10 @@ class Bar{
     @required this.horario,
     @required this.descripcion,
     @required this.imageUrl,
-    @required this.agresion
+    @required this.agresion,
+    @required this.longitud,
+    @required this.latitud
+
     
   });
 
@@ -44,7 +49,10 @@ class Bar{
       horario: json['horario'],
       descripcion: json['descripcion'],
       imageUrl: json['imageUrl'],
-      agresion: json['agresion']
+      agresion: json['agresion'],
+      longitud: json['longitud'],
+      latitud: json['latitud']
+
     );
   }
 }

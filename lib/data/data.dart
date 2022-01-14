@@ -12,6 +12,12 @@ User currentUser = User(
   puntuacion: 0,
 );
 
+List<String> latitudes = [];
+List<String> longitudes = [];
+
+List<String> nombresBares = [];
+List<String> descripcionesBares = [];
+
 String currentPhoto = " ";
 
 final List<User> onlineUsers = [

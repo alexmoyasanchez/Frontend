@@ -39,9 +39,12 @@ class MapScreen extends StatelessWidget {
 }
 
 class MapScreen2 extends StatelessWidget {
-  const MapScreen2({Key key}) : super(key: key);
+  MapScreen2({Key key}) : super(key: key);
 
   //final _controller = HomeController();
+
+  List<String> latitud = [];
+  List<String> longitud = [];
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +57,7 @@ class MapScreen2 extends StatelessWidget {
           return controller;
         },
         child: Scaffold(
+          
           appBar: AppBar(),
           body: Consumer<HomeController>(
             builder: (_, controller, __) => GoogleMap(
@@ -67,7 +71,7 @@ class MapScreen2 extends StatelessWidget {
               mapType: MapType
                   .normal, //Tipo de mapa que queremos mostrar: Terrain, normal ...
               markers: controller.markers,
-              onTap: controller.onTap,
+              onTap: controller.alex(),
             ),
           ),
         ));
