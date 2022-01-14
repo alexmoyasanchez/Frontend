@@ -55,6 +55,8 @@ class _ChatPageState extends State<ChatPage> {
         'transports': ['websocket'],
       });
       socket.emit("login", [widget.room.name, currentUser.username]);
+      // socket.on("updateUsers", (data) =>
+      // print(data));
       socket.on("sendMessage", (res) {
         Message msg = (res is String)
             ? Message(message: res, username: "Admin")
