@@ -129,7 +129,7 @@ class _BodyState extends State<Body> {
                                     getTitles: (value) {
                                       if (value.toInt() == 0)
                                         return '';
-                                      else
+                                      else 
                                         return value.toInt().toString();
                                     },
                                   ),
