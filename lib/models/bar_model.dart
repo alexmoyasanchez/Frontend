@@ -14,7 +14,7 @@ class Bar {
   final String imageUrl;
   final String agresion;
    String opinion;
-   double valoracion;
+   String valoracion;
 
   Bar(
       {@required this.id,

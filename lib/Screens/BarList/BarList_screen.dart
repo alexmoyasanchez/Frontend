@@ -89,7 +89,7 @@ Future<Bar> enviarAgresion(Bar bar) async {
       'horario': bar.horario,
       'descripcion': bar.descripcion,
       'imageUrl': bar.imageUrl,
-      'valoracion': bar.valoracion.toString(),
+      'valoracion': bar.valoracion,
       'opinion': bar.opinion
     }),
   );
@@ -99,6 +99,8 @@ Future<Bar> enviarAgresion(Bar bar) async {
     throw Exception('Error al enviar tu opinion');
   }
 }
+
+
 
 class ListaBaresScreen extends StatelessWidget {
   @override
