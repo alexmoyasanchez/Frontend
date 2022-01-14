@@ -1,6 +1,5 @@
 import 'dart:developer';
 import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/BarList/BarList_screen.dart';
 import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
@@ -13,7 +12,6 @@ import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/bar_model.dart';
 import 'package:flutter_auth/constants.dart';
 import 'dart:async';
-
 import 'package:flutter_auth/Screens/SignUp/components/background.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -207,7 +205,7 @@ class _AforoPageState extends State<AforoPage> {
 class DetailPage extends StatelessWidget {
   final Bar bar;
   DateTime dt = new DateTime(0, 0, 0, 0, 0, 0);
-
+  String valUser;
   DetailPage(this.bar);
 
   @override
@@ -400,40 +398,40 @@ class DetailPage extends StatelessWidget {
             Divider(
               color: Colors.purple[200],
             ),
-            
             DropdownButton<String>(
-              hint: Text('Selecciona una valoración del 1 al 5',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18,
-                  )),
-              items: <String>['1', '2', '3', '4', '5'].map((String value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
-              onChanged: (String newvalue) {
-                
-                bar.valoracion = newvalue;
-                log(newvalue);
-                
-             
-                            
-               //update valor del dropdownbutton
-              },
-              
-              
-             
-            ),
+                hint: Text('Valora tu experiencia',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    )),
+                items: <String>[
+                  'Horrible',
+                  'Mala',
+                  'Normal',
+                  'Buena',
+                  'Volveremos Seguro'
+                ].map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String newvalue) {
+                  bar.valoracion = newvalue;
+                  valUser = newvalue;
+                  log(newvalue);
+                }),
             RoundedInputField(
               hintText: "Introduce tu opinion",
               onChanged: (value) {
                 bar.opinion = value;
+                bar.valoracion = valUser;
+                log(value);
+                log(valUser);
               },
             ),
             RoundedButton(
-              text: "Envia Opinion",
+              text: "Envia tu opinión",
               color: Colors.white,
               textColor: Colors.black,
               press: () {
@@ -506,39 +504,3 @@ String timeAgo(DateTime d) {
   return S.current.noagresion;
 }
 
-class MyStatefulWidget extends StatefulWidget {
-  const MyStatefulWidget({Key key}) : super(key: key);
-
-  @override
-  State<MyStatefulWidget> createState() => _MyStatefulWidgetState();
-}
-
-class _MyStatefulWidgetState extends State<MyStatefulWidget> {
-  String dropdownValue = '1';
-
-  @override
-  Widget build(BuildContext context) {
-    return DropdownButton<String>(
-      value: dropdownValue,
-      icon: const Icon(Icons.arrow_downward),
-      elevation: 16,
-      style: const TextStyle(color: Colors.deepPurple),
-      underline: Container(
-        height: 2,
-        color: Colors.deepPurpleAccent,
-      ),
-      onChanged: (String newValue) {
-        setState(() {
-          dropdownValue = newValue;
-        });
-      },
-      items: <String>['1', '2', '3', '4', '5']
-          .map<DropdownMenuItem<String>>((String value) {
-        return DropdownMenuItem<String>(
-          value: value,
-          child: Text(value),
-        );
-      }).toList(),
-    );
-  }
-}

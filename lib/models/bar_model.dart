@@ -13,8 +13,8 @@ class Bar {
   final String descripcion;
   final String imageUrl;
   final String agresion;
-   String opinion;
-   String valoracion;
+  String opinion;
+  String valoracion;
 
   Bar(
       {@required this.id,

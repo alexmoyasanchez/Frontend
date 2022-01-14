@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
 import 'package:flutter_auth/Screens/Signup/components/or_divider.dart';
@@ -146,13 +147,23 @@ class Body extends StatelessWidget {
                   iconSrc: "assets/icons/twitter.svg",
                   press: () {},
                 ),
-                SocalIcon( //funciona web, no funciona android
+                SocalIcon( 
                   iconSrc: "assets/icons/google-plus.svg",
                   press: () {
                     
                     Authentication.signInWithGoogle();
+                
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                    builder: (context) {
+                      return FeedScreen();
+                    },
+                  ),
+                );
+              },
                     
-                  },
+                  
                 ),
               ],
             )

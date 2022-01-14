@@ -86,8 +86,13 @@
     "atras" : "",
     "hace" : "hace ",
     "mapas" : "Mis mapas",
-    "noagresion" : "nunca"
-
-    
-
+    "noagresion" : "nunca",
+    "experiencia" : "Introduce una valoracion",
+    "Horrible" : "Horrible",
+    "Mala" : "Mala",
+    "Normal" : "Normal",
+    "Buena" : "Buena",
+    "Volveremos" : "Volveremos Seguro",
+    "opinion" : "Introduce tu opinion",
+    "enviarop" : "Enviar Opinion"
 }

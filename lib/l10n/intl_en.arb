@@ -86,8 +86,13 @@
     "atras" : " ago ",
     "hace" : "",    
     "mapas" : "My maps",
-    "noagresion" : "never"
-
-
-
+    "noagresion" : "never",
+    "experiencia" : "Choose a valoration",
+    "Horrible" : "Horrible",
+    "Mala" : "Bad",
+    "Normal" : "Normal",
+    "Buena" : "Good",
+    "Volveremos" : "Excellent",
+    "opinion" : "Introduce a review",
+    "enviarop" : "Send Opinion"
 }
