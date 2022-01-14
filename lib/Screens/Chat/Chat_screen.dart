@@ -1,5 +1,8 @@
+import 'dart:developer';
+
 import 'package:bubble/bubble.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/ChatList/chatList_screen.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/models/community_model.dart';
@@ -22,6 +25,7 @@ class _ChatPageState extends State<ChatPage> {
   GlobalKey<FormState> formKey;
   TextEditingController messageController = TextEditingController();
   IO.Socket socket;
+  List<String> usuarios = [];
   List<Message> messages = [];
   FocusNode messageNode;
 
@@ -58,6 +62,10 @@ class _ChatPageState extends State<ChatPage> {
         if (msg.username == currentUser.username) {
           return;
         }
+        // if (msg.username == "Connexions") {
+        //   log(msg.message);
+        //   return;
+        // }
         setState(() {
           messages.add(msg);
           controller.animateTo(controller.position.maxScrollExtent,
@@ -87,12 +95,38 @@ class _ChatPageState extends State<ChatPage> {
     }
   }
 
+  void disconnectUser() {
+    try {
+      socket.emit("disconnected", [widget.room.name, currentUser.username]);
+      Message msg = Message(
+          message: messageController.text, username: currentUser.username);
+      setState(() {
+        messages.add(msg);
+        controller.animateTo(controller.position.maxScrollExtent,
+            duration: Duration(milliseconds: 100), curve: Curves.linear);
+      });
+      messageController.clear();
+      messageNode.requestFocus();
+    } catch (e) {
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Color(0xBBb470b8),
         title: SelectableText(widget.room.name),
+        leading: BackButton(
+          onPressed: () {
+            disconnectUser();
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => ListaChatsScreen()));
+          },
+        ),
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -243,15 +277,6 @@ class _ChatPageState extends State<ChatPage> {
                     sendMessage();
                   },
                 ),
-                // SizedBox(
-                //   width: MediaQuery.of(context).size.width * 0.11,
-                //   child: RaisedButton(
-                //     child: Text("Send"),
-                //     onPressed: () {
-                //       sendMessage();
-                //     },
-                //   ),
-                // ),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.01,
                 ),
