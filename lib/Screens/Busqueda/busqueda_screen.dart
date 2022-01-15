@@ -77,7 +77,9 @@ Future<List<Bar>> buscarBar(String name) async {
         idUserAgresion: u["idUserAgresion"],
         motivacionAgresion: u["motivacionAgresion"],
         descAgresion: u["descAgresion"],
-        solAgresion: u["solAgresion"]);
+        solAgresion: u["solAgresion"],
+        latitud: u["latitud"],
+        longitud: u["longitud"]);
 
     bares.add(bar);
   }

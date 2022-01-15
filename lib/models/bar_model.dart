@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
-
-class Bar{
+class Bar {
   final String id;
   final String name;
   final String address;
@@ -18,45 +17,54 @@ class Bar{
   final String motivacionAgresion;
   final String descAgresion;
   final String solAgresion;
+  final String longitud;
+  final String latitud;
+  String opinion;
+  String valoracion;
 
-  const Bar({
-    @required this.id,
-    @required this.name,
-    @required this.address,
-    @required this.musicTaste,
-    @required this.owner,
-    @required this.idOwner,
-    @required this.aforo,
-    @required this.aforoMax,
-    @required this.horario,
-    @required this.descripcion,
-    @required this.imageUrl,
-    @required this.agresion,
-    @required this.idUserAgresion,
-    @required this.motivacionAgresion,
-    @required this.descAgresion,
-    @required this.solAgresion,
-    
-  });
+  Bar(
+      {@required this.id,
+      @required this.name,
+      @required this.address,
+      @required this.musicTaste,
+      @required this.owner,
+      @required this.idOwner,
+      @required this.aforo,
+      @required this.aforoMax,
+      @required this.horario,
+      @required this.descripcion,
+      @required this.imageUrl,
+      @required this.agresion,
+      @required this.idUserAgresion,
+      @required this.motivacionAgresion,
+      @required this.descAgresion,
+      @required this.solAgresion,
+      @required this.longitud,
+      @required this.latitud,
+      @required this.opinion,
+      @required this.valoracion});
 
   factory Bar.fromJson(Map<String, dynamic> json) {
     return Bar(
-      id: json['id'],
-      name: json['name'],      
-      address: json['address'],
-      musicTaste: json['musicTaste'],
-      owner: json['owner'],
-      idOwner: json['idOwner'],
-      aforo: json['aforo'],
-      aforoMax: json['aforoMax'],
-      horario: json['horario'],
-      descripcion: json['descripcion'],
-      imageUrl: json['imageUrl'],
-      agresion: json['agresion'],
-      idUserAgresion: json['idUserAgresion'],
-      motivacionAgresion: json['motivacionAgresion'],
-      descAgresion: json['descAgresion'],
-      solAgresion: json['solAgresion']
-    );
+        id: json['id'],
+        name: json['name'],
+        address: json['address'],
+        musicTaste: json['musicTaste'],
+        owner: json['owner'],
+        idOwner: json['idOwner'],
+        aforo: json['aforo'],
+        aforoMax: json['aforoMax'],
+        horario: json['horario'],
+        descripcion: json['descripcion'],
+        imageUrl: json['imageUrl'],
+        agresion: json['agresion'],
+        idUserAgresion: json['idUserAgresion'],
+        motivacionAgresion: json['motivacionAgresion'],
+        descAgresion: json['descAgresion'],
+        solAgresion: json['solAgresion'],
+        longitud: json['longitud'],
+        latitud: json['latitud'],
+        opinion: json['opinion'],
+        valoracion: json['valoracion']);
   }
 }

@@ -33,7 +33,9 @@ Future<List<Bar>> getMisBares() async {
         idUserAgresion: u["idAgresion"],
         motivacionAgresion: u["motivacionAgresion"],
         descAgresion: u["descAgresion"],
-        solAgresion: u["solAgresion"]);
+        solAgresion: u["solAgresion"],        
+        longitud: u["longitud"],
+        latitud: u["latitud"]);
 
     bares.add(bar);
   }

@@ -12,6 +12,11 @@ User currentUser = User(
   puntuacion: 0,
 );
 
+List<String> latitudes = [];
+List<String> longitudes = [];
+
+List<String> nombresBares = [];
+List<String> descripcionesBares = [];
 
 String currentPhoto = " ";
 String motivo, icono1 = 'assets/images/mujer.png', icono2 = 'assets/images/pride.png', icono3 = 'assets/images/black.png', icono4 = 'assets/images/otro.png';

@@ -159,6 +159,21 @@ class _BodyState extends State<Body> {
                 },
               ),
             ),
+            RoundedButton(
+              text: S.current.localizarl,
+              color: Colors.white,
+              textColor: Colors.black,
+              press: () async {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) {
+                        return MisBaresScreen(); //CAMBIAR PANTALLA
+                      },
+                    ),
+                  );
+              },
+            ),
             RoundedInputField2(
               hintText: S.current.nombrel,
               onChanged: (value) {
@@ -207,6 +222,7 @@ class _BodyState extends State<Body> {
                 descripcion = value;
               },
             ),
+            
             RoundedButton(
               text: S.current.crearl,
               color: Colors.white,

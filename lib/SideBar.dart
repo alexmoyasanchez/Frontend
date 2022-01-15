@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Busqueda/busqueda_screen.dart';
+import 'package:flutter_auth/Screens/ChatList/chatList_screen.dart';
 import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
 import 'package:flutter_auth/Screens/Estadisticas/estadisticas_screen.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
@@ -124,7 +125,14 @@ class SideBar extends StatelessWidget {
                 S.current.chats,
                 style: TextStyle(color: Colors.white),
               ),
-              onTap: () => null,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ListaChatsScreen();
+                  }),
+                );
+              },
               trailing: ClipOval(
                 child: Container(
                   color: Colors.redAccent[700],

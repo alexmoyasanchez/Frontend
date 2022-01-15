@@ -1234,6 +1234,16 @@ class S {
       args: [],
     );
   }
+
+  /// `SITUATE LOCAL AT MAP`
+  String get localizarl {
+    return Intl.message(
+      'SITUATE LOCAL AT MAP',
+      name: 'localizarl',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

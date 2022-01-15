@@ -101,7 +101,11 @@ Future<List<Bar>> getBares() async {
         idUserAgresion: u["idUserAgresion"],
         motivacionAgresion: u["motivacionAgresion"],
         descAgresion: u["descAgresion"],
-        solAgresion: u["solAgresion"]);
+        solAgresion: u["solAgresion"],
+        latitud: u["latitud"],
+        longitud: u["longitud"],
+        valoracion: u["valoracion"],
+        opinion: u["opinion"]);
 
     bares.add(bar);
   }
@@ -129,15 +133,20 @@ Future<Bar> getBar(String id) async {
       idUserAgresion: u["idUserAgresion"],
       motivacionAgresion: u["motivacionAgresion"],
       descAgresion: u["descAgresion"],
-      solAgresion: u["solAgresion"]);
+      solAgresion: u["solAgresion"],
+      latitud: u["latitud"],
+      longitud: u["longitud"],
+      valoracion: u["valoracion"],
+      opinion: u["opinion"]);
 
   return bar;
 }
 
-Future<void> sumarPuntuacion () async{
+Future<void> sumarPuntuacion() async {
   final response = await http.put(
-    Uri.parse(
-        'http://10.0.2.2:3000/usuarios/updatePuntuacion/' + currentUser.id + '/5'),
+    Uri.parse('http://10.0.2.2:3000/usuarios/updatePuntuacion/' +
+        currentUser.id +
+        '/5'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -148,6 +157,35 @@ Future<void> sumarPuntuacion () async{
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
     throw Exception('Error al dar un like.');
+  }
+}
+
+Future<Bar> enviarOpinion(Bar bar) async {
+  final data = await http.put(
+    Uri.parse('http://147.83.7.157:3000/bares/update/' + bar.id),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
+      'id': bar.id,
+      'name': bar.name,
+      'address': bar.address,
+      'musicTaste': bar.musicTaste,
+      'owner': bar.owner,
+      'idOwner': bar.idOwner,
+      'aforo': bar.aforo,
+      'aforoMax': bar.aforoMax,
+      'horario': bar.horario,
+      'descripcion': bar.descripcion,
+      'imageUrl': bar.imageUrl,
+      'valoracion': bar.valoracion,
+      'opinion': bar.opinion
+    }),
+  );
+  if (data.statusCode == 201) {
+    return Bar.fromJson(jsonDecode(data.body));
+  } else {
+    throw Exception('Error al enviar tu opinion');
   }
 }
 
