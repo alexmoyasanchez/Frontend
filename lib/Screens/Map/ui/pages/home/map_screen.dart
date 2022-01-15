@@ -77,3 +77,43 @@ class MapScreen2 extends StatelessWidget {
         ));
   }
 }
+
+
+class MapScreen3 extends StatelessWidget {
+  MapScreen3({Key key}) : super(key: key);
+
+  //final _controller = HomeController();
+
+  List<String> latitud = [];
+  List<String> longitud = [];
+
+  @override
+  Widget build(BuildContext context) {
+    return ChangeNotifierProvider<HomeController>(
+        create: (_) {
+          final controller = HomeController();
+          controller.onMarkerTap.listen((String id) {
+            print("go to $id");
+          });
+          return controller;
+        },
+        child: Scaffold(
+          appBar: AppBar(),
+          body: Consumer<HomeController>(
+            builder: (_, controller, __) => GoogleMap(
+              onMapCreated: controller.onMapCreatedNuevoBar,
+              initialCameraPosition: controller.initialCameraPosition,
+              myLocationButtonEnabled: true,
+              //scrollGesturesEnabled: false, //Para no poder mover el mapa
+              zoomControlsEnabled: true,
+              compassEnabled: true,
+              myLocationEnabled: true,
+              mapType: MapType
+                  .normal, //Tipo de mapa que queremos mostrar: Terrain, normal ...
+              markers: controller.markers,
+              onTap: controller.onTap,
+            ),
+          ),
+        ));
+  }
+}

@@ -15,7 +15,7 @@ import 'dart:math';
 
 class Vectores {}
 
-Future <void> getBares() async {
+Future<void> getBares() async {
   latitudes = [];
   nombresBares = [];
   descripcionesBares = [];
@@ -78,10 +78,14 @@ class HomeController extends ChangeNotifier {
     zoom: 15,
   );
 
-  void onMapCreatedyeah(GoogleMapController controller) async{
+  void onMapCreatedyeah(GoogleMapController controller) async {
     await getBares();
     createMarkers2(latitudes.length, latitudes, longitudes);
 
+    //controller.setMapStyle(mapStyle);
+  }
+
+  void onMapCreatedNuevoBar(GoogleMapController controller) async {
     //controller.setMapStyle(mapStyle);
   }
 
@@ -101,9 +105,8 @@ class HomeController extends ChangeNotifier {
     return deg * (pi / 180);
   }
 
-  void createMarkers2(int num, List<String> lat, List<String> lon) async{
+  void createMarkers2(int num, List<String> lat, List<String> lon) async {
     //num =num bares //reducir fuera
-
 
     //await getBares();
 
@@ -120,16 +123,12 @@ class HomeController extends ChangeNotifier {
       //prueba.add(new LatLng (double.parse(latitudes[i]), double.parse(longitudes[i])));
     }
 
-
     print("Esto es prueba:");
     print(prueba);
 
     print("Esto es latitudes:");
     print(latitudes);
 
-
-
- 
     for (int i = 0; i < num; i++) {
       final markerId = MarkerId(i.toString());
       BuildContext context;
@@ -137,7 +136,7 @@ class HomeController extends ChangeNotifier {
       print("este es el marker: ");
       print(i);
       final marker = Marker(
-          markerId: markerId, 
+          markerId: markerId,
           position: prueba[i], //(prueba[i]), //(position)
           infoWindow: InfoWindow(
             title: (nombresBares[i].toString()),
@@ -146,7 +145,7 @@ class HomeController extends ChangeNotifier {
               //getBares();
               Navigator.push(
                   context,
-                  new MaterialPageRoute( 
+                  new MaterialPageRoute(
                       builder: (context) => DetailPage(
                           snapshot.data[1]))); //ver si se puede solucionar
             },
@@ -160,10 +159,8 @@ class HomeController extends ChangeNotifier {
     }
   }
 
-  void createMarkers(int num, double distancia, bool reducir, List<String> lat,
-      List<String> lon) {
+  void createMarkers() {
     final id = _markers.length.toString();
-    //final markerId = MarkerId(id);
     LatLng pepe =
         new LatLng(41.2745368, 1.9834524); //Residencia universitaria EETAC
     /*
@@ -178,71 +175,76 @@ class HomeController extends ChangeNotifier {
     LatLng pepe5 =
         new LatLng(41.3470487, 2.0389436); //Residencia universitaria EETAC
 
-    //List marcadores = [pepe, pepe2, pepe3, pepe4, pepe5];
     List marcadores = [pepe, pepe5];
     List nearMarcadores = [];
     List prueba = [];
 
-    for (int i = 0; i < num; i++) {
-      LatLng pepito = new LatLng(double.parse(lat[i]), double.parse(lon[i]));
-      prueba.add(pepito);
-    }
-
-    if (reducir) {
-      for (int j = 0; j < marcadores.length; j++) {
-        if (getDistanceFromLatLonInKm(
-                initialCameraPosition.target.latitude.toDouble(),
-                initialCameraPosition.target.longitude.toDouble(),
-                marcadores[j].latitude.toDouble(),
-                marcadores[j].longitude.toDouble()) <
-            distancia) {
-          LatLng aux =
-              new LatLng(marcadores[j].latitude, marcadores[j].longitude);
-          nearMarcadores.add(aux);
-        }
-      }
-    } else {
-      nearMarcadores = marcadores;
-    }
-
-    for (int i = 0; i < num; i++) {
-      final markerId = MarkerId(i.toString());
-      BuildContext context;
-      AsyncSnapshot snapshot;
-      final marker = Marker(
-          markerId: markerId,
-          position: (nearMarcadores[i]), //(position)
-          infoWindow: InfoWindow(
-            title: ("Distancia"),
-            snippet: ("Aqui lo del cuerpo"),
-            onTap: () {
-              //getBares();
-              Navigator.push(
-                  context,
-                  new MaterialPageRoute(
-                      builder: (context) => DetailPage(
-                          snapshot.data[1]))); //ver si se puede solucionar
-            },
-          ),
+    final markerId = MarkerId(id);
+    BuildContext context;
+    AsyncSnapshot snapshot;
+    final marker = Marker(
+        markerId: markerId,
+        position: (nearMarcadores[1]), //(position)
+        infoWindow: InfoWindow(
+          title: ("Distancia"),
+          snippet: ("Aqui lo del cuerpo"),
           onTap: () {
-            _markersController.sink.add(i.toString());
-            //Console.log(i);
-          });
-      _markers[markerId] = marker;
-      notifyListeners();
-    }
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => DetailPage(
+                        snapshot.data[1]))); //ver si se puede solucionar
+          },
+        ),
+        onTap: () {
+          _markersController.sink.add(id.toString());
+          //Console.log(i);
+        });
+    _markers[markerId] = marker;
+    notifyListeners();
   }
 
   alex() {
     //getBares();
-    //getBares();
     //createMarkers2(latitudes.length, latitudes, longitudes);
-
   }
 
   void onTap(LatLng position) {
-    //   createMarkers(2, 5.0, true);
-    //nearMarkers(5);
+    final id = _markers.length.toString();
+
+    final markerId = MarkerId(id);
+    BuildContext context;
+    AsyncSnapshot snapshot;
+    latitud = position.latitude.toString();
+    longitud = position.longitude.toString();
+
+    if (_markers.length >= 1) {
+      _markers.clear();
+      latitud = "";
+      longitud = "";
+    }
+
+    final marker = Marker(
+        markerId: markerId,
+        position: position, //(position)
+        infoWindow: InfoWindow(
+          onTap: () {
+            Navigator.push(
+                context,
+                new MaterialPageRoute(
+                    builder: (context) => DetailPage(
+                        snapshot.data[1]))); //ver si se puede solucionar
+          },
+        ),
+        onTap: () {
+          print(_markers.length);
+
+          _markersController.sink.add(id
+              .toString()); //          _markersController.sink.add(id.toString());
+          //Console.log(i);
+        });
+    _markers[markerId] = marker;
+    notifyListeners();
   }
 
   @override

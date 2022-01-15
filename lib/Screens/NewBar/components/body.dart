@@ -2,6 +2,7 @@ import 'package:cloudinary_public/cloudinary_public.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/BarList/barlist_screen.dart';
+import 'package:flutter_auth/Screens/Map/ui/pages/home/map_screen.dart';
 import 'package:flutter_auth/Screens/NewBar/newbar_screen.dart';
 import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
@@ -168,7 +169,7 @@ class _BodyState extends State<Body> {
                     context,
                     MaterialPageRoute(
                       builder: (context) {
-                        return MisBaresScreen(); //CAMBIAR PANTALLA
+                        return MapScreen3(); //CAMBIAR PANTALLA
                       },
                     ),
                   );
@@ -235,7 +236,7 @@ class _BodyState extends State<Body> {
                     '$horario' != "" &&
                     '$descripcion' != "") {
                   await createBar('$nombre', '$address', '$musicTaste', '$aforoMax',
-                      '$horario', '$descripcion', currentPhoto);
+                      '$horario', '$descripcion', currentPhoto, latitud, longitud);
                   await getBares();
                   Navigator.push(
                     context,

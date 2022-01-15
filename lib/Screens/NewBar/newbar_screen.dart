@@ -12,7 +12,7 @@ import 'dart:async';
 import 'package:flutter_auth/models/bar_model.dart';
 
 Future createBar(String name, String direccion, String musicTaste,
-    String aforoMax, String horario, String descripcion, String imageUrl) async {
+    String aforoMax, String horario, String descripcion, String imageUrl, String latitud, String longitud) async {
   final response = await http.post(
     Uri.parse('http://10.0.2.2:3000/bares/new'),
     headers: <String, String>{
