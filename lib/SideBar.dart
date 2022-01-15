@@ -18,7 +18,7 @@ import 'package:permission_handler/permission_handler.dart';
 import 'generated/l10n.dart';
 
 class SideBar extends StatelessWidget {
-  @override
+  @override 
   Widget build(BuildContext context) {
     return Drawer(
       child: ListView(
