@@ -27,6 +27,10 @@ dependencies:
   provider: ^6.0.1    
   permission_handler: ^8.3.0 
   geojson: ^1.0.0 
+  agora_rtc_engine: ^4.0.7
+  charts_flutter: ^0.11.0
+
+
  
   
   #http:
@@ -44,7 +48,14 @@ dependencies:
   cloudinary_public: ^0.11.0
   dio: 
   loading: 
- 
+  fl_chart: ^0.41.0
+  bubble: ^1.2.1
+  socket_io_client: ^0.9.11
+  shared_preferences: ^2.0.11
+  firebase_core: ^1.10.6
+  firebase_auth: ^3.3.4
+  google_sign_in: ^5.2.1
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -88,3 +99,4 @@ flutter:
   # see https://flutter.dev/custom-fonts/#from-packages
 flutter_intl:
   enabled: true
+

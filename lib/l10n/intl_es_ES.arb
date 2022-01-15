@@ -26,7 +26,7 @@
     "cupones" : "Mis Insignias",
     "perfil" : "Editar perfil",
     "config" : "Configuración",
-    "about" : "Sobre nosotros",
+    "estadisticas" : "Estadísticas",
     "cerrar" : "Cerrar sesión",
     "listabares" : "Lista de Locales",
     "lastagresion" : "La última agresión en este local fue: ",
@@ -107,6 +107,21 @@
     "infoagresion" : "Añadir información sobre agresión",
     "agresion" : "Agresión",
     "otro" : "Otro",
-    "nouser" : "No se ha encontrado al usuario"
+    "nouser" : "No se ha encontrado al usuario",
+    "nusuarios" : "Numero de usuarios en la comunidad",
+    "denuncia" : "Denunciar post",
+    "titulodenuncia" : "Informar de un problema",
+    "mensajedenuncia" : "Gracias por informarnos.",
+    "desc1" : "Es sospechoso o spam",
+    "desc2" : "Muestra una foto o un video de carácter delicado",
+    "desc3" : "Comete abusos o es perjudicial",
+    "desc4" : "Expresa intenciones de suicidio",
+    "usuariosestadistica" : "Usuarios",
+    "baresestadistica" : "Locales",
+    "comunidadesestadistica" : "Comunidades",
+    "localizarl" : "SITUAR LOCAL EN EL MAPA"
     
+    
+    
+
 }

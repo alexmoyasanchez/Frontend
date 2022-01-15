@@ -57,8 +57,9 @@ class _BodyState extends State<Body> {
               textColor: Colors.black,
               press: () async {
                 GuardarUsuario('$email', '$password');
-                getUser();
+                getUser(); 
                 Login('$email', '$password');
+                //sumarPuntuacionLogin();
                 return Future.delayed(
                   const Duration(seconds: 1),
                   () => Navigator.push(

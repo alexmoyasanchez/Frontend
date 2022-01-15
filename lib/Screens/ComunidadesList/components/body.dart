@@ -132,8 +132,8 @@ class DetailPage extends StatelessWidget {
             Divider(
               color: Colors.purple[200],
             ),
-            /*Text(
-              "Número de usuarios en la comunidad",
+            Text(
+              S.current.nusuarios,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 20,
@@ -145,9 +145,6 @@ class DetailPage extends StatelessWidget {
                   color: Colors.white,
                   fontSize: 15,
                   fontWeight: FontWeight.bold),
-            ),*/
-            Divider(
-              color: Colors.purple[200],
             ),
             Divider(
               color: Colors.purple[200],
@@ -175,6 +172,7 @@ class DetailPage extends StatelessWidget {
               textColor: Colors.black,
               press: () {
                 unirComunidad(comunidad.id);
+                sumarPuntuacion();
                 Navigator.push(
                   context,
                   MaterialPageRoute(

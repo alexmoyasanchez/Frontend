@@ -305,11 +305,11 @@ class S {
     );
   }
 
-  /// `About Us`
-  String get about {
+  /// `Statistics`
+  String get estadisticas {
     return Intl.message(
-      'About Us',
-      name: 'about',
+      'Statistics',
+      name: 'estadisticas',
       desc: '',
       args: [],
     );
@@ -1120,6 +1120,126 @@ class S {
     return Intl.message(
       'User not found',
       name: 'nouser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Number of users at the comunnity `
+  String get nusuarios {
+    return Intl.message(
+      'Number of users at the comunnity ',
+      name: 'nusuarios',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report post`
+  String get denuncia {
+    return Intl.message(
+      'Report post',
+      name: 'denuncia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Report an issue`
+  String get titulodenuncia {
+    return Intl.message(
+      'Report an issue',
+      name: 'titulodenuncia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Thanks for reporting`
+  String get mensajedenuncia {
+    return Intl.message(
+      'Thanks for reporting',
+      name: 'mensajedenuncia',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It's suspicious or spam`
+  String get desc1 {
+    return Intl.message(
+      'It\'s suspicious or spam',
+      name: 'desc1',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It displays a sensitive photo or video`
+  String get desc2 {
+    return Intl.message(
+      'It displays a sensitive photo or video',
+      name: 'desc2',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It's abusive or harmful`
+  String get desc3 {
+    return Intl.message(
+      'It\'s abusive or harmful',
+      name: 'desc3',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `It expesses intentions oof selh-harm or suicide`
+  String get desc4 {
+    return Intl.message(
+      'It expesses intentions oof selh-harm or suicide',
+      name: 'desc4',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Users`
+  String get usuariosestadistica {
+    return Intl.message(
+      'Users',
+      name: 'usuariosestadistica',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Locals`
+  String get baresestadistica {
+    return Intl.message(
+      'Locals',
+      name: 'baresestadistica',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Communities`
+  String get comunidadesestadistica {
+    return Intl.message(
+      'Communities',
+      name: 'comunidadesestadistica',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SITUATE LOCAL AT MAP`
+  String get localizarl {
+    return Intl.message(
+      'SITUATE LOCAL AT MAP',
+      name: 'localizarl',
       desc: '',
       args: [],
     );

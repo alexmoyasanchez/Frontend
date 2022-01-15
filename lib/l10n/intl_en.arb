@@ -26,7 +26,7 @@
     "cupones" : "My Badges",
     "perfil" : "Edit profile",
     "config" : "Configuration",
-    "about" : "About Us",
+    "estadisticas" : "Statistics",
     "cerrar" : "Log Out",
     "listabares" : "Locals List",
     "lastagresion" : "The last agression at this local was: ",
@@ -107,6 +107,19 @@
     "infoagresion" : "Add information about agression",
     "agresion" : "Agression",
     "otro" : "Another",
-    "nouser" : "User not found"
+    "nouser" : "User not found",
+    "nusuarios" : "Number of users at the comunnity ",
+    "denuncia" : "Report post",
+    "titulodenuncia" : "Report an issue",
+    "mensajedenuncia" : "Thanks for reporting",
+    "desc1" : "It's suspicious or spam",
+    "desc2" : "It displays a sensitive photo or video",
+    "desc3" : "It's abusive or harmful",
+    "desc4" : "It expesses intentions oof selh-harm or suicide",
+    "usuariosestadistica" : "Users",
+    "baresestadistica" : "Locals",
+    "comunidadesestadistica" : "Communities",
+    "localizarl" : "SITUATE LOCAL AT MAP"
+
 
 }

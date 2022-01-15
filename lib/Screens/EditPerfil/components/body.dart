@@ -337,6 +337,7 @@ class _BodyState extends State<Body> {
                         GuardarFotoUsuario(currentPhoto);
                         editarUser('$username', '$password', '$email',
                             '$nombre', '$edad', '$descripcion', currentPhoto);
+                        sumarPuntuacion();
                         DeleteCurrentPhoto();
                         return Future.delayed(
                           const Duration(seconds: 1),

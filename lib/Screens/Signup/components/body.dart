@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/Login/login_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
 import 'package:flutter_auth/Screens/Signup/components/or_divider.dart';
@@ -10,6 +11,11 @@ import 'package:flutter_auth/components/rounded_input_field.dart';
 import 'package:flutter_auth/components/rounded_password_field.dart';
 import 'package:flutter_auth/components/rounded_repeat_password_field.dart';
 import 'package:flutter_auth/generated/l10n.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_auth/auth.dart';
 
 class Body extends StatelessWidget {
   @override
@@ -141,9 +147,23 @@ class Body extends StatelessWidget {
                   iconSrc: "assets/icons/twitter.svg",
                   press: () {},
                 ),
-                SocalIcon(
+                SocalIcon( 
                   iconSrc: "assets/icons/google-plus.svg",
-                  press: () {},
+                  press: () {
+                    
+                    Authentication.signInWithGoogle();
+                
+                    Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                    builder: (context) {
+                      return FeedScreen();
+                    },
+                  ),
+                );
+              },
+                    
+                  
                 ),
               ],
             )

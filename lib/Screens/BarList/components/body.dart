@@ -177,6 +177,7 @@ class _AforoPageState extends State<AforoPage> {
                     widget.bar.horario,
                     widget.bar.descripcion,
                     currentPhoto);
+                sumarPuntuacion();
                 return Future.delayed(
                     const Duration(milliseconds: 250),
                     () => Navigator.push(
@@ -207,7 +208,7 @@ class _AforoPageState extends State<AforoPage> {
 class DetailPage extends StatelessWidget {
   final Bar bar;
   DateTime dt = new DateTime(0, 0, 0, 0, 0, 0);
-
+  String valUser;
   DetailPage(this.bar);
 
   @override
@@ -245,8 +246,7 @@ class DetailPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: 
-        ListView(
+        child: ListView(
           children: <Widget>[
             GestureDetector(
               onTap: () {
@@ -416,6 +416,55 @@ class DetailPage extends StatelessWidget {
                 )),
             Divider(
               color: Colors.purple[200],
+            ),
+            DropdownButton<String>(
+                hint: Text('Valora tu experiencia',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18,
+                    )),
+                items: <String>[
+                  'Horrible',
+                  'Mala',
+                  'Normal',
+                  'Buena',
+                  'Volveremos Seguro'
+                ].map((String value) {
+                  return DropdownMenuItem<String>(
+                    value: value,
+                    child: Text(value),
+                  );
+                }).toList(),
+                onChanged: (String newvalue) {
+                  bar.valoracion = newvalue;
+                  valUser = newvalue;
+                  print(newvalue);
+                }),
+            RoundedInputFieldLargo(
+              hintText: "Introduce tu opinion",
+              onChanged: (value) {
+                bar.opinion = value;
+                bar.valoracion = valUser;
+                print(value);
+                print(valUser);
+              },
+            ),
+            RoundedButton(
+              text: "Envia tu opinión",
+              color: Colors.white,
+              textColor: Colors.black,
+              press: () {
+                enviarOpinion(bar);
+                getBares();
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return ListaBaresScreen();
+                    },
+                  ),
+                );
+              },
             ),
             RoundedButton(
               text: S.current.notagresion,

@@ -162,6 +162,7 @@ class _BodyState extends State<Body> {
               press: () async {
                 if ('$name' != "" && '$descripcion' != "") {
                   await createComunidad('$name', '$descripcion', currentPhoto);
+                  sumarPuntuacionCrear();
                   currentPhoto = " ";
                   getComunidades();
                   Navigator.push(

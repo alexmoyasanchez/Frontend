@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Busqueda/busqueda_screen.dart';
+import 'package:flutter_auth/Screens/ChatList/chatList_screen.dart';
 import 'package:flutter_auth/Screens/ComunidadesList/comunidadeslist_screen.dart';
+import 'package:flutter_auth/Screens/Estadisticas/estadisticas_screen.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/MisBares/misbares_screen.dart';
 import 'package:flutter_auth/Screens/MisInsignias/misinsignias_screen.dart';
 import 'package:flutter_auth/Screens/UserList/UserList_screen.dart';
+import 'package:flutter_auth/Screens/Videollamada/index.dart';
 import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/Screens/Map/ui/pages/home/map_screen.dart';
 import 'package:flutter_auth/Screens/EditPerfil/editperfil_screen.dart';
@@ -122,7 +125,14 @@ class SideBar extends StatelessWidget {
                 S.current.chats,
                 style: TextStyle(color: Colors.white),
               ),
-              onTap: () => null,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) {
+                    return ListaChatsScreen();
+                  }),
+                );
+              },
               trailing: ClipOval(
                 child: Container(
                   color: Colors.redAccent[700],
@@ -278,13 +288,31 @@ class SideBar extends StatelessWidget {
               S.current.config,
               style: TextStyle(color: Colors.white),
             ),
-            onTap: () => null,
+            onTap: () {
+              DeleteCurrentPhoto();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return IndexPage();
+                }),
+              );
+            },
           ),
           ListTile(
             tileColor: Colors.black,
-            leading: Icon(Icons.info_outline, color: Colors.white),
-            title: Text(S.current.about, style: TextStyle(color: Colors.white)),
-            onTap: () => null,
+            leading:
+                Icon(Icons.stacked_line_chart_rounded, color: Colors.white),
+            title: Text(S.current.estadisticas,
+                style: TextStyle(color: Colors.white)),
+            onTap: () {
+              DeleteCurrentPhoto();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return EstadisticasScreen();
+                }),
+              );
+            },
           ),
           ListTile(
               tileColor: Colors.black,

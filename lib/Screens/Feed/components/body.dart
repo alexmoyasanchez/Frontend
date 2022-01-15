@@ -1,7 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_auth/Screens/Denuncia/denuncia_screen.dart';
 import 'package:flutter_auth/Screens/Feed/feed_screen.dart';
 import 'package:flutter_auth/Screens/Signup/components/background.dart';
+import 'package:flutter_auth/Screens/Welcome/welcome_screen.dart';
 import 'package:flutter_auth/components/post_container.dart';
 import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/generated/l10n.dart';
@@ -11,7 +13,6 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 class Body extends StatelessWidget {
   final Future<Bar> bar;
-
 
   Body({Key key, this.bar}) : super(key: key);
 
@@ -81,7 +82,6 @@ class Body extends StatelessWidget {
 
 class _PostHeader extends StatelessWidget {
   final Post post;
-  
 
   const _PostHeader({
     Key key,
@@ -89,16 +89,15 @@ class _PostHeader extends StatelessWidget {
   }) : super(key: key);
 
   @override
-
-  
   Widget build(BuildContext context) {
-
+    final listItem = ['Denunciar'];
+    String newValue;
     DateTime dt = DateTime.parse(post.fecha);
 
     return Row(
       children: [
         CircleAvatar(
-            radius: 20.0, 
+            radius: 20.0,
             backgroundColor: PrimaryColor,
             backgroundImage: NetworkImage(post.imageBar)),
         const SizedBox(width: 8.0),
@@ -130,14 +129,30 @@ class _PostHeader extends StatelessWidget {
             )
           ]),
         ),
-        IconButton(
-          icon: const Icon(Icons.more_horiz),
-          color: Colors.white,
-          onPressed: () => print('More'),
-        )
+        DropdownButton(
+            dropdownColor: Colors.black,
+            underline: Container(height: 1, color: Colors.black),
+            style: TextStyle(color: Colors.white),
+            icon: const Icon(Icons.more_horiz),
+            items: listItem.map(buildMenuItem).toList(),
+            value: newValue,
+            onChanged: (value) {
+              idDenuncia = post.id;
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return DenunciaScreen();
+              }));
+            }),
       ],
     );
   }
+
+  DropdownMenuItem<String> buildMenuItem(String item) => DropdownMenuItem(
+        value: item,
+        child: Text(
+          item,
+          style: TextStyle(fontSize: 20),
+        ),
+      );
 }
 
 class _PostStats extends StatelessWidget {
@@ -150,6 +165,14 @@ class _PostStats extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    String iconofav = 'assets/images/estrella.png';
+
+    for (int i = 0; i < post.likes.length; i++) {
+      if (post.likes[i] == currentUser.id) {
+        iconofav = 'assets/images/estrella_relleno.png';
+      }
+    }
+
     return Column(
       children: [
         Row(
@@ -164,7 +187,7 @@ class _PostStats extends StatelessWidget {
             const SizedBox(width: 4.0),
             Expanded(
               child: Text(
-                '${post.likes}' + S.current.favs,
+                (post.likes.length - 1).toString() + S.current.favs,
                 style: TextStyle(
                   color: Colors.grey[600],
                 ),
@@ -174,13 +197,36 @@ class _PostStats extends StatelessWidget {
         ),
         const Divider(),
         Row(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            _PostButton(
+            Text(
+              S.current.fav,
+              style: TextStyle(color: Colors.white),
+            ),
+            IconButton(
+              iconSize: 5.0,
+              icon: Image.asset(iconofav),
+              onPressed: () async {
+                if (iconofav == 'assets/images/estrella.png') {
+                  await Like(currentUser.id, post.id);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return FeedScreen();
+                  }));
+                } else if (iconofav == 'assets/images/estrella_relleno.png') {
+                  await DeshacerLike(currentUser.id, post.id);
+                  Navigator.push(context, MaterialPageRoute(builder: (context) {
+                    return FeedScreen();
+                  }));
+                }
+              },
+            ),
+
+            /*_PostButton(
               icon: Icon(MdiIcons.starOutline,
                   color: Colors.grey[600], size: 20.0),
               label: S.current.fav,
-              onTap: () => print('Favorito'),
-            ),
+              onTap: () => Like(currentUser.id, post.id),
+            ),*/
           ],
         )
       ],
@@ -231,16 +277,28 @@ class _PostButton extends StatelessWidget {
 String timeAgo(DateTime d) {
   Duration diff = DateTime.now().difference(d);
   if (diff.inDays > 365)
-    return S.current.hace + "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? S.current.year : S.current.years} " + S.current.atras;
+    return S.current.hace +
+        "${(diff.inDays / 365).floor()} ${(diff.inDays / 365).floor() == 1 ? S.current.year : S.current.years} " +
+        S.current.atras;
   if (diff.inDays > 30)
-    return S.current.hace + "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? S.current.mes : S.current.meses} " + S.current.atras;
+    return S.current.hace +
+        "${(diff.inDays / 30).floor()} ${(diff.inDays / 30).floor() == 1 ? S.current.mes : S.current.meses} " +
+        S.current.atras;
   if (diff.inDays > 7)
-    return S.current.hace + "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? S.current.semana : S.current.semanas} " + S.current.atras;
+    return S.current.hace +
+        "${(diff.inDays / 7).floor()} ${(diff.inDays / 7).floor() == 1 ? S.current.semana : S.current.semanas} " +
+        S.current.atras;
   if (diff.inDays > 0)
-    return S.current.hace + "${diff.inDays} ${diff.inDays == 1 ? S.current.dia : S.current.dias} " + S.current.atras;
+    return S.current.hace +
+        "${diff.inDays} ${diff.inDays == 1 ? S.current.dia : S.current.dias} " +
+        S.current.atras;
   if (diff.inHours > 0)
-    return S.current.hace + "${diff.inHours} ${diff.inHours == 1 ? S.current.hora : S.current.horas} " + S.current.atras;
+    return S.current.hace +
+        "${diff.inHours} ${diff.inHours == 1 ? S.current.hora : S.current.horas} " +
+        S.current.atras;
   if (diff.inMinutes > 0)
-    return S.current.hace + "${diff.inMinutes} ${diff.inMinutes == 1 ? S.current.minuto : S.current.minutos} " + S.current.atras;
+    return S.current.hace +
+        "${diff.inMinutes} ${diff.inMinutes == 1 ? S.current.minuto : S.current.minutos} " +
+        S.current.atras;
   return S.current.ahora;
 }
