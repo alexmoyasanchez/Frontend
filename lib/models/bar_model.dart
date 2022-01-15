@@ -19,10 +19,8 @@ class Bar {
   final String solAgresion;
   final String longitud;
   final String latitud;
-  String opinion;
-  String valoracion;
 
-  Bar(
+  const Bar(
       {@required this.id,
       @required this.name,
       @required this.address,
@@ -40,9 +38,7 @@ class Bar {
       @required this.descAgresion,
       @required this.solAgresion,
       @required this.longitud,
-      @required this.latitud,
-      @required this.opinion,
-      @required this.valoracion});
+      @required this.latitud});
 
   factory Bar.fromJson(Map<String, dynamic> json) {
     return Bar(
@@ -63,8 +59,6 @@ class Bar {
         descAgresion: json['descAgresion'],
         solAgresion: json['solAgresion'],
         longitud: json['longitud'],
-        latitud: json['latitud'],
-        opinion: json['opinion'],
-        valoracion: json['valoracion']);
+        latitud: json['latitud']);
   }
 }

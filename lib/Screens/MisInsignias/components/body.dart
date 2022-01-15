@@ -30,7 +30,7 @@ class Body extends StatelessWidget {
         backgroundColor: Colors.black,
         drawer: SideBar(),
         body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: FutureBuilder(
                 future: getUserById(),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {

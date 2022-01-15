@@ -36,7 +36,7 @@ class _BodyState extends State<Body> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 50),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 50),
         child: FutureBuilder(
             future: getEstadisticas(),
             builder: (BuildContext context, AsyncSnapshot snapshot) {

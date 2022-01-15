@@ -271,7 +271,7 @@ class _BarPageState extends State<BarPage> {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+          padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
           child: FutureBuilder(
               future: buscarBar(bbar),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -472,7 +472,7 @@ class _ComunidadPageState extends State<ComunidadPage> {
     return Scaffold(
         backgroundColor: Colors.black,
         body: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
             child: FutureBuilder(
                 future: buscarComunidad(bcomunidad),
                 builder: (BuildContext context, AsyncSnapshot snapshot) {
@@ -572,7 +572,7 @@ class AgresionDetailPage extends StatelessWidget {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: ListView(
           children: <Widget>[
             Divider(

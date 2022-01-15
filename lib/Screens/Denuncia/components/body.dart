@@ -18,7 +18,7 @@ class Body extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: ListView(
           children: <Widget>[
             SizedBox(

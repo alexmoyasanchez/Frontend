@@ -63,7 +63,7 @@
     "crearl" : "CREATE LOCAL",
     "nuevol" : "New Local",
     "editarl" : "EDIT LOCAL",
-    "modificaraforo" : "Modify capacity",
+    "modificaraforo" : "Modify capacity and add valoration",
     "editara" : "EDIT CAPACITY",
     "personas" : " people",
     "nuevac" : "New Comunity",
@@ -119,7 +119,17 @@
     "usuariosestadistica" : "Users",
     "baresestadistica" : "Locals",
     "comunidadesestadistica" : "Communities",
-    "localizarl" : "SITUATE LOCAL AT MAP"
-
+    "localizarl" : "SITUATE LOCAL AT MAP",
+    "valorar" : "Rate your experience",
+    "horrible" : "Horrible",
+    "mala" : "Bad",
+    "normal" : "Normal",
+    "buena" : "Good",
+    "volveremos" : "Will return",
+    "introduceop" : "Introduce your rating",
+    "enviarop" : "SEND YOUR RATING",
+    "verval" : "See ratings",
+    "incorrectuser" : "You are not the user who posted the rating and you cannot delete it.",
+    "valoracion" : "Valoraciones"
 
 }

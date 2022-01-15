@@ -246,7 +246,7 @@ class _EditPageState extends State<EditPage> {
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
         child: ListView(
           children: <Widget>[
             CircleAvatar(

@@ -8,6 +8,7 @@ import 'package:flutter_auth/constants.dart';
 import 'package:flutter_auth/data/data.dart';
 import 'package:flutter_auth/generated/l10n.dart';
 import 'package:flutter_auth/models/agresion_model.dart';
+import 'package:flutter_auth/models/valoracion_model.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:flutter_auth/models/bar_model.dart';
@@ -103,9 +104,7 @@ Future<List<Bar>> getBares() async {
         descAgresion: u["descAgresion"],
         solAgresion: u["solAgresion"],
         latitud: u["latitud"],
-        longitud: u["longitud"],
-        valoracion: u["valoracion"],
-        opinion: u["opinion"]);
+        longitud: u["longitud"]);
 
     bares.add(bar);
   }
@@ -135,11 +134,28 @@ Future<Bar> getBar(String id) async {
       descAgresion: u["descAgresion"],
       solAgresion: u["solAgresion"],
       latitud: u["latitud"],
-      longitud: u["longitud"],
-      valoracion: u["valoracion"],
-      opinion: u["opinion"]);
+      longitud: u["longitud"]);
 
   return bar;
+}
+
+Future<List<Valoracion>> getValoraciones(String idBar) async {
+  List<Valoracion> valoraciones = [];
+  final data = await http.get(Uri.parse('http://10.0.2.2:3000/valoraciones/getValoracionesByBar/' + idBar));
+  var jsonData = json.decode(data.body);
+  for (var u in jsonData) {
+    print(data.body);
+    Valoracion valoracion = Valoracion(
+        id: u["id"],
+        idBar: u["idBar"],
+        idUsuario: u["idUsuario"],
+        puntos: u["puntos"],
+        descripcion: u["descripcion"]);
+
+    valoraciones.add(valoracion);
+  }
+  print(valoraciones.length);
+  return valoraciones;
 }
 
 Future<void> sumarPuntuacion() async {
@@ -160,26 +176,33 @@ Future<void> sumarPuntuacion() async {
   }
 }
 
-Future<Bar> enviarOpinion(Bar bar) async {
-  final data = await http.put(
-    Uri.parse('http://147.83.7.157:3000/bares/update/' + bar.id),
+Future<Bar> enviarOpinion(String valoracion, String descripcion, String idBar) async {
+  final data = await http.post(
+    Uri.parse('http://10.0.2.2:3000/valoraciones/new/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
     body: jsonEncode(<String, String>{
-      'id': bar.id,
-      'name': bar.name,
-      'address': bar.address,
-      'musicTaste': bar.musicTaste,
-      'owner': bar.owner,
-      'idOwner': bar.idOwner,
-      'aforo': bar.aforo,
-      'aforoMax': bar.aforoMax,
-      'horario': bar.horario,
-      'descripcion': bar.descripcion,
-      'imageUrl': bar.imageUrl,
-      'valoracion': bar.valoracion,
-      'opinion': bar.opinion
+      'idBar': idBar,
+      'idUsuario': currentUser.id,
+      'puntos': valoracion,
+      'descripcion': descripcion
+    }),
+  );
+  if (data.statusCode == 201) {
+    return Bar.fromJson(jsonDecode(data.body));
+  } else {
+    throw Exception('Error al enviar tu opinion');
+  }
+}
+
+Future<Bar> eliminarValoracion(String id) async {
+  final data = await http.delete(
+    Uri.parse('http://10.0.2.2:3000/valoraciones/delete/' + id),
+    headers: <String, String>{
+      'Content-Type': 'application/json; charset=UTF-8',
+    },
+    body: jsonEncode(<String, String>{
     }),
   );
   if (data.statusCode == 201) {

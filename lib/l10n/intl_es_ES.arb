@@ -63,7 +63,7 @@
     "crearl" : "CREAR LOCAL",
     "nuevol" : "Nuevo Local",
     "editarl" : "EDITAR LOCAL",
-    "modificaraforo" : "Modificar aforo",
+    "modificaraforo" : "Modificar aforo y añadir valoración",
     "editara" : "EDITAR AFORO",
     "personas" : " personas",
     "nuevac" : "Nueva Comunidad",
@@ -119,7 +119,18 @@
     "usuariosestadistica" : "Usuarios",
     "baresestadistica" : "Locales",
     "comunidadesestadistica" : "Comunidades",
-    "localizarl" : "SITUAR LOCAL EN EL MAPA"
+    "localizarl" : "SITUAR LOCAL EN EL MAPA",
+    "valorar" : "Valora tu experiencia",
+    "horrible" : "Horrible",
+    "mala" : "Mala",
+    "normal" : "Normal",
+    "buena" : "Buena",
+    "volveremos" : "Volveremos seguro",
+    "introduceop" : "Introduce tu opinión",
+    "enviarop" : "ENVIA TU VALORACIÓN",
+    "verval" : "Ver Valoraciones",
+    "incorrectuser" : "No eres el usuario que publicó la valoración y no puedes eliminarla",
+    "valoracion" : "Valoraciones"
     
     
     

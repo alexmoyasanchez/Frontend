@@ -64,7 +64,7 @@ Future<void> sumarPuntuacionCrear () async{
   if (response.statusCode != 201) {
     // If the server did return a 201 CREATED response,
     // then parse the JSON.
-    throw Exception('Error al dar un like.');
+    throw Exception('Error al actualizar la puntuación.');
   }
 }
 

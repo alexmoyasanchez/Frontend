@@ -675,10 +675,10 @@ class S {
     );
   }
 
-  /// `Modify capacity`
+  /// `Modify capacity and add valoration`
   String get modificaraforo {
     return Intl.message(
-      'Modify capacity',
+      'Modify capacity and add valoration',
       name: 'modificaraforo',
       desc: '',
       args: [],
@@ -1240,6 +1240,116 @@ class S {
     return Intl.message(
       'SITUATE LOCAL AT MAP',
       name: 'localizarl',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Rate your experience`
+  String get valorar {
+    return Intl.message(
+      'Rate your experience',
+      name: 'valorar',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Horrible`
+  String get horrible {
+    return Intl.message(
+      'Horrible',
+      name: 'horrible',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Bad`
+  String get mala {
+    return Intl.message(
+      'Bad',
+      name: 'mala',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Normal`
+  String get normal {
+    return Intl.message(
+      'Normal',
+      name: 'normal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Good`
+  String get buena {
+    return Intl.message(
+      'Good',
+      name: 'buena',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Will return`
+  String get volveremos {
+    return Intl.message(
+      'Will return',
+      name: 'volveremos',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Introduce your rating`
+  String get introduceop {
+    return Intl.message(
+      'Introduce your rating',
+      name: 'introduceop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `SEND YOUR RATING`
+  String get enviarop {
+    return Intl.message(
+      'SEND YOUR RATING',
+      name: 'enviarop',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `See ratings`
+  String get verval {
+    return Intl.message(
+      'See ratings',
+      name: 'verval',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `You are not the user who posted the rating and you cannot delete it.`
+  String get incorrectuser {
+    return Intl.message(
+      'You are not the user who posted the rating and you cannot delete it.',
+      name: 'incorrectuser',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Valoraciones`
+  String get valoracion {
+    return Intl.message(
+      'Valoraciones',
+      name: 'valoracion',
       desc: '',
       args: [],
     );
