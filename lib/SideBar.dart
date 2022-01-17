@@ -116,48 +116,23 @@ class SideBar extends StatelessWidget {
                 );
               }),
           ListTile(
-              tileColor: Colors.black,
-              leading: Icon(
-                Icons.chat_bubble,
-                color: Colors.white,
-              ),
-              title: Text(
-                S.current.chats,
-                style: TextStyle(color: Colors.white),
-              ),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return ListaChatsScreen();
-                  }),
-                );
-              },
-              trailing: ClipOval(
-                child: Container(
-                  color: Colors.redAccent[700],
-                  width: 20,
-                  height: 20,
-                  child: Center(
-                    child: Text('3',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 12,
-                        )),
-                  ),
-                ),
-              )),
-          ListTile(
             tileColor: Colors.black,
             leading: Icon(
-              Icons.favorite,
+              Icons.chat_bubble,
               color: Colors.white,
             ),
             title: Text(
-              S.current.localesfavs,
+              S.current.chats,
               style: TextStyle(color: Colors.white),
             ),
-            onTap: () => null,
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) {
+                  return ListaChatsScreen();
+                }),
+              );
+            },
           ),
           ListTile(
               tileColor: Colors.black,
@@ -281,7 +256,7 @@ class SideBar extends StatelessWidget {
           ListTile(
             tileColor: Colors.black,
             leading: Icon(
-              Icons.settings_sharp,
+              Icons.camera_indoor_outlined,
               color: Colors.white,
             ),
             title: Text(

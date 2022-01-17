@@ -11,8 +11,32 @@ import 'package:http/http.dart' as http;
 import 'dart:async';
 import 'package:flutter_auth/models/bar_model.dart';
 
-Future createBar(String name, String direccion, String musicTaste,
-    String aforoMax, String horario, String descripcion, String imageUrl, String latitud, String longitud) async {
+Future createBar(
+    String name,
+    String direccion,
+    String musicTaste,
+    String aforoMax,
+    String horario,
+    String descripcion,
+    String imageUrl,
+    String latitud,
+    String longitud) async {
+  print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+  print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+  print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+  print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+  print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+  print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+  print("BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+  print(name);
+  print(direccion);
+  print(musicTaste);
+  print(aforoMax);
+  print(horario);
+  print(descripcion);
+  print(currentPhoto);
+  print(latitud);
+  print(longitud);
   final response = await http.post(
     Uri.parse('http://10.0.2.2:3000/bares/new'),
     headers: <String, String>{
@@ -29,7 +53,9 @@ Future createBar(String name, String direccion, String musicTaste,
       'horario': horario,
       'descripcion': descripcion,
       'imageUrl': imageUrl,
-      'idAgresion' : ' ',
+      'idAgresion': ' ',
+      'latitud': latitud,
+      'longitud': longitud,
     }),
   );
 

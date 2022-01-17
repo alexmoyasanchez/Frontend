@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Map/ui/pages/home/home_controller.dart';
+import 'package:flutter_auth/Screens/NewBar/newbar_screen.dart';
+import 'package:flutter_auth/SideBar.dart';
+import 'package:flutter_auth/constants.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:provider/provider.dart';
@@ -57,8 +60,9 @@ class MapScreen2 extends StatelessWidget {
           return controller;
         },
         child: Scaffold(
-          
-          appBar: AppBar(),
+          appBar: AppBar(
+            backgroundColor: PrimaryColor,
+          ),
           body: Consumer<HomeController>(
             builder: (_, controller, __) => GoogleMap(
               onMapCreated: controller.onMapCreatedyeah,
@@ -77,7 +81,6 @@ class MapScreen2 extends StatelessWidget {
         ));
   }
 }
-
 
 class MapScreen3 extends StatelessWidget {
   MapScreen3({Key key}) : super(key: key);
@@ -98,7 +101,9 @@ class MapScreen3 extends StatelessWidget {
           return controller;
         },
         child: Scaffold(
-          appBar: AppBar(),
+          appBar: AppBar(
+            backgroundColor: PrimaryColor,
+          ),
           body: Consumer<HomeController>(
             builder: (_, controller, __) => GoogleMap(
               onMapCreated: controller.onMapCreatedNuevoBar,

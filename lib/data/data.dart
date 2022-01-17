@@ -18,8 +18,8 @@ List<String> longitudes = [];
 List<String> nombresBares = [];
 List<String> descripcionesBares = [];
 
-String latitud = "0";
-String longitud = "0";
+String latitud = "";
+String longitud = "";
 
 String currentPhoto = " ";
 String motivo, icono1 = 'assets/images/mujer.png', icono2 = 'assets/images/pride.png', icono3 = 'assets/images/black.png', icono4 = 'assets/images/otro.png';
