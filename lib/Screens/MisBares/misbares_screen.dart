@@ -15,7 +15,7 @@ import 'package:flutter_auth/models/bar_model.dart';
 Future<List<Bar>> getMisBares() async {
   List<Bar> bares = [];
   final data = await http.get(Uri.parse(
-      'http://localhost:3000/bares/getBaresByUser/' + currentUser.id));
+      'http://147.83.7.157:3000/bares/getBaresByUser/' + currentUser.id));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     Bar bar = Bar(
@@ -55,7 +55,7 @@ Future editarBar(
     String descripcion,
     String imageUrl) async {
   final data = await http.put(
-    Uri.parse('http://localhost:3000/bares/update/' + id),
+    Uri.parse('http://147.83.7.157:3000/bares/update/' + id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -79,7 +79,7 @@ Future editarBar(
 
 Future newPost(String texto, Bar bar, String imageUrl) async {
   final data = await http.post(
-    Uri.parse('http://localhost:3000/publicaciones/new'),
+    Uri.parse('http://147.83.7.157:3000/publicaciones/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -102,7 +102,7 @@ Future newPost(String texto, Bar bar, String imageUrl) async {
 
 Future DeleteBar(String idBar) async {
   final data = await http
-      .delete(Uri.parse('http://localhost:3000/Bares/delete/' + idBar));
+      .delete(Uri.parse('http://147.83.7.157:3000/Bares/delete/' + idBar));
 
   if (data.statusCode == 201) {
   } else {

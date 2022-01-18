@@ -11,7 +11,7 @@ import 'dart:async';
 Future<List<Post>> getPosts() async {
   List<Post> posts = [];
   final data =
-      await http.get(Uri.parse('http://localhost:3000/publicaciones/'));
+      await http.get(Uri.parse('http://147.83.7.157:3000/publicaciones/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
@@ -35,7 +35,7 @@ Future<List<Post>> getPosts() async {
 Future<void> Like(String idUser, String idPost) async {
   final response = await http.put(
     Uri.parse(
-        'http://localhost:3000/publicaciones/like/' + idUser + '/' + idPost),
+        'http://147.83.7.157:3000/publicaciones/like/' + idUser + '/' + idPost),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -51,7 +51,7 @@ Future<void> Like(String idUser, String idPost) async {
 
 Future<void> DeshacerLike(String idUser, String idPost) async {
   final response = await http.put(
-    Uri.parse('http://localhost:3000/publicaciones/deshacerLike/' +
+    Uri.parse('http://147.83.7.157:3000/publicaciones/deshacerLike/' +
         idUser +
         '/' +
         idPost),

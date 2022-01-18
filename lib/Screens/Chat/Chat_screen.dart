@@ -51,7 +51,7 @@ class _ChatPageState extends State<ChatPage> {
 
   void initSocket() {
     try {
-      socket = IO.io('http://localhost:3000/', <String, dynamic>{
+      socket = IO.io('http://147.83.7.157:3000/', <String, dynamic>{
         'transports': ['websocket'],
       });
       socket.emit("login", [widget.room.name, currentUser.username]);

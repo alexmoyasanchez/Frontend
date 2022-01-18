@@ -14,7 +14,7 @@ import 'package:flutter_auth/models/models.dart';
 
 Future<List<Comunidad>> getComunidades() async {
   List<Comunidad> comunidades = [];
-  final data = await http.get(Uri.parse('http://localhost:3000/comunidades/'));
+  final data = await http.get(Uri.parse('http://147.83.7.157:3000/comunidades/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
@@ -34,13 +34,13 @@ Future<List<Comunidad>> getComunidades() async {
 
 Future unirComunidad(String idComunidad) async {
   final data = await http.put(Uri.parse(
-      'http://localhost:3000/comunidades/addUsuario/' +
+      'http://147.83.7.157:3000/comunidades/addUsuario/' +
           currentUser.id +
           '/comunidad/' +
           idComunidad));
   if (data.statusCode == 201) {
     final data = await http.put(Uri.parse(
-        'http://localhost:3000/comunidades/addUsuario/' +
+        'http://147.83.7.157:3000/comunidades/addUsuario/' +
             currentUser.id +
             '/comunidad/' +
             idComunidad));
@@ -54,7 +54,7 @@ Future unirComunidad(String idComunidad) async {
 
 Future<void> sumarPuntuacion() async {
   final response = await http.put(
-    Uri.parse('http://localhost:3000/usuarios/updatePuntuacion/' +
+    Uri.parse('http://147.83.7.157:3000/usuarios/updatePuntuacion/' +
         currentUser.id +
         '/2'),
     headers: <String, String>{

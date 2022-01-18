@@ -8,7 +8,7 @@ import 'dart:convert';
 Future<User> buscarUsuario(String username) async {
   User user;
   final data = await http.get(Uri.parse(
-      'http://localhost:3000/usuarios/getUsuarioByUsername/' + username));
+      'http://147.83.7.157:3000/usuarios/getUsuarioByUsername/' + username));
   var jsonData = json.decode(data.body);
 
   user = User(
@@ -33,7 +33,7 @@ Future<Comunidad> buscarComunidad(String name) async {
   List<Comunidad> comunidades = [];
   Comunidad comunidad;
   final data = await http.get(Uri.parse(
-      'http://localhost:3000/comunidades/getComunidadByName/' + name));
+      'http://147.83.7.157:3000/comunidades/getComunidadByName/' + name));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     comunidad = Comunidad(
@@ -58,7 +58,7 @@ Future<List<Bar>> buscarBar(String name) async {
   List<Bar> bares = [];
   Bar bar;
   final data = await http
-      .get(Uri.parse('http://localhost:3000/bares/getBarByName/' + name));
+      .get(Uri.parse('http://147.83.7.157:3000/bares/getBarByName/' + name));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     bar = Bar(

@@ -42,7 +42,7 @@ class _BodyState extends State<Body> {
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (snapshot.data == null) {
                 return Container(
-                    child: Center(child: CircularProgressIndicator()));
+                    child: Center(child: CircularProgressIndicator(color: Colors.white)));
               } else {
                 numusuarios = double.parse(snapshot.data[0].numUsuarios);
                 numbares = double.parse(snapshot.data[0].numBares);

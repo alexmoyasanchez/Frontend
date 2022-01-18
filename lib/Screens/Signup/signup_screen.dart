@@ -9,7 +9,7 @@ import 'dart:convert';
 
 Future<User> createUser(String username, String password, String email) async {
   final response = await http.post(
-    Uri.parse('http://localhost:3000/usuarios/new'),
+    Uri.parse('http://147.83.7.157:3000/usuarios/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -38,7 +38,7 @@ Future<User> createUser(String username, String password, String email) async {
 
 Future<User> UserAuthbyGoogle(String email, String id) async {
   final response = await http.post(
-    Uri.parse('http://localhost:3000/usuarios/new'),
+    Uri.parse('http://147.83.7.157:3000/usuarios/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

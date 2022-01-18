@@ -31,7 +31,7 @@ class Body extends StatelessWidget {
                 print(snapshot.data);
                 if (snapshot.data == null) {
                   return Container(
-                      child: Center(child: CircularProgressIndicator()));
+                      child: Center(child: CircularProgressIndicator(color: Colors.white)));
                 } else {
                   return ListView.builder(
                     itemCount: snapshot.data.length,
@@ -847,7 +847,7 @@ class _ValoracionPageState extends State<ValoracionPage> {
                 print(snapshot.data);
                 if (snapshot.data == null) {
                   return Container(
-                      child: Center(child: CircularProgressIndicator()));
+                      child: Center(child: CircularProgressIndicator(color: Colors.white)));
                 } else {
                   return Scaffold(
                       backgroundColor: Colors.black,

@@ -15,7 +15,7 @@ import 'package:flutter_auth/models/models.dart';
 Future<List<Comunidad>> getComunidadesById() async {
   List<Comunidad> comunidades = [];
   final data = await http.get(Uri.parse(
-      'http://localhost:3000/comunidades/getComunidadesByUser/' +
+      'http://147.83.7.157:3000/comunidades/getComunidadesByUser/' +
           currentUser.id));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
@@ -37,7 +37,7 @@ Future<List<Comunidad>> getComunidadesById() async {
 Future updateComunidad(String idComunidad, String name, String descripcion,
     String imageUrl) async {
   final data = await http.put(
-    Uri.parse('http://localhost:3000/comunidades/update/' + idComunidad),
+    Uri.parse('http://147.83.7.157:3000/comunidades/update/' + idComunidad),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -56,7 +56,7 @@ Future updateComunidad(String idComunidad, String name, String descripcion,
 
 Future deleteComunidad(String idComunidad) async {
   final data = await http.delete(
-      Uri.parse('http://localhost:3000/comunidades/delete/' + idComunidad));
+      Uri.parse('http://147.83.7.157:3000/comunidades/delete/' + idComunidad));
 
   if (data.statusCode == 201) {
     return MisComunidadesScreen();

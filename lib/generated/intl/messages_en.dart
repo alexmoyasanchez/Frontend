@@ -42,7 +42,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "close" : MessageLookupByLibrary.simpleMessage("Close"),
     "comunidades" : MessageLookupByLibrary.simpleMessage("Communities"),
     "comunidadesestadistica" : MessageLookupByLibrary.simpleMessage("Communities"),
-    "config" : MessageLookupByLibrary.simpleMessage("Configuration"),
+    "config" : MessageLookupByLibrary.simpleMessage("Video call"),
     "correo" : MessageLookupByLibrary.simpleMessage("Email"),
     "correo2" : MessageLookupByLibrary.simpleMessage("Email: "),
     "crearc" : MessageLookupByLibrary.simpleMessage("CREATE COMUNITY"),

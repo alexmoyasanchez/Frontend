@@ -29,7 +29,7 @@ void DeleteCurrentPhoto() {
 Future<User> editarUser(String username, String password, String email,
     String nombre, String edad, String descripcion, String imageUrl) async {
   final response = await http.put(
-    Uri.parse('http://localhost:3000/usuarios/update/' + currentUser.id),
+    Uri.parse('http://147.83.7.157:3000/usuarios/update/' + currentUser.id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -57,7 +57,7 @@ Future<User> editarUser(String username, String password, String email,
 
 Future<void> sumarPuntuacion() async {
   final response = await http.put(
-    Uri.parse('http://localhost:3000/usuarios/updatePuntuacion/' +
+    Uri.parse('http://147.83.7.157:3000/usuarios/updatePuntuacion/' +
         currentUser.id +
         '/20'),
     headers: <String, String>{

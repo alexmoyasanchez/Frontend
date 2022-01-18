@@ -166,7 +166,7 @@ class _PostStats extends StatelessWidget {
   Future<void> Like(String idUser, String idPost) async {
     final response = await http.put(
       Uri.parse(
-          'http://localhost:3000/publicaciones/like/' + idUser + '/' + idPost),
+          'http://147.83.7.157:3000/publicaciones/like/' + idUser + '/' + idPost),
       headers: <String, String>{
         'Content-Type': 'application/json; charset=UTF-8',
       },

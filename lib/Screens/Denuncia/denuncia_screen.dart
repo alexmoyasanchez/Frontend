@@ -15,7 +15,7 @@ import 'package:flutter_auth/models/models.dart';
 Future<Denuncia> Denunciar(
     String idUser, String idPost, String descripcion) async {
   final response = await http.post(
-    Uri.parse('http://localhost:3000/denuncias/new'),
+    Uri.parse('http://147.83.7.157:3000/denuncias/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

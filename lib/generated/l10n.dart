@@ -295,10 +295,10 @@ class S {
     );
   }
 
-  /// `Configuration`
+  /// `Video call`
   String get config {
     return Intl.message(
-      'Configuration',
+      'Video call',
       name: 'config',
       desc: '',
       args: [],
