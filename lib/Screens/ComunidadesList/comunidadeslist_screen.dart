@@ -14,8 +14,7 @@ import 'package:flutter_auth/models/models.dart';
 
 Future<List<Comunidad>> getComunidades() async {
   List<Comunidad> comunidades = [];
-  final data =
-      await http.get(Uri.parse('http://10.0.2.2:3000/comunidades/'));
+  final data = await http.get(Uri.parse('http://localhost:3000/comunidades/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
@@ -35,13 +34,13 @@ Future<List<Comunidad>> getComunidades() async {
 
 Future unirComunidad(String idComunidad) async {
   final data = await http.put(Uri.parse(
-      'http://10.0.2.2:3000/comunidades/addUsuario/' +
+      'http://localhost:3000/comunidades/addUsuario/' +
           currentUser.id +
           '/comunidad/' +
           idComunidad));
   if (data.statusCode == 201) {
     final data = await http.put(Uri.parse(
-        'http://10.0.2.2:3000/comunidades/addUsuario/' +
+        'http://localhost:3000/comunidades/addUsuario/' +
             currentUser.id +
             '/comunidad/' +
             idComunidad));
@@ -53,10 +52,11 @@ Future unirComunidad(String idComunidad) async {
   }
 }
 
-Future<void> sumarPuntuacion () async{
+Future<void> sumarPuntuacion() async {
   final response = await http.put(
-    Uri.parse(
-        'http://10.0.2.2:3000/usuarios/updatePuntuacion/' + currentUser.id + '/2'),
+    Uri.parse('http://localhost:3000/usuarios/updatePuntuacion/' +
+        currentUser.id +
+        '/2'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -69,7 +69,6 @@ Future<void> sumarPuntuacion () async{
     throw Exception('Error al dar un like.');
   }
 }
-
 
 class ListaComunidadesScreen extends StatelessWidget {
   @override
@@ -87,7 +86,6 @@ class ListaComunidadesScreen extends StatelessWidget {
               letterSpacing: -1.2),
         ),
         centerTitle: true,
-        
       ),
       body: Body(),
     );

@@ -25,7 +25,7 @@ Future<void> getBares() async {
 
   longitudes = [];
   List<Bar> bares = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/bares/'));
+  final data = await http.get(Uri.parse('http://localhost:3000/bares/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);

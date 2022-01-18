@@ -16,7 +16,7 @@ import 'package:flutter_auth/models/bar_model.dart';
 Future<Bar> updateBar(
     Bar bar, String motivo, String descripcion, String solucion) async {
   final data = await http.put(
-    Uri.parse('http://10.0.2.2:3000/bares/update/' + bar.id),
+    Uri.parse('http://localhost:3000/bares/update/' + bar.id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -49,7 +49,7 @@ Future<Bar> updateBar(
 
 Future<Bar> notificarAgresion(Bar bar) async {
   final data = await http.put(
-    Uri.parse('http://10.0.2.2:3000/bares/update/' + bar.id),
+    Uri.parse('http://localhost:3000/bares/update/' + bar.id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -82,7 +82,7 @@ Future<Bar> notificarAgresion(Bar bar) async {
 
 Future<List<Bar>> getBares() async {
   List<Bar> bares = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/bares/'));
+  final data = await http.get(Uri.parse('http://localhost:3000/bares/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
@@ -114,7 +114,7 @@ Future<List<Bar>> getBares() async {
 
 Future<Bar> getBar(String id) async {
   final data =
-      await http.get(Uri.parse('http://10.0.2.2:3000/bares/getBar/' + id));
+      await http.get(Uri.parse('http://localhost:3000/bares/getBar/' + id));
   var u = json.decode(data.body);
   Bar bar = Bar(
       id: u["id"],
@@ -141,7 +141,8 @@ Future<Bar> getBar(String id) async {
 
 Future<List<Valoracion>> getValoraciones(String idBar) async {
   List<Valoracion> valoraciones = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/valoraciones/getValoracionesByBar/' + idBar));
+  final data = await http.get(Uri.parse(
+      'http://localhost:3000/valoraciones/getValoracionesByBar/' + idBar));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     print(data.body);
@@ -160,7 +161,7 @@ Future<List<Valoracion>> getValoraciones(String idBar) async {
 
 Future<void> sumarPuntuacion() async {
   final response = await http.put(
-    Uri.parse('http://10.0.2.2:3000/usuarios/updatePuntuacion/' +
+    Uri.parse('http://localhost:3000/usuarios/updatePuntuacion/' +
         currentUser.id +
         '/5'),
     headers: <String, String>{
@@ -176,9 +177,10 @@ Future<void> sumarPuntuacion() async {
   }
 }
 
-Future<Bar> enviarOpinion(String valoracion, String descripcion, String idBar) async {
+Future<Bar> enviarOpinion(
+    String valoracion, String descripcion, String idBar) async {
   final data = await http.post(
-    Uri.parse('http://10.0.2.2:3000/valoraciones/new/'),
+    Uri.parse('http://localhost:3000/valoraciones/new/'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -198,12 +200,11 @@ Future<Bar> enviarOpinion(String valoracion, String descripcion, String idBar) a
 
 Future<Bar> eliminarValoracion(String id) async {
   final data = await http.delete(
-    Uri.parse('http://10.0.2.2:3000/valoraciones/delete/' + id),
+    Uri.parse('http://localhost:3000/valoraciones/delete/' + id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
-    body: jsonEncode(<String, String>{
-    }),
+    body: jsonEncode(<String, String>{}),
   );
   if (data.statusCode == 201) {
     return Bar.fromJson(jsonDecode(data.body));

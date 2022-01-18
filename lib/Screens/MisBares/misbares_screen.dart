@@ -14,7 +14,8 @@ import 'package:flutter_auth/models/bar_model.dart';
 
 Future<List<Bar>> getMisBares() async {
   List<Bar> bares = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/bares/getBaresByUser/' + currentUser.id));
+  final data = await http.get(Uri.parse(
+      'http://localhost:3000/bares/getBaresByUser/' + currentUser.id));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     Bar bar = Bar(
@@ -33,7 +34,7 @@ Future<List<Bar>> getMisBares() async {
         idUserAgresion: u["idAgresion"],
         motivacionAgresion: u["motivacionAgresion"],
         descAgresion: u["descAgresion"],
-        solAgresion: u["solAgresion"],        
+        solAgresion: u["solAgresion"],
         longitud: u["longitud"],
         latitud: u["latitud"]);
 
@@ -43,10 +44,18 @@ Future<List<Bar>> getMisBares() async {
   return bares;
 }
 
-Future editarBar(String id, String name, String address, String musicTaste,
-    String aforo, String aforoMax, String horario, String descripcion, String imageUrl) async {
+Future editarBar(
+    String id,
+    String name,
+    String address,
+    String musicTaste,
+    String aforo,
+    String aforoMax,
+    String horario,
+    String descripcion,
+    String imageUrl) async {
   final data = await http.put(
-    Uri.parse('http://10.0.2.2:3000/bares/update/' + id),
+    Uri.parse('http://localhost:3000/bares/update/' + id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -70,7 +79,7 @@ Future editarBar(String id, String name, String address, String musicTaste,
 
 Future newPost(String texto, Bar bar, String imageUrl) async {
   final data = await http.post(
-    Uri.parse('http://10.0.2.2:3000/publicaciones/new'),
+    Uri.parse('http://localhost:3000/publicaciones/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -92,8 +101,8 @@ Future newPost(String texto, Bar bar, String imageUrl) async {
 }
 
 Future DeleteBar(String idBar) async {
-  final data = await http.delete(
-      Uri.parse('http://10.0.2.2:3000/Bares/delete/' + idBar));
+  final data = await http
+      .delete(Uri.parse('http://localhost:3000/Bares/delete/' + idBar));
 
   if (data.statusCode == 201) {
   } else {

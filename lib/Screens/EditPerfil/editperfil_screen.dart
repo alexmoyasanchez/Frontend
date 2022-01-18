@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'package:cloudinary_public/cloudinary_public.dart';
 
-void GuardarFotoUsuario (String imageUrl) async{
+void GuardarFotoUsuario(String imageUrl) async {
   final User usuario = User(
     id: currentUser.id,
     username: currentUser.username,
@@ -22,14 +22,14 @@ void GuardarFotoUsuario (String imageUrl) async{
   currentUser = usuario;
 }
 
-void DeleteCurrentPhoto(){
+void DeleteCurrentPhoto() {
   currentPhoto = " ";
 }
 
 Future<User> editarUser(String username, String password, String email,
     String nombre, String edad, String descripcion, String imageUrl) async {
   final response = await http.put(
-    Uri.parse('http://10.0.2.2:3000/usuarios/update/' + currentUser.id),
+    Uri.parse('http://localhost:3000/usuarios/update/' + currentUser.id),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
@@ -55,10 +55,11 @@ Future<User> editarUser(String username, String password, String email,
   }
 }
 
-Future<void> sumarPuntuacion () async{
+Future<void> sumarPuntuacion() async {
   final response = await http.put(
-    Uri.parse(
-        'http://10.0.2.2:3000/usuarios/updatePuntuacion/' + currentUser.id + '/20'),
+    Uri.parse('http://localhost:3000/usuarios/updatePuntuacion/' +
+        currentUser.id +
+        '/20'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },

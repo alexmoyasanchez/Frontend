@@ -14,7 +14,7 @@ import 'package:flutter_auth/models/models.dart';
 
 Future<List<Estadistica>> getEstadisticas() async {
   List<Estadistica> estadisticas = [];
-  final data = await http.get(Uri.parse('http://10.0.2.2:3000/estadisticas/'));
+  final data = await http.get(Uri.parse('http://localhost:3000/estadisticas/'));
   var jsonData = json.decode(data.body);
   for (var u in jsonData) {
     Estadistica estadistica = Estadistica(

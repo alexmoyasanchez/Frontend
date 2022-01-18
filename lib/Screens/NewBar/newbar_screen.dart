@@ -38,7 +38,7 @@ Future createBar(
   print(latitud);
   print(longitud);
   final response = await http.post(
-    Uri.parse('http://10.0.2.2:3000/bares/new'),
+    Uri.parse('http://localhost:3000/bares/new'),
     headers: <String, String>{
       'Content-Type': 'application/json; charset=UTF-8',
     },
