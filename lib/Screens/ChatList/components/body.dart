@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_auth/Screens/Chat/Chat_screen.dart';
-import 'package:flutter_auth/Screens/ChatList/ChatList_screen.dart';
+import 'package:flutter_auth/Screens/ChatList/chatList_screen.dart';
 import 'package:flutter_auth/SideBar.dart';
 import 'package:flutter_auth/components/rounded_button.dart';
 import 'package:flutter_auth/data/data.dart';
@@ -29,35 +29,57 @@ class Body extends StatelessWidget {
               print(snapshot.data);
               if (snapshot.data == null) {
                 return Container(
-                    child: Center(child: CircularProgressIndicator(color: Colors.white)));
+                    child: Center(
+                        child: CircularProgressIndicator(color: Colors.white)));
               } else {
                 return ListView.builder(
                   itemCount: snapshot.data.length,
                   itemBuilder: (BuildContext context, int index) {
-                    return ListTile(
-                      leading: CircleAvatar(
-                        backgroundColor: PrimaryColor,
-                        backgroundImage:
-                            NetworkImage(snapshot.data[index].imageUrl),
-                      ),
-                      title: Text(snapshot.data[index].name,
-                          style: TextStyle(
+                    for (int i = 0;
+                        i < snapshot.data[index].usuarios.length;
+                        i++) {
+                      if (snapshot.data[index].usuarios[i] == currentUser.id) {
+                        return ListTile(
+                          leading: CircleAvatar(
+                            backgroundColor: PrimaryColor,
+                            backgroundImage:
+                                NetworkImage(snapshot.data[index].imageUrl),
+                          ),
+                          title: Text(snapshot.data[index].name,
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.bold)),
+                          subtitle: Text(snapshot.data[index].owner,
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 15,
+                              )),
+                          trailing: IconButton(
                               color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold)),
-                      subtitle: Text(snapshot.data[index].owner,
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                          )),
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                                builder: (context) =>
-                                    ChatPage(room: snapshot.data[index])));
-                      },
-                    );
+                              icon: Icon(Icons.exit_to_app_rounded),
+                              onPressed: () async{
+                                await abandonarComunidad(snapshot.data[index].id);
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) {
+                                      return ListaChatsScreen();
+                                    },
+                                  ),
+                                );
+                              }),
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                new MaterialPageRoute(
+                                    builder: (context) =>
+                                        ChatPage(room: snapshot.data[index])));
+                          },
+                        );
+                      }
+                    }
+                    return Container();
                   },
                 );
               }

@@ -51,6 +51,21 @@ Future updateComunidad(String idComunidad, String name, String descripcion,
   }
 }
 
+Future abandonarComunidad(String idComunidad) async {
+  final data = await http.put(Uri.parse(
+      'http://147.83.7.157:3000/comunidades/deleteUsuario/' +
+          currentUser.id +
+          '/comunidad/' +
+          idComunidad));
+  if (data.statusCode == 201) {
+    if (data.statusCode == 201) {
+      
+    } else {
+      throw Exception('Error al unirse a la comunidad');
+    }
+  }
+}
+
 Future deleteComunidad(String idComunidad) async {
   final data = await http.delete(
       Uri.parse('http://147.83.7.157:3000/comunidades/delete/' + idComunidad));
@@ -61,6 +76,8 @@ Future deleteComunidad(String idComunidad) async {
     throw Exception('Error al unirse a la comunidad');
   }
 }
+
+
 
 class ListaChatsScreen extends StatelessWidget {
   @override
